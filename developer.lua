@@ -8,17 +8,11 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
     str = string.gsub(message, "%s+", "")
     if str == "ВОЖДЬ") then
         SendChatMessage(nik .. ", простой или сложный?", "guild", nil, 1)
-    else
-    end
-    if string.find (message, "ВОЖДЬ сдать") then
+    elseif string.find (message, "ВОЖДЬ сдать") then
         SendChatMessage(nik .. ", опыт или деньги?", "guild", nil, 1)
-    else
-    end
-    if string.find (message, "ВОЖДЬ опыт") then
+    elseif string.find (message, "ВОЖДЬ опыт") then
         SendChatMessage(nik .. " получает 2 опыта." .. " До лвлапа осталось [заглушка сделаю позже]", "guild", nil, 1)
-    else
-    end
-    if string.find (message, "ВОЖДЬ деньги") then
+    elseif string.find (message, "ВОЖДЬ деньги") then
         SendChatMessage(nik .. " получит [стандартная награда для gildLvl_nik] реализую позже", "guild", nil, 1)
         SendChatMessage(nik .. " получает 1 опыта." .. " До лвлапа осталось [заглушка сделаю позже]", "guild", nil, 1)
     else
