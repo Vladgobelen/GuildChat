@@ -2,8 +2,7 @@ local GC_Sniffer = CreateFrame("Frame")
 GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
     local nik=sender
-    local str
-    str = string.gsub(message, "%s+", "")
+    local str = string.gsub(message, "%s+", "")
     if str == "ВОЖДЬ") then
         SendChatMessage(nik .. ", простой или сложный?", "guild", nil, 1)
     elseif string.find (message, "ВОЖДЬ сдать") then
