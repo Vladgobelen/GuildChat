@@ -2,8 +2,6 @@ local GC_Sniffer = CreateFrame("Frame")
 GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
     local nik=sender
-    print(sender)
-    print(message)
     local str
     str = string.gsub(message, "%s+", "")
     if str == "ВОЖДЬ") then
