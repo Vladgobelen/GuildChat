@@ -1,6 +1,8 @@
 local GC_Sniffer = CreateFrame("Frame")
 GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
+
+    --команды для управления квестами
     local nik=sender
     local str = string.gsub(message, "%s+", "")
     if (nik ~= "Двацветок" and nik ~= "Витинари" and nik ~= "Железобетонс" and nik ~= "Детрит") then
@@ -17,6 +19,7 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
         end
     end
 
+    --запись о прогрессе в информацию о персонаже
     local str2 = string.gsub(message, "%s+", "")
     if string.find (str2, "mostrareID") then
         for i=1,GetNumGuildMembers(true) do
@@ -33,6 +36,7 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
     else
     end
 
+    --справка
     if string.find (message, "ВОЖДЬ инфо") then
         SendChatMessage("Подробности о квестах и командах: https://t.me/AnkMorporkInfo", "guild", nil, 1)
         SendChatMessage("ВОЖДЬ - получить квест", "guild", nil, 1)
