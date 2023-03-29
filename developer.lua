@@ -17,6 +17,32 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
         end
     end
 
+    local str2 = string.gsub(message, "%s+", "")
+    if string.find (str2, "mostrareID") then
+        for i=1,GetNumGuildMembers(true) do
+            local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(i)
+
+            if name == sender then
+                print (i)
+                print (name)
+                print (publicNote)
+                GuildRosterSetPublicNote(i, publicNote .. "+1")
+            else
+            end
+        end
+    else
+    end
+
+    --local str1 = string.gsub(message, "%s+", "")
+    --local str2 = tonumber (str1)
+
+    --if completed == GetAchievementInfo(str2) then
+     --   SendChatMessage(GetAchievementLink(str2) .. "ачивка есть", "guild", nil, 1);
+      --  print (GetAchievementLink(str2) .. "ачивка есть")
+    --else
+      --  SendChatMessage(GetAchievementLink(str2) .. "ачивки нету", "guild", nil, 1);
+      --  print (GetAchievementLink(str2) .. "ачивки нету")
+    --end
 end
 
 )

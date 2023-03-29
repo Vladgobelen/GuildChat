@@ -1,8 +1,8 @@
 ## interface: 30300
 ## Title: GuildChat
 ## Notes: GC
-## Author: Mimocrocoheal
-## SavedVariables: Mimocrocoheal
+## Author: Vladgobelen
+## SavedVariables: Vladgobelen
 
 lib\lib_hook.lua
 lib\lib_math.lua
