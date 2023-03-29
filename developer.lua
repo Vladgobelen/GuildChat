@@ -37,6 +37,51 @@ if (nik ~= "Двацветок" and nik ~= "Витинари" and nik ~= "Жел
         SendChatMessage("Заполнить заметку:  @заметка Текст заметки" , "guild", nil, 1)
     else
     end
+    --показать инфу об игроке
+    if string.find (message, "@гильдлвл") then
+        for g=1,GetNumGuildMembers(true) do
+            local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(g)
+            if name == sender then
+                local gildLvl = string.sub(officerNote, 1, 1)
+                local gildExp = string.sub(officerNote, 2, 5)
+                SendChatMessage(sender .. ": " .. gildLvl .. " гильдлвл" .. " и " .. gildExp .. " опыта", "guild", nil, 1)
+                local gildLvlN = tonumber (gildLvl)
+                local gildExpN = tonumber (gildExp)
+                if gildLvlN = 0 then
+                    local gildExpN = 4 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 1 then
+                    local gildExpN = 8 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 2 then
+                    local gildExpN = 16 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 3 then
+                    local gildExpN = 32 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 4 then
+                    local gildExpN = 64 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 5 then
+                    local gildExpN = 128 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 6 then
+                    local gildExpN = 256 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 7 then
+                    local gildExpN = 512 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 8 then
+                    local gildExpN = 1024 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                elseif gildLvlN = 9 then
+                    local gildExpN = 2048 - gildExpN
+                    SendChatMessage(sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "guild", nil, 1)
+                end
+            else
+        end
+    else
+    end
 end
 
     --запись о прогрессе в информацию о персонаже (заготовка)
