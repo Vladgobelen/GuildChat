@@ -33,6 +33,13 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
     else
     end
 
+    if string.find (message, "ВОЖДЬ инфо") then
+        SendChatMessage("Подробности о квестах и командах: https://t.me/AnkMorporkInfo", "guild", nil, 1)
+        SendChatMessage("ВОЖДЬ - получить квест", "guild", nil, 1)
+        SendChatMessage("ВОЖДЬ сдать - сдать квест", "guild", nil, 1)
+    else
+    end
+
     --local str1 = string.gsub(message, "%s+", "")
     --local str2 = tonumber (str1)
 
