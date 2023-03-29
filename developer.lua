@@ -31,10 +31,10 @@ if (nik ~= "Двацветок" and nik ~= "Витинари" and nik ~= "Жел
     end
     --справка
     if string.find (message, "ВОЖДЬ инфо") then
-        SendChatMessage("Подробности о квестах и командах: https://t.me/AnkMorporkInfo", "WHISPER", Nil, sender);
-        SendChatMessage("Получить квест:     ВОЖДЬ", "WHISPER", Nil, sender);
-        SendChatMessage("Сдать квест:        ВОЖДЬ сдать", "WHISPER", Nil, sender);
-        SendChatMessage("Заполнить заметку:  @заметка Текст заметки", "WHISPER", Nil, sender);
+        SendChatMessage("Подробности о квестах и командах: https://t.me/AnkMorporkInfo", "guild", nil, 1)
+        SendChatMessage("Получить квест:     ВОЖДЬ", "guild", nil, 1)
+        SendChatMessage("Сдать квест:        ВОЖДЬ сдать", "guild", nil, 1)
+        SendChatMessage("Заполнить заметку:  @заметка Текст заметки" , "guild", nil, 1)
     else
     end
 end
