@@ -17,6 +17,26 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
             SendChatMessage(nik .. " получает 1 опыта." .. " До лвлапа осталось [заглушка сделаю позже]", "guild", nil, 1)
         else
         end
+        --возможность игроку писать свою заметку
+        if string.find (message, "ВОЖДЬ спек") then
+            local vz = (message):gsub("ВОЖДЬ спек ", "");
+            for z=1,GetNumGuildMembers(true) do
+                local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(z)
+                if name == sender then
+                    GuildRosterSetPublicNote(z, vz)
+                else
+                end
+            end
+        else
+        end
+        --справка
+        if string.find (message, "ВОЖДЬ инфо") then
+            SendChatMessage("Подробности о квестах и командах: https://t.me/AnkMorporkInfo", "guild", nil, 1)
+            SendChatMessage("Получить квест:     ВОЖДЬ", "guild", nil, 1)
+            SendChatMessage("Сдать квест:        ВОЖДЬ сдать", "guild", nil, 1)
+            SendChatMessage("Заполнить заметку:  ВОЖДЬ спек ваша заметка" , "guild", nil, 1)
+        else
+        end
     end
 
     --запись о прогрессе в информацию о персонаже (заготовка)
@@ -36,27 +56,7 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
     else
     end
 
-    --возможность игроку писать свою заметку
-    if string.find (message, "ВОЖДЬ спек") then
-        local vz = (message):gsub("ВОЖДЬ спек ", "");
-        for z=1,GetNumGuildMembers(true) do
-            local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(z)
-            if name == sender then
-                GuildRosterSetPublicNote(z, vz)
-            else
-            end
-        end
-    else
-    end
 
-    --справка
-    if string.find (message, "ВОЖДЬ инфо") then
-        SendChatMessage("Подробности о квестах и командах: https://t.me/AnkMorporkInfo", "guild", nil, 1)
-        SendChatMessage("Получить квест:     ВОЖДЬ", "guild", nil, 1)
-        SendChatMessage("Сдать квест:        ВОЖДЬ сдать", "guild", nil, 1)
-        SendChatMessage("Заполнить заметку:  ВОЖДЬ спек ваша заметка" , "guild", nil, 1)
-    else
-    end
 
 end
 
