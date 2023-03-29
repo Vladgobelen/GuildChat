@@ -18,8 +18,8 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
         else
         end
         --возможность игроку писать свою заметку
-        if string.find (message, "ВОЖДЬ спек") then
-            local vz = (message):gsub("ВОЖДЬ спек ", "");
+        if string.find (message, "@заметка") then
+            local vz = (message):gsub("@заметка ", "");
             for z=1,GetNumGuildMembers(true) do
                 local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(z)
                 if name == sender then
@@ -34,7 +34,7 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
             SendChatMessage("Подробности о квестах и командах: https://t.me/AnkMorporkInfo", "guild", nil, 1)
             SendChatMessage("Получить квест:     ВОЖДЬ", "guild", nil, 1)
             SendChatMessage("Сдать квест:        ВОЖДЬ сдать", "guild", nil, 1)
-            SendChatMessage("Заполнить заметку:  ВОЖДЬ спек ваша заметка" , "guild", nil, 1)
+            SendChatMessage("Заполнить заметку:  @заметка Текст заметки" , "guild", nil, 1)
         else
         end
     end
