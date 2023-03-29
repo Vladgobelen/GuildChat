@@ -19,7 +19,7 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
         end
     end
 
-    --запись о прогрессе в информацию о персонаже
+    --запись о прогрессе в информацию о персонаже (заготовка)
     local str2 = string.gsub(message, "%s+", "")
     if string.find (str2, "mostrareID") then
         for i=1,GetNumGuildMembers(true) do
@@ -58,16 +58,6 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
     else
     end
 
-    --local str1 = string.gsub(message, "%s+", "")
-    --local str2 = tonumber (str1)
-
-    --if completed == GetAchievementInfo(str2) then
-     --   SendChatMessage(GetAchievementLink(str2) .. "ачивка есть", "guild", nil, 1);
-      --  print (GetAchievementLink(str2) .. "ачивка есть")
-    --else
-      --  SendChatMessage(GetAchievementLink(str2) .. "ачивки нету", "guild", nil, 1);
-      --  print (GetAchievementLink(str2) .. "ачивки нету")
-    --end
 end
 
 )
