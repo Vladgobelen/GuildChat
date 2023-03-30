@@ -4,6 +4,7 @@
 ## Author: Vladgobelen
 ## SavedVariables: Vladgobelen
 
+
 lib\lib_hook.lua
 lib\lib_math.lua
 lib\lib_string.lua
@@ -13,3 +14,6 @@ lib\lib_table.lua
 
 developer.lua
 core.lua
+svetofor.lua
+knb.lua
+roll.lua

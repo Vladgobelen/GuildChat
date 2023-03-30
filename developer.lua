@@ -17,8 +17,8 @@ if (nik ~= "Двацветок" and nik ~= "Витинари" and nik ~= "Жел
     else
     end
     --возможность игроку писать свою заметку
-    if string.find (message, "@заметка") then
-        local vz = (message):gsub("@заметка ", "");
+    if string.find (message, "!заметка") then
+        local vz = (message):gsub("!заметка ", "");
         for z=1,GetNumGuildMembers(true) do
             local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(z)
             if name == sender then
@@ -32,13 +32,13 @@ if (nik ~= "Двацветок" and nik ~= "Витинари" and nik ~= "Жел
     if string.find (message, "ВОЖДЬ инфо") then
         SendChatMessage("Получить квест:     ВОЖДЬ", "guild", nil, 1)
         SendChatMessage("Сдать квест:        ВОЖДЬ сдать", "guild", nil, 1)
-        SendChatMessage("Заполнить заметку:  @заметка Текст заметки" , "guild", nil, 1)
+        SendChatMessage("Заполнить заметку:  !заметка Текст заметки" , "guild", nil, 1)
         SendChatMessage("Еще больше команд хороших и разных тут: https://t.me/AnkMorporkInfo", "guild", nil, 1)
     else
     end
     --показать инфу об игроке
     local guokInf = string.gsub(message, "%s+", "")
-    if string.find (guokInf, "@гильдлвл") then
+    if string.find (guokInf, "!гильдлвл") then
         for guok=1,GetNumGuildMembers(true) do
             local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
             if name == sender then
