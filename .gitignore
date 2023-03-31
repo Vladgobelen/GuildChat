@@ -1,5 +1,12 @@
-.zshistory
-rus.traineddata.txt
-GCo.lua
-*swp
-GCo1.lua
+# Ignore everything:
+*
+
+# Do not ignore these files:
+core.lua
+developer.lua
+expp.lua
+GuildChat.toc
+knb.lua
+LICENSE
+roll.lua
+svetofor.lua

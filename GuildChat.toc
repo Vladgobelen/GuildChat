@@ -17,3 +17,4 @@ core.lua
 svetofor.lua
 knb.lua
 roll.lua
+expp.lua
