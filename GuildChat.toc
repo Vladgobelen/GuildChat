@@ -2,7 +2,7 @@
 ## Title: GuildChat
 ## Notes: GC
 ## Author: Vladgobelen
-## SavedVariables: Vladgobelen
+## SavedVariables: TDG
 
 
 lib\lib_hook.lua
