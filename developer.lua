@@ -85,6 +85,11 @@ if (nik ~= "Двацветок" and nik ~= "Витинари" and nik ~= "Жел
     end
 end
 
+
+
+
+
+
     --запись о прогрессе в информацию о персонаже (заготовка)
     local str2 = string.gsub(message, "%s+", "")
     if string.find (str2, "mostrareID") then
