@@ -54,35 +54,8 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
                 local gildExpN1 = tonumber (gildExp)    --переводим опыт в число
                 if msgZ3n <= 8 then                       --нельзя прибавлять заодин раз больше 8 опыта
                     local strokaF = officerNote
-                    if gildLvl == "0" then              --если текущий лвл нулевой, то
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    elseif gildLvl == "1" then
-
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    elseif gildLvl == "2" then
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    elseif gildLvl == "3" then
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    elseif gildLvl == "4" then
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    elseif gildLvl == "5" then
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    elseif gildLvl == "6" then
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    elseif gildLvl == "7" then
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    elseif gildLvl == "8" then
-                        nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
-                        GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    end---конец проверки какой гильдлвл обрабатываем
+                    nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
+                    GuildRosterSetOfficerNote(Zc, nuovoStr)
                 else
                     print ("За один раз не больше 8 опыта")
                 end
