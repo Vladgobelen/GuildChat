@@ -52,12 +52,13 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
                 local gildExpN = tonumber (gildExp)
                 local gildLvlN = tonumber (gildLvl)
                 local gildExpN1 = tonumber (gildExp)    --переводим опыт в число
-                if msgZ3n <= 8 then                       --нельзя прибавлять заодин раз больше 8 опыта
+                if msgZ3n <= 2 ^ (gildLvlN + 3) then                       --нельзя прибавлять заодин раз больше 8 опыта
                     local strokaF = officerNote
                     nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
                     GuildRosterSetOfficerNote(Zc, nuovoStr)
                 else
-                    print ("За один раз не больше 8 опыта")
+                    local ahtung = 2 ^ (gildLvlN + 3)
+                    SendChatMessage("Можно не больше, чем " .. ahtung .. " опыта за один раз!!!" , "guild", nil, 1)
                 end
             else--конец проверки ника
             end--конец проверки ника
@@ -67,6 +68,5 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
 else---конец проверки ника на совпадение со мной
 end---конец проверки ника на совпадение со мной
 --конец добавления опыта нику командой
-
 end
 )
