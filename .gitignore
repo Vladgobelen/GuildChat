@@ -2,11 +2,11 @@
 *
 
 # Do not ignore these files:
-core.lua
-developer.lua
-expp.lua
-GuildChat.toc
-knb.lua
-LICENSE
-roll.lua
-svetofor.lua
+!core.lua
+!developer.lua
+!expp.lua
+!GuildChat.toc
+!knb.lua
+!LICENSE
+!roll.lua
+!svetofor.lua
