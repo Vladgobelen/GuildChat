@@ -48,7 +48,6 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
         else
             if qN < gLvl then
                 qN = qN + 1
-                print (qN)
                 strDen = denn .. qN
             else
                 SendChatMessage(gNik .. ", следущий квест на твоем гильдлвле доступен завтра.", "guild", nil, 1)
@@ -84,7 +83,6 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
                     strokaFM = mysplit (strokaF)
                     strokaFM = testNil (strokaFM,3,"**")
                     strokaF = strokaFM[1] .. " " .. strokaFM[2] .. " " .. strokaFM[3]
-                    print (strokaF)
                     nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
                     GuildRosterSetOfficerNote(Zc, nuovoStr)
                     nuovoStrExp = mysplit (nuovoStr)
