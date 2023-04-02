@@ -2,7 +2,6 @@ local GC_Sniffer = CreateFrame("Frame")
 GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 --добавление опыта персонажу командой
-local TDG = "nuovoStr1";
 local nik = sender
 if (nik == "Двацветок" or nik == "Витинари" or nik == "Железобетонс" or nik == "Детрит") then
     function all_trim(s)
@@ -57,10 +56,17 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
                     local strokaF = officerNote
                     nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
                     GuildRosterSetOfficerNote(Zc, nuovoStr)
-                    local TDG = "nuovoStr";
+                    TDG={}
+                    TDG1={}
+
+                    TDG.nik=name
+                    TDG.str=nuovoStr
+                    TDG.id=Zc
+
                 else
                     local ahtung = 2 ^ (gildLvlN + 3)
                     SendChatMessage("Можно не больше, чем " .. ahtung .. " опыта за один раз!!!" , "guild", nil, 1)
+
                 end
             else--конец проверки ника
             end--конец проверки ника

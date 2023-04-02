@@ -12,7 +12,6 @@ if (myNik ~= "Двацветок" and myNik ~= "Витинари" and myNik ~= "
     elseif string.find (msg, "!бумага") then
         SendChatMessage(myNik .. ", ножницы, ты проиграл", "guild", nil, 1)
     end
-
 else
 end
 
