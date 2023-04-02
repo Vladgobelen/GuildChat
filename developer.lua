@@ -6,7 +6,31 @@ local nik=sender
 local str = string.gsub(message, "%s+", "")
 if (nik ~= "Двацветок" and nik ~= "Витинари" and nik ~= "Железобетонс" and nik ~= "Детрит") then
     if str == "ВОЖДЬ" then
-        SendChatMessage(nik .. ", простой или сложный?", "guild", nil, 1)
+        for guokZ=1,GetNumGuildMembers(true) do
+            local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
+            if name == sender then
+                local denT = string.sub(officerNote, 6, 7)
+                local qN = string.sub(officerNote, 8, 8)
+                local gildLvl = string.sub(officerNote, 1, 1)
+                qN = tonumber (qN)
+                denn = {}
+                denn = date("%d")
+                denn = tonumber(denn)
+                denT = tonumber(denT)
+
+                gildLvl = tonumber (gildLvl)
+                if denn == denT then
+                   if qN >= gildLvl then
+                        SendChatMessage(name .. ", следущий квест на твоем гильдлвле доступен завтра.", "guild", nil, 1)
+                   else
+                        SendChatMessage(nik .. ", простой или сложный?", "guild", nil, 1)
+                   end
+                else
+                    SendChatMessage(nik .. ", простой или сложный?", "guild", nil, 1)
+                end
+            else
+            end
+        end
     elseif string.find (message, "ВОЖДЬ сдать") then
         SendChatMessage(nik .. ", опыт или деньги?", "guild", nil, 1)
     elseif string.find (message, "ВОЖДЬ опыт") then

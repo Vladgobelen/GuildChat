@@ -18,3 +18,5 @@ svetofor.lua
 knb.lua
 roll.lua
 expp.lua
+func.xml
+RequireStub.lua
