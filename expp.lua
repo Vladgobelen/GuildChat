@@ -76,7 +76,8 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
             local msgZ3n = tonumber (msgZ[3])
             if name == msgZ[1] then
                 strokaF = mysplit (officerNote)
-                strokaF =  testNil (officerNote,3,"0000",1)
+                print (strokaF)
+                strokaF =  testNil (strokaF,3,"0000",1)
                 local gildLvl = string.sub(strokaF, 1, 1)
                 local gildExp = string.sub(strokaF, 2, 5)
                 local rarGilvl = gildLvl .. gildExp
