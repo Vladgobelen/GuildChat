@@ -39,21 +39,21 @@ if string.find (message, "!старт квест") and testHis~="*" then
 	if TDG[nik]==nil then
 		TDG[nik]={}
 	end
-	if TDG[nik][quest]~=1 then
-		TDG[nik][quest]=1
-	end
 	TDG[nik]["текущий_квест"]=quest
 	if TDGq[quest]["стартовая_локация"]==nil or TDGq[quest]["стартовая_локация"]==0 and TDGq[quest]["создатель"]==nik then
 		TDGq[quest]["стартовая_локация"]=0
 		SendChatMessage("*Вселенная была пуста и безвидна. И увидел " .. nik .. ", что нужно !создать Мир.", "guild", nil, 1);
-	
+	elseif TDGq[quest]["стартовая_локация"]==nil or TDGq[quest]["стартовая_локация"]==0 and TDGq[quest]["создатель"]~=nik then
+		SendChatMessage("*" .. nik .. ", как то пусто тут. Лучше подождать пока что то будет создано или создать свое.. ", "guild", nil, 1)
+	elseif TDGq[quest]["стартовая_локация"]~=nil or TDGq[quest]["стартовая_локация"]~=0 and TDGq[quest]["создатель"]==nik then
+			
+		SendChatMessage("*" .. nik .. ", тут старт квеста. ", "guild", nil, 1)		
 	end
 
-	SendChatMessage("*", "guild", nil, 1)
 
 end
 quest=TDG[nik]["текущий_квест"]
-if string.find (message, "!создать") and TDG[nik][quest]==1 and TDGq[quest]["создатель"]==nik and testHis~="*" then
+if string.find (message, "!создать")  and TDGq[quest]["создатель"]==nik and testHis~="*" then
 	print (TDG[nik][quest])
 	print ("6")
 	print (TDG[nik]["текущий_квест"])
