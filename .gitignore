@@ -10,4 +10,6 @@
 !LICENSE
 !roll.lua
 !svetofor.lua
-!quests
+!quests/
+!quests.lua
+!quests/quests.lua
