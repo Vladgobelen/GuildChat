@@ -55,18 +55,20 @@ if string.find (message, "!старт квест") and testHis~="*" then
 			SendChatMessage("*" .. nik .. ", тут нужно вывести описание стартовой локации", "guild", nil, 1)		
 		end	
 	end
-		if TDG[nik]["доступно_квестов"]==0 then 
-			if TDGq[quest]["стартовая_локация"]==nil or TDGq[quest]["стартовая_локация"]==0 and TDGq[quest]["создатель"]~=nik then
-				SendChatMessage("*" .. nik .. ", как то пусто тут. Лучше подождать пока что то будет создано или создать свое.. ", "guild", nil, 1)
-			end
-			if TDGq[quest]["стартовая_локация"]==nil or TDGq[quest]["стартовая_локация"]==0 and TDGq[quest]["создатель"]==nik then
-				SendChatMessage("*" .. nik .. ", может все таки что то создать уже?", "guild", nil, 1)
-			end
-			if TDGq[quest]["стартовая_локация"]~=nil and TDG[quest]["стартовая_локация"]~=0 and TDGq[quest]["создатель"]==nik then
-				
-				SendChatMessage("*" .. nik .. ", 111тут нужно вывести описание стартовой локации", "guild", nil, 1)	
-			end	
+	if TDG[nik]["доступно_квестов"]==0 then
+		if TDGq[quest]==nil then
+			SendChatMessage("*Недостаточно маны для создания нового Мира.", "guild", nil, 1)
 		end
+		if TDGq[quest]["стартовая_локация"]==nil or TDGq[quest]["стартовая_локация"]==0 and TDGq[quest]["создатель"]~=nik then
+			SendChatMessage("*" .. nik .. ", как то пусто тут. Лучше подождать пока что то будет создано или создать свое.. ", "guild", nil, 1)
+		end
+		if TDGq[quest]["стартовая_локация"]==nil or TDGq[quest]["стартовая_локация"]==0 and TDGq[quest]["создатель"]==nik then
+			SendChatMessage("*" .. nik .. ", может все таки что то создать уже?", "guild", nil, 1)
+		end
+		if TDGq[quest]["стартовая_локация"]~=nil and TDG[quest]["стартовая_локация"]~=0 and TDGq[quest]["создатель"]==nik then
+			SendChatMessage("*" .. nik .. ", 111тут нужно вывести описание стартовой локации", "guild", nil, 1)
+		end
+	end
 
 end
 quest=TDG[nik]["текущий_квест"]
