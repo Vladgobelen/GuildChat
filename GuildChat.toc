@@ -15,8 +15,8 @@ lib\lib_table.lua
 developer.lua
 core.lua
 quests\quests.lua
+quests\qp.lua
 knb.lua
 roll.lua
 expp.lua
-func.xml
-RequireStub.lua
+
