@@ -17,6 +17,18 @@ function mysplit (inputstr, sep)
         end
         return t
 end
+if pQuests == nil then
+    pQuests={}
+end
+if pQuests[1] == nil then
+   pQuests[1]={}
+end
+if pQuests[2] == nil then
+    pQuests[2]={}
+end
+if pQuests[3] == nil then
+    pQuests[3]={}
+end
 local nachalo = string.sub(message, 1, 1)
 
     if str == "ВОЖДЬ" and nachalo~="*" then
@@ -49,6 +61,48 @@ local nachalo = string.sub(message, 1, 1)
         SendChatMessage("*" .. nik .. ", опыт или деньги?", "guild", nil, 1)
     elseif string.find (message, "ВОЖДЬ опыт") and nachalo~="*" then
         SendChatMessage("*" .. nik .. " получает 2 опыта." .. " До лвлапа осталось [заглушка сделаю позже]", "guild", nil, 1)
+    elseif string.find (message, "!удалить") and sender=="Витинари" and nachalo~="*" then
+        msg = all_trim(message)
+        msg = (msg):gsub(nik, "");
+        msg = all_trim(msg)
+        msg = (msg):gsub("!удалить ", "")
+
+        for key, val in pairs(pQuests[1]) do
+            if val==msg then
+                table.remove(pQuests[1], key)
+                print("*Квест " .. val .. " " .. GetAchievementLink(val) .. " был удален.")
+            else
+            end
+        end
+
+    elseif string.find (sender, "Витинари") or string.find (sender, "Хэвлок") or string.find (sender, "Железобетонс") or string.find (sender, "Детрит") or string.find (sender, "Двацветок") then
+        if string.find (message, "!добавить квест") and nachalo~="*" then
+            msg = all_trim(message)
+            msg = (msg):gsub(nik, "");
+            msg = all_trim(msg)
+            msg = (msg):gsub("!добавить квест ", "");
+            for key, val in pairs(pQuests[1]) do
+                if val==msg then
+                    print("*Квест " .. val .. " " .. GetAchievementLink(val) .. " уже был добавлен.")
+                    testID=1
+                else
+                end
+            end
+            if testID~=1 then
+                table.insert(pQuests[1], msg)
+                print("*Квест " .. msg .. " " .. GetAchievementLink(msg) .. " был добавлен.")
+            end
+        end
+    elseif string.find (message, "ВОЖДЬ простой") and nachalo~="*" then
+            function tablelength(T)
+                local count = 0
+                for _ in pairs(T) do count = count + 1 end
+                    return count
+            end
+            countQ=tablelength(pQuests[1])
+            local x = math.random(1, countQ)
+            ach=pQuests[1][x]
+            SendChatMessage("*" .. nik .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "guild", nil, 1)
     elseif string.find (message, "ВОЖДЬ деньги") and nachalo~="*" then
         SendChatMessage("*" .. nik .. " получит [стандартная награда для gildLvl_nik] реализую позже", "guild", nil, 1)
         SendChatMessage("*" .. nik .. " получает 1 опыта." .. " До лвлапа осталось [заглушка сделаю позже]", "guild", nil, 1)
@@ -150,9 +204,6 @@ local nachalo = string.sub(message, 1, 1)
             local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(i)
 
             if name == sender then
-                print (i)
-                print (name)
-                print (publicNote)
                 GuildRosterSetPublicNote(i, publicNote .. "+1")
             else
             end

@@ -9,10 +9,14 @@ local quest --это слово
 local startLoc="стартовая_локация" -- название объекта --это слово
 local att_Q="текущий_квест" --это слово
 local disp_Q="доступно_квестов" --это (число)
+local disp_O="доступно_объектов"
 local creatore="создатель" --это слово
 local xY="текущая_локация" --это слово
 local inf_o="описание" --это строка. Нужно объявить при создании объекта.
 local objec_t_name --имя объекта
+local attenzioni="внимательность"
+local forza="сила"
+local santita="святость"
 --конец блока переменных
 --функция для удаления пробелов на концах строк
 function all_trim(s)
@@ -47,6 +51,23 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 	end
 	if TDG[nik]==nil then --проверка, что в таблице с параметрами игроков есть подтаблица с никами
 		TDG[nik]={}
+		TDG[nik][disp_O]=0
+		TDG[nik][attenzioni]=1
+		TDG[nik][forza]=1
+		TDG[nik][santita]=1
+	else
+		if TDG[nik][disp_O]==nil then
+			TDG[nik][disp_O]=0
+		end
+		if TDG[nik][attenzioni]==nil then
+			TDG[nik][attenzioni]=1
+		end
+		if TDG[nik][forza]==nil then
+			TDG[nik][forza]=1
+		end
+		if TDG[nik][santita]==nil then
+			TDG[nik][santita]=1
+		end
 	end
 	if TDG[nik][quest]==nil then
 		TDG[nik][quest]={}
@@ -87,7 +108,7 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 			else
 				objec_t_name=TDGq[quest][startLoc]
 				if TDGq[quest][objec_t][objec_t_name][inf_o]~=nil then --проверяем, что существует описание стартовой локации
-					SendChatMessage(TDGq[quest][objec_t][objec_t_name][inf_o], "guild", nil, 1); --выводим описание стартовой локации
+					SendChatMessage(TDGq[quest][objec_t][objec_t_name][inf_o[1]], "guild", nil, 1); --выводим описание стартовой локации
 				else --если описания стартовой локации не существует
 					SendChatMessage("*" .. nik .. ", попробуй !cоздать !описание стартовой локации.", "guild", nil, 1);
 				end
@@ -99,7 +120,7 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 				objec_t_name=TDGq[quest][startLoc]
 				if TDGq[quest][objec_t][objec_t_name][inf_o]~=nil then --проверяем, что существует описание стартовой локации
 					TDG[nik][quest][xY]=objec_t_name
-					SendChatMessage(TDGq[quest][objec_t][objec_t_name][inf_o], "guild", nil, 1); --выводим описание стартовой локации
+					SendChatMessage(TDGq[quest][objec_t][objec_t_name][inf_o[1]], "guild", nil, 1); --выводим описание стартовой локации
 				else --если описания стартовой локации не существует
 					SendChatMessage(TDGq[quest][creatore] .. " сам особо не понимает где ты находишься, а ведь он это создал..", "guild", nil, 1);
 				end
@@ -151,7 +172,7 @@ if string.find (message, "!осмотреть") and messageOsm[2]==nil and testH
 			quest=TDG[nik][att_Q]
 			if TDG[nik][quest][xY] ~= nil then --если в таблице игрока есть координаты
 				if TDG[nik][quest][xY] ~="0" then --если координаты игрока в текущем квесте не нулевые
-					SendChatMessage("*" .. TDGq[quest][objec_t][xY][inf_o], "guild", nil, 1)
+					SendChatMessage("*" .. TDGq[quest][objec_t][xY][inf_o[1]], "guild", nil, 1)
 				else
 					SendChatMessage("*" .. nik .. ", попробуй зайти в мир, где создано хоть что нибудь.", "guild", nil, 1)
 				end
@@ -171,7 +192,7 @@ elseif string.find (message, "!осмотреть") and messageOsm[2]~=nil and t
 			if TDG[nik][quest][xY] ~= nil then --если в таблице игрока есть координаты
 				if TDG[nik][quest][xY] ~="0" then --есл координаты игрока в текущем квесте не нулевые
 					if TDGq[quest][objec_t][messageOsm2] ~= nil then
-						SendChatMessage("*" .. TDGq[quest][objec_t][xY][inf_o], "guild", nil, 1)
+						SendChatMessage("*" .. TDGq[quest][objec_t][xY][inf_o[1]], "guild", nil, 1)
 					else
 						SendChatMessage("*" .. TDGq[quest][objec_t][xY][objec_t_name] .. " не существует", "guild", nil, 1)
 					end
