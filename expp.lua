@@ -76,7 +76,6 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
             local msgZ3n = tonumber (msgZ[3])
             if name == msgZ[1] then
                 strokaF = mysplit (officerNote)
-                print (strokaF)
                 strokaF =  testNil (strokaF,3,"0000",1)
                 local gildLvl = string.sub(strokaF, 1, 1)
                 local gildExp = string.sub(strokaF, 2, 5)
@@ -88,7 +87,12 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
                     nuovoStr = lvlAgg (msgZ3n,gildExpN1,gildLvlN,msgZ[1],strokaF)
                     GuildRosterSetOfficerNote(Zc, nuovoStr)
                     nuovoStrExp = mysplit (nuovoStr)
-                    SendChatMessage(rarGilvl .. ">> " .. nuovoStrExp[1], "guild", nil, 1)
+                    nuovoExpNex = string.sub(nuovoStrExp[1], 2, 4)
+                    nuovoExpNex=tonumber(nuovoExpNex)
+                    local ostExp=2 ^ (gildLvlN + 2)
+                    ostExp=tonumber(ostExp)
+                    ostExp=ostExp - nuovoExpNex
+                    SendChatMessage(rarGilvl .. ">> " .. nuovoStrExp[1] .. " До лвлапа осталось: " .. ostExp .. " опыта", "guild", nil, 1)
                 else
                     local ahtung = 2 ^ (gildLvlN + 3)
                     SendChatMessage("Можно не больше, чем " .. ahtung .. " опыта за один раз!!!" , "guild", nil, 1)

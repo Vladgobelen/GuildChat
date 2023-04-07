@@ -30,7 +30,6 @@ if pQuests[3] == nil then
     pQuests[3]={}
 end
 local nachalo = string.sub(message, 1, 1)
-
     if str == "ВОЖДЬ" and nachalo~="*" then
         for guokZ=1,GetNumGuildMembers(true) do
             local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
@@ -47,7 +46,7 @@ local nachalo = string.sub(message, 1, 1)
                 gildLvl = tonumber (gildLvl)
                 if denn == denT then
                    if qN >= gildLvl then
-                        SendChatMessage("*" .. name .. ", следущий квест на твоем гильдлвле доступен завтра.", "guild", nil, 1)
+                        SendChatMessage("*" .. name .. ", следущий квест на твоем гильдлвле доступен завтра, но тебе доступен дополнительный квест с повышенным опытом.", "guild", nil, 1)
                    else
                         SendChatMessage("*" .. nik .. ", простой или сложный?", "guild", nil, 1)
                    end
@@ -57,10 +56,25 @@ local nachalo = string.sub(message, 1, 1)
             else
             end
         end
-    elseif string.find (message, "ВОЖДЬ сдать") and nachalo~="*" then
+    elseif str == "ВОЖДЬ сдать" and nachalo~="*" then
         SendChatMessage("*" .. nik .. ", опыт или деньги?", "guild", nil, 1)
     elseif string.find (message, "ВОЖДЬ опыт") and nachalo~="*" then
         SendChatMessage("*" .. nik .. " получает 2 опыта." .. " До лвлапа осталось [заглушка сделаю позже]", "guild", nil, 1)
+    elseif string.find (message, "ВОЖДЬ, хочу больше квестов и опыта!!!") and nachalo~="*" then
+        if TDG[sender]["доп_квест"]==nil or TDG[sender]["доп_квест"]=="9999" then
+            local kol=0
+
+                for guokZ=1,GetNumGuildMembers(true) do
+                    local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
+                        kol=kol+1
+                end
+                local kol1=kol+30
+                SendChatMessage("*" .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "guild", nil, 1);
+                TDG[sender]["доп_квест"]=kol1
+        else
+            poluchenoKolichestvo=TDG[sender]["доп_квест"]
+            SendChatMessage("*" .. sender .. ", у тебя уже есть квест. Для выполнения в гильдии должно стать " .. poluchenoKolichestvo .. " игроков.", "guild", nil, 1);
+        end
     elseif string.find (message, "!удалить") and sender=="Витинари" and nachalo~="*" then
         msg = all_trim(message)
         msg = (msg):gsub(nik, "");
@@ -74,7 +88,32 @@ local nachalo = string.sub(message, 1, 1)
             else
             end
         end
+    elseif string.find (message, "ВОЖДЬ, сдать доп квест!!!") and nachalo~="*" then
+        if TDG[sender]["доп_квест"]~=nil and TDG[sender]["доп_квест"]~="9999" then
+            local kol=0
+            for guokZ=1,GetNumGuildMembers(true) do
+                local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
+                kol=kol+1
+            end
+            rezDopQuest=TDG[sender]["доп_квест"]
+            if rezDopQuest>kol then
 
+            SendChatMessage("*" .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. rezDopQuest, "guild", nil, 1);
+            else
+                SendChatMessage("*" .. sender .. " !получает 3 опыта и кусок карты (за куском карты обращаться отдельно)", "guild", nil, 1);
+                if TDG[sender]["кусков_карты"]==nil then
+                    TDG[sender]["кусков_карты"]=1
+                else
+                    dopKus=TDG[sender]["кусков_карты"]
+                    dopKus=tonumber(dopKus)
+                    dopKus=dopKus+1
+                    TDG[sender]["кусков_карты"]=dopKus
+                end
+                TDG[sender]["доп_квест"]="9999"
+            end
+        else
+            SendChatMessage("*" .. sender .. ", сначала нужно взять квест", "guild", nil, 1);
+        end
     elseif string.find (sender, "Витинари") or string.find (sender, "Хэвлок") or string.find (sender, "Железобетонс") or string.find (sender, "Детрит") or string.find (sender, "Двацветок") then
         if string.find (message, "!добавить квест") and nachalo~="*" then
             msg = all_trim(message)
@@ -137,6 +176,8 @@ local nachalo = string.sub(message, 1, 1)
     --справка
     if string.find (message, "ВОЖДЬ инфо") and nachalo~="*" then
         SendChatMessage("*Получить квест:     ВОЖДЬ", "guild", nil, 1)
+        SendChatMessage("*Получить дополнительный квест вне лимита:     ВОЖДЬ, хочу больше квестов и опыта!!!", "guild", nil, 1)
+        SendChatMessage("*Сдать дополнительный квест вне лимита:     ВОЖДЬ, сдать доп квест!!!", "guild", nil, 1)
         SendChatMessage("*Сдать квест:        ВОЖДЬ сдать", "guild", nil, 1)
         SendChatMessage("*Заполнить заметку:  !заметка Текст заметки" , "guild", nil, 1)
         SendChatMessage("*Дополнить существующую заметку:  !заметка+ Текст заметки" , "guild", nil, 1)
