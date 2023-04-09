@@ -5,7 +5,7 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 local msg = string.gsub(message, "%s+", "")
 
     if string.find (message, "выбрасывает") then
-       SendChatMessage(message, "guild", nil, 1);
+       SendChatMessage(message, "OFFICER", nil, 1);
     else
     end
 

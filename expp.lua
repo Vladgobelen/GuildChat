@@ -1,5 +1,5 @@
 local GC_Sniffer = CreateFrame("Frame")
-GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
+GC_Sniffer:RegisterEvent("CHAT_MSG_OFFICER")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 --добавление опыта персонажу командой
 local nik = sender
@@ -24,7 +24,7 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
             gExpNo = gExpNo - 1      -- от оставшегося опыта на уровне отнимаем единичку
             if gExpNo == 0 then       --если опыта на уровне не осталось, то
                 gLvl = gLvl + 1  --прибавляем к лвлу единицу
-                SendChatMessage("Поздравляем " .. gNik .. " c лвлапом!!!", "guild", nil, 1)
+                SendChatMessage("Поздравляем " .. gNik .. " c лвлапом!!!", "OFFICER", nil, 1)
                 gExpNo = 2 ^ (gLvl + 1) - gExpN1            --оставшийся опыт назначаем равным 8
                 gExpN1 = 0           --текущий опыт на уровне назначаем равным нулю
             else
@@ -32,7 +32,7 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
         end
         local strokaSplit = mysplit (strokaFn)
         if gLvl == 9 then
-            SendChatMessage("Красочные спецэффекты вжу-вжу-пиу!фрррр! " .. gNik .. " получает доступ к квесту на получение офицерского звания", "guild", nil, 1)
+            SendChatMessage("Красочные спецэффекты вжу-вжу-пиу!фрррр! " .. gNik .. " получает доступ к квесту на получение офицерского звания", "OFFICER", nil, 1)
             gExpN1 = 0
         else
         end
@@ -50,7 +50,7 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
                 qN = qN + 1
                 strDen = denn .. qN
             else
-                SendChatMessage(gNik .. ", следущий квест на твоем гильдлвле доступен завтра.", "guild", nil, 1)
+                SendChatMessage(gNik .. ", следущий квест на твоем гильдлвле доступен завтра.", "OFFICER", nil, 1)
                 strDen = denn .. qN
             end
         end
@@ -92,10 +92,10 @@ if (nik == "Двацветок" or nik == "Витинари" or nik == "Желе
                     local ostExp=2 ^ (gildLvlN + 2)
                     ostExp=tonumber(ostExp)
                     ostExp=ostExp - nuovoExpNex
-                    SendChatMessage(rarGilvl .. ">> " .. nuovoStrExp[1] .. " До лвлапа осталось: " .. ostExp .. " опыта", "guild", nil, 1)
+                    SendChatMessage(rarGilvl .. ">> " .. nuovoStrExp[1] .. " До лвлапа осталось: " .. ostExp .. " опыта", "OFFICER", nil, 1)
                 else
                     local ahtung = 2 ^ (gildLvlN + 3)
-                    SendChatMessage("Можно не больше, чем " .. ahtung .. " опыта за один раз!!!" , "guild", nil, 1)
+                    SendChatMessage("Можно не больше, чем " .. ahtung .. " опыта за один раз!!!" , "OFFICER", nil, 1)
                 end
             else--конец проверки ника
             end--конец проверки ника
