@@ -3,6 +3,9 @@ GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 --команды для управления квестами
 local nik=sender
+local endQuests="простые_квесты"
+local qAchiv="взят_ли_квест_простая_ачивка"
+
 function all_trim(s)
 	return s:match( "^%s*(.-)%s*$" )
 end
@@ -21,6 +24,38 @@ function tablelength(T)
 	for _ in pairs(T) do count = count + 1 end
 	return count
 end
+
+function alfabet (bookv)
+shablon="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	myB=string.find(shablon,bookv)
+	return myB
+end
+
+function hashStr (nome)
+	i = time()
+	i = string.sub(i, 8, 9)
+	i = i * i
+	i = i * 3.1415926535
+	i = string.sub(i, 3, 5)
+	i = string.format("%03d",i)
+	nome1=string.sub(nome, 1, 1)
+	nome2=string.sub(nome, 2, 2)
+	nome1=alfabet(nome1)
+	nome2=alfabet(nome2)
+	hNome=nome1*nome2
+	hNome=string.sub(hNome, 1, 3)
+	hNome=string.format("%03d",hNome)
+	r1=string.sub(i, 1, 1)
+	r2=string.sub(hNome, 1, 1)
+	r3=string.sub(i, 2, 2)
+	r4=string.sub(hNome, 2, 2)
+	r5=string.sub(i, 3, 3)
+	r6=string.sub(hNome, 3, 3)
+	r=r1 .. r2 .. r3 .. r4 .. r5 .. r6
+	return r
+end
+
+hsh=hashStr(sender)
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
@@ -40,12 +75,12 @@ if message == "ВОЖДЬ" and nachalo~="*" then
 			gildLvl = tonumber (gildLvl)
 			if denn == denT then
 				if qN >= gildLvl then
-					SendChatMessage("*" .. name .. ", следущий квест на твоем гильдлвле доступен завтра, но тебе доступен дополнительный квест с повышенным опытом.", "guild", nil, 1)
+					SendChatMessage("*" .. name .. ", следущий квест на твоем гильдлвле доступен завтра, но тебе доступен дополнительный квест с повышенным опытом.", "officer", nil, 1)
 				else
-					SendChatMessage("*" .. nik .. ", простой или сложный?", "guild", nil, 1)
+					SendChatMessage("*" .. nik .. ", простой или сложный?", "officer", nil, 1)
 				end
 			else
-				SendChatMessage("*" .. nik .. ", простой или сложный?", "guild", nil, 1)
+				SendChatMessage("*" .. nik .. ", простой или сложный?", "officer", nil, 1)
 			end
 		else
 		end
@@ -198,7 +233,7 @@ if message == "ВОЖДЬ, простой!" and nachalo~="*" then
 				local x = math.random(1, countQ)
 				ach=pQuests[1][x]
 				if TDG[sender][endQuests][x]~="1" then
-					SendChatMessage(hsh .. " 001 " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+					SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 					break
 				else
 					chisloProstyhQComplit=chisloProstyhQComplit + 1
@@ -209,24 +244,24 @@ if message == "ВОЖДЬ, простой!" and nachalo~="*" then
 			end
 		else
 			ach=TDG[sender][qAchiv]
-			SendChatMessage(hsh .. " 004 " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+			SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 		end
 	else
 		ach=pQuests[1][1]
-		SendChatMessage(hsh .. " 001 " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+		SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 	end
 end
 
-if message == "ВОЖДЬ, сдать" and nachalo~="*" then
+if message == "ВОЖДЬ, сдать" and nachalo~="*" and sender~="Витинари" and sender~="Хэвлок" and sender~="Детрит" and sender~="Железобетонс" and sender~="Двацветок" and sender~="Коэн" then
 	hours, minutes = GetGameTime()
 	timeProvMin=minutes
 	timeProvMin1=timeProvMin+1
 	if TDG[sender][timeLimit]~=timeProvMin and TDG[sender][timeLimit]~=timeProvMin1 then
 		if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
-			SendChatMessage(hsh .. " 005 " .. sender .. ", у тебя нет взятых квестов.", "OFFICER", nil, 1);
+			SendChatMessage(hsh .. " #aae " .. sender .. ", у тебя нет взятых квестов.", "OFFICER", nil, 1);
 		else
 			proverkaVypolneniya=TDG[sender][qAchiv]
-			SendChatMessage(hsh .. " 006 " .. sender .. ", а сделал ли ты " .. proverkaVypolneniya .. " " .. GetAchievementLink(proverkaVypolneniya) .. "?", "OFFICER", nil, 1)
+			SendChatMessage(hsh .. " #aaf " .. sender .. ", а сделал ли ты " .. proverkaVypolneniya .. " " .. GetAchievementLink(proverkaVypolneniya) .. "?", "OFFICER", nil, 1)
 		end
 		TDG[sender][timeLimit]=minutes
 	else
