@@ -1,5 +1,5 @@
 local GC_Sniffer = CreateFrame("Frame")
-GC_Sniffer:RegisterEvent("CHAT_MSG_OFFICER")
+GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 --переменные
 local yo=sender --передаем ник в первую переменую на всякий случай
@@ -40,6 +40,7 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 --проверка на существование всех таблиц
 	msg = all_trim(message) --удалить пробелы на концах команды игрока
 	msg = mysplit(message) --разбить команду игрока на слова
+
 	if msg[3]==nil then --проверяем, что игрок правильно ввел команду, иначе предупреждаем
 		SendChatMessage("*" .. nik .. ", в какой мир ты хочешь попасть? Ау, не вижу названия мира!", "OFFICER", nil, 1)
 	end
