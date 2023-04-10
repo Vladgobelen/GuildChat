@@ -75,7 +75,7 @@ if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachalo~="*" the
 			gildLvl = tonumber (gildLvl)
 			if denn == denT then
 				if qN >= gildLvl then
-					SendChatMessage("*" .. name .. ", следущий квест на твоем гильдлвле доступен завтра, но тебе доступен дополнительный квест с повышенным опытом.", "officer", nil, 1)
+					SendChatMessage("*" .. name .. ", следущий квест на твоем гильдлвле доступен завтра, но тебе доступен дополнительный квест с повышенным опытом: #zzz", "officer", nil, 1)
 				else
 					SendChatMessage("*" .. nik .. ", простой или сложный?", "officer", nil, 1)
 				end
@@ -216,7 +216,8 @@ if testHis[1] == "!заметка+" or string.find (message, "#zzu") and nachalo
 	end
 end
 
-if message == "ВОЖДЬ, простой!" and nachalo~="*" then
+if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and nachalo~="*" then
+	print ("fdsfdasf")
 	if TDG[sender]==nil then
 		TDG[sender]={}
 	end
@@ -224,35 +225,74 @@ if message == "ВОЖДЬ, простой!" and nachalo~="*" then
 		TDG[sender][endQuests]={}
 	end
 	local guokTimerStart=pQuests[1][1]
-	if TDG[sender][endQuests][guokTimerStart]~=nil then
-		if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
-			countQ=tablelength(pQuests[1])
-			local chisloProstyhQComplit=0
-			chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
-			for testQ=1, countQ do
-				local x = math.random(1, countQ)
-				ach=pQuests[1][x]
-				if TDG[sender][endQuests][x]~="1" then
-					SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
-					break
+	if TDG[sender]["уровень_квестов"]==nil then
+		TDG[sender]["уровень_квестов"]=1
+	end
+
+	for guokZ=1,GetNumGuildMembers(true) do
+		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
+		if name == sender then
+			local denT = string.sub(officerNote, 6, 7)
+			local qN = string.sub(officerNote, 8, 8)
+			local gildLvl = string.sub(officerNote, 1, 1)
+			qN = tonumber (qN)
+			denn = {}
+			denn = date("%d")
+			denn = tonumber(denn)
+			denT = tonumber(denT)
+			gildLvl = tonumber (gildLvl)
+			if denn == denT then
+				if qN >= gildLvl then
+					testQLim="1"
 				else
-					chisloProstyhQComplit=chisloProstyhQComplit + 1
-					if chisloProstyhQComplit==countQ then
-						SendChatMessage("*" .. sender .. ", все простые квесты уже выполнены. Добавить переход на следущий уровень квестов.", "OFFICER", nil, 1)
-					end
+					testQLim="0"
 				end
+			else
+				testQLim="0"
 			end
 		else
-			ach=TDG[sender][qAchiv]
-			SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+		end
+	end
+
+	if testQLim=="0" then
+		testQLVL=TDG[sender]["уровень_квестов"]
+		testQLVL=tonumber(testQLVL)
+		if TDG[sender][endQuests][guokTimerStart]~=nil then
+			if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
+				countQ=tablelength(pQuests[testQLVL])
+				local chisloProstyhQComplit=0
+				chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
+				for testQ=1, countQ do
+					local x = math.random(1, countQ)
+					ach=pQuests[testQLVL][x]
+					if TDG[sender][endQuests][x]~="1" then
+						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+						break
+					else
+						chisloProstyhQComplit=chisloProstyhQComplit + 1
+						if chisloProstyhQComplit==countQ then
+							testQLVL=TDG[sender]["уровень_квестов"]
+							testQLVL=tonumber(testQLVL)
+							testQLVL=testQLVL+1
+							TDG[sender]["уровень_квестов"]=testQLVL
+							SendChatMessage("*" .. sender .. ", сложность квестов повышена.", "OFFICER", nil, 1)
+						end
+					end
+				end
+			else
+				ach=TDG[sender][qAchiv]
+				SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+			end
+		else
+			ach=pQuests[testQLVL][1]
+			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 		end
 	else
-		ach=pQuests[1][1]
-		SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+		SendChatMessage("*" .. sender .. ", следущий квест на твоем гильдлвле доступен завтра, но тебе доступен дополнительный квест с повышенным опытом: #zzz", "officer", nil, 1)
 	end
 end
 
-if message == "ВОЖДЬ, сдать" or string.find (message, "#zzw") and nachalo~="*" then
+if message == "ВОЖДЬ, сдать" or string.find (message, "#zzr") and nachalo~="*" then
 	hours, minutes = GetGameTime()
 	timeProvMin=minutes
 	timeProvMin1=timeProvMin+1

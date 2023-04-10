@@ -80,22 +80,25 @@ if string.find (message, hsh) and string.find (message, "#aab") then
 	msg1=mysplit(message)
 	msg1=msg[6]
 	TDG[sender][endQuests][msg1]="1"
-	countQ=tablelength(pQuests[1])
+	testQLVL=TDG[sender]["уровень_квестов"]
+	testQLVL=tonumber(testQLVL)
+	countQ=tablelength(pQuests[testQLVL])
 	local chisloProstyhQComplit=0
 	chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
 	for testQ=1, countQ do
 		local x = math.random(1, countQ)
-		ach=pQuests[1][x]
+		ach=pQuests[testQLVL][x]
 		if TDG[sender][endQuests][x]~="1" then
 			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			break
 		else
 			chisloProstyhQComplit=chisloProstyhQComplit + 1
 			if chisloProstyhQComplit==countQ then
-				countQ1=tablelength(pQuests[2])
-
-
-
+				testQLVL=TDG[sender]["уровень_квестов"]
+				testQLVL=tonumber(testQLVL)
+				testQLVL=testQLVL+1
+				TDG[sender]["уровень_квестов"]=testQLVL
+				SendChatMessage("*" .. sender .. ", сложность квестов повышена.", "OFFICER", nil, 1)
 			end
 		end
 	end
@@ -113,31 +116,34 @@ if string.find(message, hsh) and string.find (message, "#aac") then
 end
 
 if string.find (message, hsh) and string.find(message, "#aag") then
-	SendChatMessage(sender .. " !получает 2 опыта", "OFFICER", nil, 1);
+	SendChatMessage(sender .. " !получает 3 опыта", "OFFICER", nil, 1);
 end
 
-if string.find (message, "!удалить") and sender=="Витинари" and nachalo~="*" then
-	msg = all_trim(message)
-	msg = (msg):gsub(nik, "");
-	msg = all_trim(msg)
-	msg = (msg):gsub("!удалить ", "")
-	for key, val in pairs(pQuests[1]) do
-		if val==msg then
-			table.remove(pQuests[1], key)
+if string.find (sender, "Витинари") or string.find (sender, "Хэвлок") or string.find (sender, "Железобетонс") or string.find (sender, "Детрит") or string.find (sender, "Двацветок") then
+	if string.find (message, "!удалить квест") and nachalo~="*" then
+		msg=mysplit(message)
+		q=msg[3]
+		q=tonumber(q)
+		msg=msg[4]
+		for key, val in pairs(pQuests[q]) do
+			if val==msg then
+				table.remove(pQuests[q], key)
 				print("*Квест " .. val .. " " .. GetAchievementLink(val) .. " был удален.")
-        else
+			else
+			end
 		end
 	end
 end
-if string.find (sender, "Витинари") or string.find (sender, "Хэвлок") or string.find (sender, "Железобетонс") or string.find (sender, "Детрит") or string.find (sender, "Двацветок") then
+if sender=="Витинари" or sender=="Хэвлок" or sender=="Железобетонс" or sender=="Детрит" or sender=="Двацветок" then
     if string.find (message, "!добавить квест") and nachalo~="*" then
 		msg=mysplit(message)
 		q=msg[3]
+		q=tonumber(q)
 		msg=msg[4]
 		for key, val in pairs(pQuests[q]) do
 			if val==msg then
 				print("*Квест " .. val .. " " .. GetAchievementLink(val) .. " уже был добавлен.")
-                    testID=1
+				testID=1
 			else
 			end
 		end
@@ -152,12 +158,14 @@ if string.find (message, hsh) and string.find (message, "#aai") then
 	msg1=mysplit(message)
 	msg1=msg[6]
 	TDG[sender][endQuests][msg1]="1"
-	countQ=tablelength(pQuests[1])
+	testQLVL=TDG[sender]["уровень_квестов"]
+	testQLVL=tonumber(testQLVL)
+	countQ=tablelength(pQuests[testQLVL])
 	local chisloProstyhQComplit=0
 	chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
 	for testQ=1, countQ do
 		local x = math.random(1, countQ)
-		ach=pQuests[1][x]
+		ach=pQuests[testQLVL][x]
 		if TDG[sender][endQuests][x]~="1" then
 			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			break
