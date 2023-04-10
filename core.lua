@@ -60,7 +60,7 @@ if TDG[sender]==nil then
 	TDG[sender]={}
 end
 local nachalo = string.sub(message, 1, 1)
-if message == "ВОЖДЬ" and nachalo~="*" then
+if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachalo~="*" then
 	for guokZ=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 		if name == sender then
@@ -88,7 +88,7 @@ if message == "ВОЖДЬ" and nachalo~="*" then
 end
 --показать инфу об игроке
 local guokInf = string.gsub(message, "%s+", "")
-if string.find (guokInf, "!гильдлвл") and nachalo~="*" then
+if string.find (guokInf, "!гильдлвл") or string.find (message, "#zzt") and nachalo~="*" then
 	for guok=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
 		if name == sender then
@@ -134,7 +134,7 @@ if string.find (guokInf, "!гильдлвл") and nachalo~="*" then
 else
 end
 
-if string.find (message, "ВОЖДЬ, хочу больше квестов и опыта!!!") and nachalo~="*" then
+if string.find (message, "ВОЖДЬ, хочу больше квестов и опыта!!!") or string.find (message, "#zzz") and nachalo~="*" then
 	if TDG[sender]["доп_квест"]==nil or TDG[sender]["доп_квест"]=="9999" then
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
@@ -150,7 +150,7 @@ if string.find (message, "ВОЖДЬ, хочу больше квестов и о
 	end
 end
 
-if string.find (message, "ВОЖДЬ, сдать доп квест!!!") and nachalo~="*" then
+if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or string.find (message, "#zzy") and nachalo~="*" then
 	if TDG[sender]["доп_квест"]~=nil and TDG[sender]["доп_квест"]~="9999" then
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
@@ -178,20 +178,20 @@ if string.find (message, "ВОЖДЬ, сдать доп квест!!!") and nach
 	end
 end
 --справка
-    if string.find (message, "ВОЖДЬ инфо") and nachalo~="*" then
-		SendChatMessage("*Получить квест:     ВОЖДЬ", "officer", nil, 1)
-		SendChatMessage("*Получить дополнительный квест вне лимита:     ВОЖДЬ, хочу больше квестов и опыта!!!", "officer", nil, 1)
-		SendChatMessage("*Сдать дополнительный квест вне лимита:     ВОЖДЬ, сдать доп квест!!!", "officer", nil, 1)
-		SendChatMessage("*Сдать квест:        ВОЖДЬ, сдать", "officer", nil, 1)
-		SendChatMessage("*Заполнить заметку:  !заметка Текст заметки" , "officer", nil, 1)
-		SendChatMessage("*Дополнить существующую заметку:  !заметка+ Текст заметки" , "officer", nil, 1)
+    if string.find (message, "ВОЖДЬ инфо") or string.find (message, "#info")  and nachalo~="*" then
+		SendChatMessage("*Получить квест: #zzx или     ВОЖДЬ", "officer", nil, 1)
+		SendChatMessage("*Получить дополнительный квест вне лимита:     #zzz или: ВОЖДЬ, хочу больше квестов и опыта!!! ", "officer", nil, 1)
+		SendChatMessage("*Сдать дополнительный квест вне лимита: #zzy или:     ВОЖДЬ, сдать доп квест!!!", "officer", nil, 1)
+		SendChatMessage("*Сдать квест:  #zzw      ВОЖДЬ, сдать", "officer", nil, 1)
+		SendChatMessage("*Заполнить заметку: #zzv Текст заметки ИЛИ  !заметка Текст заметки" , "officer", nil, 1)
+		SendChatMessage("*Дополнить существующую заметку: #zzu Текст заметки ИЛИ !заметка+ Текст заметки" , "officer", nil, 1)
 		SendChatMessage("*Еще больше команд хороших и разных тут: https://t.me/AnkMorporkInfo", "officer", nil, 1)
 	else
 	end
 --возможность игроку писать свою заметку
 testHis=mysplit(message)
 testHis[1]=all_trim(testHis[1])
-if string.find (message, "!заметка") and testHis[1] == "!заметка" and nachalo~="*" then
+if testHis[1] == "!заметка" or string.find (message, "#zzv") and nachalo~="*" then
 	local vz = (message):gsub("!заметка ", "");
 	for z=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(z)
@@ -203,7 +203,7 @@ if string.find (message, "!заметка") and testHis[1] == "!заметка" 
 	end
 end
 
-if string.find (message, "!заметка+") and testHis[1] == "!заметка+" and nachalo~="*" then
+if testHis[1] == "!заметка+" or string.find (message, "#zzu") and nachalo~="*" then
 	for z=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(z)
 		if name == sender then
@@ -252,7 +252,7 @@ if message == "ВОЖДЬ, простой!" and nachalo~="*" then
 	end
 end
 
-if message == "ВОЖДЬ, сдать" and nachalo~="*" and sender~="Витинари" and sender~="Хэвлок" and sender~="Детрит" and sender~="Железобетонс" and sender~="Двацветок" and sender~="Коэн" then
+if message == "ВОЖДЬ, сдать" or string.find (message, "#zzw") and nachalo~="*" then
 	hours, minutes = GetGameTime()
 	timeProvMin=minutes
 	timeProvMin1=timeProvMin+1
