@@ -78,15 +78,15 @@ end
 local nachalo = string.sub(message, 1, 1)
 if string.find (message, hsh) and string.find (message, "#aab") then
 	msg1=mysplit(message)
-	msg1=msg[6]
-	TDG[sender][endQuests][msg1]="1"
+	msg2=msg[6]
+	TDG[sender][endQuests][msg2]="1"
 	testQLVL=TDG[sender]["уровень_квестов"]
 	testQLVL=tonumber(testQLVL)
 	countQ=tablelength(pQuests[testQLVL])
-	local chisloProstyhQComplit=0
+	chisloProstyhQComplit=0
 	chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
 	for testQ=1, countQ do
-		local x = math.random(1, countQ)
+		x = math.random(1, countQ)
 		ach=pQuests[testQLVL][x]
 		if TDG[sender][endQuests][x]~="1" then
 			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
@@ -116,7 +116,11 @@ if string.find(message, hsh) and string.find (message, "#aac") then
 end
 
 if string.find (message, hsh) and string.find(message, "#aag") then
-	SendChatMessage(sender .. " !получает 3 опыта", "OFFICER", nil, 1);
+	msg=mysplit(message)
+	msg1=msg[4]
+	TDG[sender][endQuests][msg1]=1
+	TDG[sender][qAchiv]="9999"
+	SendChatMessage(sender .. " !получает 3 опыта", "GUILD", nil, 1);
 end
 
 if string.find (sender, "Витинари") or string.find (sender, "Хэвлок") or string.find (sender, "Железобетонс") or string.find (sender, "Детрит") or string.find (sender, "Двацветок") then
@@ -156,8 +160,8 @@ end
 
 if string.find (message, hsh) and string.find (message, "#aai") then
 	msg1=mysplit(message)
-	msg1=msg[6]
-	TDG[sender][endQuests][msg1]="1"
+	msg2=msg[6]
+	TDG[sender][endQuests][msg2]="1"
 	testQLVL=TDG[sender]["уровень_квестов"]
 	testQLVL=tonumber(testQLVL)
 	countQ=tablelength(pQuests[testQLVL])
