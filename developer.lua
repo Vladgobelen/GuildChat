@@ -30,14 +30,9 @@ shablon="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБ�
 	myB=string.find(shablon,bookv)
 	return myB
 end
-
 function hashStr (nome)
-	i = time()
-	i = string.sub(i, 8, 9)
-	i = i * i
-	i = i * 3.1415926535
-	i = string.sub(i, 3, 5)
-	i = string.format("%03d",i)
+	local i = time()
+	i = i % 1000
 	nome1=string.sub(nome, 1, 1)
 	nome2=string.sub(nome, 2, 2)
 	nome1=alfabet(nome1)
@@ -54,8 +49,30 @@ function hashStr (nome)
 	r=r1 .. r2 .. r3 .. r4 .. r5 .. r6
 	return r
 end
-
+nachaloStr = string.sub(message, 1, 1)
+testN=string.sub(message, 5, 5)
 hsh=hashStr(sender)
+if nachaloStr=="#" and testN~="" then
+	nachaloHsh = string.sub(message, 2, 7)
+	hshStraniero1=string.sub(nachaloHsh,1,1)
+	hshStraniero2=string.sub(nachaloHsh,3,3)
+	hshStraniero3=string.sub(nachaloHsh,5,5)
+	hshStraniero=hshStraniero1 .. hshStraniero2 .. hshStraniero3
+	hsh1=string.sub(hsh,1,1)
+	hsh2=string.sub(hsh,3,3)
+	hsh3=string.sub(hsh,5,5)
+	hsh4=hsh1 .. hsh2 .. hsh3
+	hshC=math.abs(hsh4-hshStraniero)
+	if hshC<10 then
+		hshCMD="maodzedun"
+	else
+		hshCMD="0"
+	end
+end
+
+
+
+
 
 if TDG[sender]==nil then
 	TDG[sender]={}
@@ -76,7 +93,7 @@ if pQuests[3] == nil then
 	pQuests[3]={}
 end
 local nachalo = string.sub(message, 1, 1)
-if string.find (message, hsh) and string.find (message, "#aab") then
+if hshCMD=="maodzedun" and string.find (message, "#aab") then
 	msg1=mysplit(message)
 	msg2=msg[6]
 	TDG[sender][endQuests][msg2]="1"
@@ -89,7 +106,7 @@ if string.find (message, hsh) and string.find (message, "#aab") then
 		x = math.random(1, countQ)
 		ach=pQuests[testQLVL][x]
 		if TDG[sender][endQuests][x]~="1" then
-			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+			SendChatMessage("#" .. hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			break
 		else
 			chisloProstyhQComplit=chisloProstyhQComplit + 1
@@ -103,19 +120,19 @@ if string.find (message, hsh) and string.find (message, "#aab") then
 		end
 	end
 end
-if string.find(message, hsh) and string.find (message, "#aac") then
+if hshCMD=="maodzedun" and string.find (message, "#aac") then
 	vydat_q=mysplit(message)
 	if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
-		SendChatMessage(hsh .. " #aae " .. sender .. ", получи ачивку " .. vydat_q[5] .. " " .. GetAchievementLink(vydat_q[5]), "OFFICER", nil, 1)
+		SendChatMessage("#" .. hsh .. " #aae " .. sender .. ", получи ачивку " .. vydat_q[5] .. " " .. GetAchievementLink(vydat_q[5]), "OFFICER", nil, 1)
 		prostye_q=vydat_q[5]
 		TDG[sender][endQuests][prostye_q]="0"
 		TDG[sender][qAchiv]=prostye_q
 	else
-		SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+		SendChatMessage("#" .. hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 	end
 end
 
-if string.find (message, hsh) and string.find(message, "#aag") then
+if hshCMD=="maodzedun" and string.find(message, "#aag") then
 	msg=mysplit(message)
 	msg1=msg[4]
 	TDG[sender][endQuests][msg1]=1
@@ -158,7 +175,7 @@ if sender=="Витинари" or sender=="Хэвлок" or sender=="Железо
 	end
 end
 
-if string.find (message, hsh) and string.find (message, "#aai") then
+if hshCMD=="maodzedun" and string.find (message, "#aai") then
 	msg1=mysplit(message)
 	msg2=msg[6]
 	TDG[sender][endQuests][msg2]="1"
@@ -171,13 +188,13 @@ if string.find (message, hsh) and string.find (message, "#aai") then
 		local x = math.random(1, countQ)
 		ach=pQuests[testQLVL][x]
 		if TDG[sender][endQuests][x]~="1" then
-			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+			SendChatMessage("#" .. hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			break
 		else
 			chisloProstyhQComplit=chisloProstyhQComplit + 1
 			if chisloProstyhQComplit==countQ then
 				achCmplt="6584"
-				SendChatMessage(hsh .. " #aah " .. sender .. ", все стартовые квесты уже выполнены. Теперь покажи мне ачивку" .. achCmplt .. GetAchievementLink(achCmplt), "OFFICER", nil, 1)
+				SendChatMessage("#" .. hsh .. " #aah " .. sender .. ", все стартовые квесты уже выполнены. Теперь покажи мне ачивку" .. achCmplt .. GetAchievementLink(achCmplt), "OFFICER", nil, 1)
 			end
 		end
 	end

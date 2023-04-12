@@ -30,14 +30,9 @@ shablon="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБ�
 	myB=string.find(shablon,bookv)
 	return myB
 end
-
 function hashStr (nome)
-	i = time()
-	i = string.sub(i, 8, 9)
-	i = i * i
-	i = i * 3.1415926535
-	i = string.sub(i, 3, 5)
-	i = string.format("%03d",i)
+	local i = time()
+	i = i % 1000
 	nome1=string.sub(nome, 1, 1)
 	nome2=string.sub(nome, 2, 2)
 	nome1=alfabet(nome1)
@@ -54,8 +49,28 @@ function hashStr (nome)
 	r=r1 .. r2 .. r3 .. r4 .. r5 .. r6
 	return r
 end
-
+nachaloStr = string.sub(message, 1, 1)
+testN=string.sub(message, 5, 5)
 hsh=hashStr(sender)
+if nachaloStr=="#" and testN~="" then
+	nachaloHsh = string.sub(message, 2, 7)
+	hshStraniero1=string.sub(nachaloHsh,1,1)
+	hshStraniero2=string.sub(nachaloHsh,3,3)
+	hshStraniero3=string.sub(nachaloHsh,5,5)
+	hshStraniero=hshStraniero1 .. hshStraniero2 .. hshStraniero3
+	hsh1=string.sub(hsh,1,1)
+	hsh2=string.sub(hsh,3,3)
+	hsh3=string.sub(hsh,5,5)
+	hsh4=hsh1 .. hsh2 .. hsh3
+	hshC=math.abs(hsh4-hshStraniero)
+	if hshC<10 then
+		hshCMD="maodzedun"
+	else
+		hshCMD="0"
+	end
+end
+
+
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
@@ -267,7 +282,7 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 					ach=pQuests[testQLVL][x]
 					print (ach)
 					if TDG[sender][endQuests][x]~="1" then
-						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+						SendChatMessage("#" .. hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 						break
 					else
 						chisloProstyhQComplit=chisloProstyhQComplit + 1
@@ -282,7 +297,7 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 				end
 			else
 				ach=TDG[sender][qAchiv]
-				SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+				SendChatMessage("#" .. hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			end
 		else
 			countQ=tablelength(pQuests[testQLVL])
@@ -294,7 +309,7 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 					ach=pQuests[testQLVL][x]
 					print (ach)
 					if TDG[sender][endQuests][x]~="1" then
-						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+						SendChatMessage("#" .. hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 						break
 					else
 						chisloProstyhQComplit=chisloProstyhQComplit + 1
@@ -323,10 +338,10 @@ if message == "ВОЖДЬ, сдать" or string.find (message, "#zzr") and nach
 	timeProvMin1=timeProvMin+1
 	if TDG[sender][timeLimit]~=timeProvMin and TDG[sender][timeLimit]~=timeProvMin1 then
 		if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
-			SendChatMessage(hsh .. " #aae " .. sender .. ", у тебя нет взятых квестов.", "OFFICER", nil, 1);
+			SendChatMessage("#" .. hsh .. " #aae " .. sender .. ", у тебя нет взятых квестов.", "OFFICER", nil, 1);
 		else
 			proverkaVypolneniya=TDG[sender][qAchiv]
-			SendChatMessage(hsh .. " #aaf " .. sender .. ", а сделал ли ты " .. proverkaVypolneniya .. " " .. GetAchievementLink(proverkaVypolneniya) .. "?", "OFFICER", nil, 1)
+			SendChatMessage("#" .. hsh .. " #aaf " .. sender .. ", а сделал ли ты " .. proverkaVypolneniya .. " " .. GetAchievementLink(proverkaVypolneniya) .. "?", "OFFICER", nil, 1)
 		end
 		TDG[sender][timeLimit]=minutes
 	else
