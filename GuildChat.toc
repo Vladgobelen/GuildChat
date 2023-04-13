@@ -9,7 +9,7 @@ lib\lib_hook.lua
 lib\lib_math.lua
 lib\lib_string.lua
 lib\lib_table.lua
-
+libs\UTF8\utf8.lua
 #################
 
 developer.lua
@@ -21,3 +21,4 @@ roll.lua
 expp.lua
 newEvent.lua
 UImenu.xml
+functions.lua

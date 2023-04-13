@@ -7,72 +7,8 @@ local endQuests="простые_квесты"
 local qAchiv="взят_ли_квест_простая_ачивка"
 local timeLimit="время_последнего_обращения"
 local str = string.gsub(message, "%s+", "")
-function all_trim(s)
-	return s:match( "^%s*(.-)%s*$" )
-end
-function mysplit (inputstr, sep)
-	if sep == nil then
-		sep = "%s"
-		end
-		local t={}
-		for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-			table.insert(t, str)
-		end
-		return t
-end
-function tablelength(T)
-	local count = 0
-	for _ in pairs(T) do count = count + 1 end
-	return count
-end
-function alfabet (bookv)
-shablon="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	myB=string.find(shablon,bookv)
-	return myB
-end
-function hashStr (nome)
-	local i = time()
-	i = i % 1000
-	nome1=string.sub(nome, 1, 1)
-	nome2=string.sub(nome, 2, 2)
-	nome1=alfabet(nome1)
-	nome2=alfabet(nome2)
-	hNome=nome1*nome2
-	hNome=string.sub(hNome, 1, 3)
-	hNome=string.format("%03d",hNome)
-	r1=string.sub(i, 1, 1)
-	r2=string.sub(hNome, 1, 1)
-	r3=string.sub(i, 2, 2)
-	r4=string.sub(hNome, 2, 2)
-	r5=string.sub(i, 3, 3)
-	r6=string.sub(hNome, 3, 3)
-	r=r1 .. r2 .. r3 .. r4 .. r5 .. r6
-	return r
-end
-nachaloStr = string.sub(message, 1, 1)
-testN=string.sub(message, 5, 5)
 hsh=hashStr(sender)
-if nachaloStr=="#" and testN~="" then
-	nachaloHsh = string.sub(message, 2, 7)
-	hshStraniero1=string.sub(nachaloHsh,1,1)
-	hshStraniero2=string.sub(nachaloHsh,3,3)
-	hshStraniero3=string.sub(nachaloHsh,5,5)
-	hshStraniero=hshStraniero1 .. hshStraniero2 .. hshStraniero3
-	hsh1=string.sub(hsh,1,1)
-	hsh2=string.sub(hsh,3,3)
-	hsh3=string.sub(hsh,5,5)
-	hsh4=hsh1 .. hsh2 .. hsh3
-	hshC=math.abs(hsh4-hshStraniero)
-	if hshC<10 then
-		hshCMD="maodzedun"
-	else
-		hshCMD="0"
-	end
-end
-
-
-
-
+nachaloStr = string.utf8sub(message, 1, 1)
 
 if TDG[sender]==nil then
 	TDG[sender]={}
@@ -92,8 +28,8 @@ end
 if pQuests[3] == nil then
 	pQuests[3]={}
 end
-local nachalo = string.sub(message, 1, 1)
-if hshCMD=="maodzedun" and string.find (message, "#aab") then
+local nachalo = string.utf8sub(message, 1, 1)
+if string.find (message,hsh) and string.find (message, "#aab") then
 	msg1=mysplit(message)
 	msg2=msg[6]
 	TDG[sender][endQuests][msg2]="1"
@@ -120,7 +56,7 @@ if hshCMD=="maodzedun" and string.find (message, "#aab") then
 		end
 	end
 end
-if hshCMD=="maodzedun" and string.find (message, "#aac") then
+if string.find (message,hsh) and string.find (message, "#aac") then
 	vydat_q=mysplit(message)
 	if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
 		SendChatMessage("#" .. hsh .. " #aae " .. sender .. ", получи ачивку " .. vydat_q[5] .. " " .. GetAchievementLink(vydat_q[5]), "OFFICER", nil, 1)
@@ -132,10 +68,10 @@ if hshCMD=="maodzedun" and string.find (message, "#aac") then
 	end
 end
 
-if hshCMD=="maodzedun" and string.find(message, "#aag") then
+if string.find (message,hsh) and string.find(message, "#aag") then
 	msg=mysplit(message)
 	msg1=msg[4]
-	TDG[sender][endQuests][msg1]=1
+	TDG[sender][endQuests][msg1]="1"
 	TDG[sender][qAchiv]="9999"
 	SendChatMessage(sender .. " !получает 3 опыта", "GUILD", nil, 1);
 end
@@ -175,7 +111,7 @@ if sender=="Витинари" or sender=="Хэвлок" or sender=="Железо
 	end
 end
 
-if hshCMD=="maodzedun" and string.find (message, "#aai") then
+if string.find (message,hsh) and string.find (message, "#aai") then
 	msg1=mysplit(message)
 	msg2=msg[6]
 	TDG[sender][endQuests][msg2]="1"

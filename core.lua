@@ -5,83 +5,19 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 local nik=sender
 local endQuests="простые_квесты"
 local qAchiv="взят_ли_квест_простая_ачивка"
-
-function all_trim(s)
-	return s:match( "^%s*(.-)%s*$" )
-end
-function mysplit (inputstr, sep)
-	if sep == nil then
-		sep = "%s"
-		end
-		local t={}
-		for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-			table.insert(t, str)
-		end
-		return t
-end
-function tablelength(T)
-	local count = 0
-	for _ in pairs(T) do count = count + 1 end
-	return count
-end
-
-function alfabet (bookv)
-shablon="абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	myB=string.find(shablon,bookv)
-	return myB
-end
-function hashStr (nome)
-	local i = time()
-	i = i % 1000
-	nome1=string.sub(nome, 1, 1)
-	nome2=string.sub(nome, 2, 2)
-	nome1=alfabet(nome1)
-	nome2=alfabet(nome2)
-	hNome=nome1*nome2
-	hNome=string.sub(hNome, 1, 3)
-	hNome=string.format("%03d",hNome)
-	r1=string.sub(i, 1, 1)
-	r2=string.sub(hNome, 1, 1)
-	r3=string.sub(i, 2, 2)
-	r4=string.sub(hNome, 2, 2)
-	r5=string.sub(i, 3, 3)
-	r6=string.sub(hNome, 3, 3)
-	r=r1 .. r2 .. r3 .. r4 .. r5 .. r6
-	return r
-end
-nachaloStr = string.sub(message, 1, 1)
-testN=string.sub(message, 5, 5)
-hsh=hashStr(sender)
-if nachaloStr=="#" and testN~="" then
-	nachaloHsh = string.sub(message, 2, 7)
-	hshStraniero1=string.sub(nachaloHsh,1,1)
-	hshStraniero2=string.sub(nachaloHsh,3,3)
-	hshStraniero3=string.sub(nachaloHsh,5,5)
-	hshStraniero=hshStraniero1 .. hshStraniero2 .. hshStraniero3
-	hsh1=string.sub(hsh,1,1)
-	hsh2=string.sub(hsh,3,3)
-	hsh3=string.sub(hsh,5,5)
-	hsh4=hsh1 .. hsh2 .. hsh3
-	hshC=math.abs(hsh4-hshStraniero)
-	if hshC<10 then
-		hshCMD="maodzedun"
-	else
-		hshCMD="0"
-	end
-end
-
+nachaloStr = string.utf8sub(message, 1, 1)
 
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
-local nachalo = string.sub(message, 1, 1)
+local nachalo = string.utf8sub(message, 1, 1)
 if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachalo~="*" then
 	for guokZ=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 		if name == sender then
-			local denT = string.sub(officerNote, 6, 7)
-			local qN = string.sub(officerNote, 8, 8)
-			local gildLvl = string.sub(officerNote, 1, 1)
+			local denT = string.utf8sub(officerNote, 6, 7)
+			local qN = string.utf8sub(officerNote, 8, 8)
+			local gildLvl = string.utf8sub(officerNote, 1, 1)
 			qN = tonumber (qN)
 			denn = {}
 			denn = date("%d")
@@ -107,8 +43,8 @@ if string.find (guokInf, "!гильдлвл") or string.find (message, "#zzt") a
 	for guok=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
 		if name == sender then
-			local gildLvl = string.sub(officerNote, 1, 1)
-			local gildExp = string.sub(officerNote, 2, 5)
+			local gildLvl = string.utf8sub(officerNote, 1, 1)
+			local gildExp = string.utf8sub(officerNote, 2, 5)
 			SendChatMessage("*" .. sender .. ": " .. gildLvl .. " гильдлвл" .. " и " .. gildExp .. " опыта", "officer", nil, 1)
 			local gildLvlN = tonumber (gildLvl)
 			local gildExpN = tonumber (gildExp)
@@ -246,9 +182,9 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 	for guokZ=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 		if name == sender then
-			local denT = string.sub(officerNote, 6, 7)
-			local qN = string.sub(officerNote, 8, 8)
-			local gildLvl = string.sub(officerNote, 1, 1)
+			local denT = string.utf8sub(officerNote, 6, 7)
+			local qN = string.utf8sub(officerNote, 8, 8)
+			local gildLvl = string.utf8sub(officerNote, 1, 1)
 			qN = tonumber (qN)
 			denn = {}
 			denn = date("%d")
@@ -267,7 +203,7 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 		else
 		end
 	end
-
+print (testQLim)
 	if testQLim=="0" then
 		testQLVL=TDG[sender]["уровень_квестов"]
 		testQLVL=tonumber(testQLVL)
