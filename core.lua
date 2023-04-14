@@ -167,13 +167,21 @@ if testHis[1] == "!заметка+" or string.find (message, "#zzu") and nachalo
 	end
 end
 
+if sender == "Витинари" or sender == "Двацветок" or sender == "Хэвлок" or sender == "Железобетонс" or sender == "Детрит" then
+if message=="#zzo" then
 
-
-
-
-
-
-
-
+	posX, posY = GetPlayerMapPosition("player");
+	X={}
+	Y={}
+	print (posX)
+	print (posY)
+	for iX=3,10 do
+		X[iX]=string.sub(posX,iX,iX)
+		Y[iX]=string.sub(posY,iX,iX)
+	end
+	mioXY=X[3]..Y[3]..X[4]..Y[4]..X[5]..Y[5]..X[6]..Y[6]..X[7]..Y[7]..X[8]..Y[8]..X[9]..Y[9]..X[10]..Y[10]
+	SendChatMessage("#zzn " .. mioXY, "officer", nil, 1)
+end
+end
 end
 )

@@ -29,10 +29,12 @@ if pQuests[3] == nil then
 	pQuests[3]={}
 end
 local nachalo = string.utf8sub(message, 1, 1)
-if string.find (message,hsh) and string.find (message, "#aab") then
+if string.find (message, hsh) and string.find (message, "#aab") then
+	print ("начало блока ответа на то что ачивка уже сделана")
 	msg1=mysplit(message)
-	msg2=msg[6]
+	msg2=msg1[6]
 	TDG[sender][endQuests][msg2]="1"
+	print (TDG[sender][endQuests][msg2])
 	testQLVL=TDG[sender]["уровень_квестов"]
 	testQLVL=tonumber(testQLVL)
 	countQ=tablelength(pQuests[testQLVL])
@@ -42,7 +44,7 @@ if string.find (message,hsh) and string.find (message, "#aab") then
 		x = math.random(1, countQ)
 		ach=pQuests[testQLVL][x]
 		if TDG[sender][endQuests][x]~="1" then
-			SendChatMessage("#" .. hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			break
 		else
 			chisloProstyhQComplit=chisloProstyhQComplit + 1
@@ -59,12 +61,12 @@ end
 if string.find (message,hsh) and string.find (message, "#aac") then
 	vydat_q=mysplit(message)
 	if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
-		SendChatMessage("#" .. hsh .. " #aae " .. sender .. ", получи ачивку " .. vydat_q[5] .. " " .. GetAchievementLink(vydat_q[5]), "OFFICER", nil, 1)
+		SendChatMessage(hsh .. " #aae " .. sender .. ", получи ачивку " .. vydat_q[5] .. " " .. GetAchievementLink(vydat_q[5]), "OFFICER", nil, 1)
 		prostye_q=vydat_q[5]
 		TDG[sender][endQuests][prostye_q]="0"
 		TDG[sender][qAchiv]=prostye_q
 	else
-		SendChatMessage("#" .. hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+		SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 	end
 end
 
@@ -124,13 +126,13 @@ if string.find (message,hsh) and string.find (message, "#aai") then
 		local x = math.random(1, countQ)
 		ach=pQuests[testQLVL][x]
 		if TDG[sender][endQuests][x]~="1" then
-			SendChatMessage("#" .. hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			break
 		else
 			chisloProstyhQComplit=chisloProstyhQComplit + 1
 			if chisloProstyhQComplit==countQ then
 				achCmplt="6584"
-				SendChatMessage("#" .. hsh .. " #aah " .. sender .. ", все стартовые квесты уже выполнены. Теперь покажи мне ачивку" .. achCmplt .. GetAchievementLink(achCmplt), "OFFICER", nil, 1)
+				SendChatMessage(hsh .. " #aah " .. sender .. ", все стартовые квесты уже выполнены. Теперь покажи мне ачивку" .. achCmplt .. GetAchievementLink(achCmplt), "OFFICER", nil, 1)
 			end
 		end
 	end
@@ -257,8 +259,11 @@ end
 if string.find (message, "#zzp") then
 	testQuest=TDG[sender]["взят_ли_квест_простая_ачивка"]
 	TDG[sender]["взят_ли_квест_простая_ачивка"]="9999"
-	SendChatMessage(sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
+	if TDG[sender]["взят_ли_квест_простая_ачивка"]~="9999" then
+		SendChatMessage(sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
+	else
+		SendChatMessage(sender .. ", тебе нечего отменять.", "OFFICER", nil, 1)
+	end
 end
-
 end
 )
