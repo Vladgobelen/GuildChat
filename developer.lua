@@ -136,6 +136,11 @@ if string.find (message,hsh) and string.find (message, "#aai") then
 	end
 end
 
+if string.find (message, "#zzp") then
+	testQuest=TDG[sender]["взят_ли_квест_простая_ачивка"]
+	TDG[sender]["взят_ли_квест_простая_ачивка"]="9999"
+	SendChatMessage(sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
+end
 
 end
 )

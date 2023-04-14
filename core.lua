@@ -6,7 +6,7 @@ local nik=sender
 local endQuests="простые_квесты"
 local qAchiv="взят_ли_квест_простая_ачивка"
 nachaloStr = string.utf8sub(message, 1, 1)
-
+hsh=hashStr(sender)
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
@@ -218,7 +218,7 @@ print (testQLim)
 					ach=pQuests[testQLVL][x]
 					print (ach)
 					if TDG[sender][endQuests][x]~="1" then
-						SendChatMessage("#" .. hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 						break
 					else
 						chisloProstyhQComplit=chisloProstyhQComplit + 1
@@ -233,7 +233,7 @@ print (testQLim)
 				end
 			else
 				ach=TDG[sender][qAchiv]
-				SendChatMessage("#" .. hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+				SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			end
 		else
 			countQ=tablelength(pQuests[testQLVL])
@@ -245,7 +245,7 @@ print (testQLim)
 					ach=pQuests[testQLVL][x]
 					print (ach)
 					if TDG[sender][endQuests][x]~="1" then
-						SendChatMessage("#" .. hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 						break
 					else
 						chisloProstyhQComplit=chisloProstyhQComplit + 1
@@ -274,15 +274,20 @@ if message == "ВОЖДЬ, сдать" or string.find (message, "#zzr") and nach
 	timeProvMin1=timeProvMin+1
 	if TDG[sender][timeLimit]~=timeProvMin and TDG[sender][timeLimit]~=timeProvMin1 then
 		if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
-			SendChatMessage("#" .. hsh .. " #aae " .. sender .. ", у тебя нет взятых квестов.", "OFFICER", nil, 1);
+			SendChatMessage(hsh .. " #aae " .. sender .. ", у тебя нет взятых квестов.", "OFFICER", nil, 1);
 		else
 			proverkaVypolneniya=TDG[sender][qAchiv]
-			SendChatMessage("#" .. hsh .. " #aaf " .. sender .. ", а сделал ли ты " .. proverkaVypolneniya .. " " .. GetAchievementLink(proverkaVypolneniya) .. "?", "OFFICER", nil, 1)
+			SendChatMessage(hsh .. " #aaf " .. sender .. ", а сделал ли ты " .. proverkaVypolneniya .. " " .. GetAchievementLink(proverkaVypolneniya) .. "?", "OFFICER", nil, 1)
 		end
 		TDG[sender][timeLimit]=minutes
 	else
 		SendChatMessage("*" .. sender .. ", попробуй через минуту.", "OFFICER", nil, 1)
 	end
 end
+
+
+
+
+
 end
 )
