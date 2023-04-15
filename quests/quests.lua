@@ -12,7 +12,6 @@ local disp_Q="доступно_квестов" --это (число)
 local disp_O="доступно_объектов"
 local creatore="создатель" --это слово
 local xY="текущая_локация" --это слово
-local inf_o="описание" --это строка. Нужно объявить при создании объекта.
 local objec_t_name --имя объекта
 local attenzioni="внимательность"
 local forza="сила"
@@ -43,7 +42,7 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 
 	if msg[3]==nil then --проверяем, что игрок правильно ввел команду, иначе предупреждаем
 		SendChatMessage("*" .. nik .. ", в какой мир ты хочешь попасть? Ау, не вижу названия мира!", "OFFICER", nil, 1)
-	end
+	else
 
 	quest = msg[3] --текущий квест это третье слово в команде игрока (команда: !старт квест [слово])
 
@@ -69,6 +68,7 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 		if TDG[nik][santita]==nil then
 			TDG[nik][santita]=1
 		end
+
 	end
 	if TDG[nik][quest]==nil then
 		TDG[nik][quest]={}
@@ -108,10 +108,10 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 				SendChatMessage("*" .. nik .. " , возможно стоит !создать стартовую локацию.", "OFFICER", nil, 1);
 			else
 				objec_t_name=TDGq[quest][startLoc]
-				if TDGq[quest][objec_t][objec_t_name][inf_o]~=nil then --проверяем, что существует описание стартовой локации
-					SendChatMessage(TDGq[quest][objec_t][objec_t_name][inf_o[1]], "OFFICER", nil, 1); --выводим описание стартовой локации
+				if TDGq[quest][objec_t][objec_t_name]["описание"][1]~=nil then --проверяем, что существует описание стартовой локации
+					SendChatMessage(TDGq[quest][objec_t][objec_t_name]["описание"][1], "OFFICER", nil, 1); --выводим описание стартовой локации
 				else --если описания стартовой локации не существует
-					SendChatMessage("*" .. nik .. ", попробуй !cоздать !описание стартовой локации.", "OFFICER", nil, 1);
+					SendChatMessage("*" .. nik .. ", попробуй !cоздать описание стартовой локации.", "OFFICER", nil, 1);
 				end
 			end
 		else
@@ -119,9 +119,15 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 				SendChatMessage("*А тут пока " .. TDGq[quest][creatore] .. " ничего не создал", "OFFICER", nil, 1);
 			else
 				objec_t_name=TDGq[quest][startLoc]
-				if TDGq[quest][objec_t][objec_t_name][inf_o]~=nil then --проверяем, что существует описание стартовой локации
+
+
+				if TDGq[quest][objec_t][objec_t_name]["описание"][1]~=nil then --проверяем, что существует описание стартовой локации
 					TDG[nik][quest][xY]=objec_t_name
-					SendChatMessage(TDGq[quest][objec_t][objec_t_name][inf_o[1]], "OFFICER", nil, 1); --выводим описание стартовой локации
+
+
+					opisanie=TDGq[quest][objec_t][objec_t_name]["описание"][1]
+					print (opisanie)
+					--SendChatMessage(TDGq[quest][objec_t][objec_t_name]["описание"][1], "OFFICER", nil, 1); --выводим описание стартовой локации
 				else --если описания стартовой локации не существует
 					SendChatMessage(TDGq[quest][creatore] .. " сам особо не понимает где ты находишься, а ведь он это создал..", "OFFICER", nil, 1);
 				end
@@ -130,26 +136,56 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 	end
 	--конец проверки на существование всех таблиц
 end
+end
 
 
---[[
 quest=TDG[nik][att_Q]
 
 if string.find (message, "!создать") and TDGq[quest][creatore]==nik and testHis~="*" then
-	print (TDG[nik][quest])
-	print ("6")
-	print (TDG[nik][att_Q])
-	print ("7")
-	print (TDGq[quest][creatore])
-	print ("8")
-	local strSoz = mysplit(message)
+	strSoz = mysplit(message)
+	objec_t_name=strSoz[2]
 	if strSoz[2] == nil then
 		SendChatMessage("*" .. nik .. ", сложно создать ничто, особенно если его нет...", "OFFICER", nil, 1)
 	else
-		if TDGq[quest][startLoc]==nil or TDGq[quest][startLoc] == "0" then
-			TDGq[quest][startLoc]=strSoz[2]
+		if objec_t_name=="объект" then
+			if TDGq[quest][startLoc]==nil or TDGq[quest][startLoc] == "0" then
+				TDGq[quest][objec_t][objec_t_name]={}
+				TDGq[quest][objec_t][objec_t_name]["название"]=objec_t_name
+				TDGq[quest][startLoc]=strSoz[2]
+				TDGq[quest][objec_t][objec_t_name]["координаты"]=quest
+				SendChatMessage("*" .. nik .. ", созданный объект " .. strSoz[2] .. " назначен стартовой локацией", "OFFICER", nil, 1)
+				TDG[sender][quest][xY]=strSoz[2]
+			else
+				if TDGq[quest][objec_t][objec_t_name]~=nil then
+					SendChatMessage("*" .. nik .. " " .. strSoz[2] .. " уже существует", "OFFICER", nil, 1)
+				else
+					TDGq[quest][objec_t][objec_t_name]={}
+					TDGq[quest][objec_t][objec_t_name]["название"]=objec_t_name
+					TDGq[quest][objec_t][objec_t_name]["координаты"]=TDG[sender][quest][xY]
+					SendChatMessage("*" .. nik .. " " .. strSoz[2] .. " создано внутри " .. TDGq[quest][objec_t][objec_t_name]["координаты"], "OFFICER", nil, 1)
+				end
+			end
+		elseif strSoz[2]=="описание" then
+			if strSoz[3]==nil then
+				SendChatMessage("*" .. nik .. ", описание чего ты хочешь создать?", "OFFICER", nil, 1)
+			else
+				if strSoz[4]==nil then
+					SendChatMessage("*" .. nik .. ", а где собственно описание??", "OFFICER", nil, 1)
+				else
+					tblLens=tablelength(strSoz)
+					opisanie=table.concat(strSoz, " ", 4,tblLens)
+					objec_t_name=strSoz[3]
+					TDGq[quest][objec_t][objec_t_name]["описание"]={}
+					table.insert(TDGq[quest][objec_t][objec_t_name]["описание"], opisanie)
+				end
+			end
 		end
+
+
+
+
 	end
+
 
 
 else
@@ -157,7 +193,7 @@ else
 		SendChatMessage("*" .. nik .. ", в этом мире у тебя нет силы....", "OFFICER", nil, 1);
 	end
 end
---]]
+
 
 --переменные для блока !осмотреть
 local messageOsm=all_trim(message)
@@ -172,8 +208,16 @@ if string.find (message, "!осмотреть") and messageOsm[2]==nil and testH
 		if TDG[nik][att_Q] ~= nil then ---если текущий квест есть в таблице игрока
 			quest=TDG[nik][att_Q]
 			if TDG[nik][quest][xY] ~= nil then --если в таблице игрока есть координаты
-				if TDG[nik][quest][xY] ~="0" then --если координаты игрока в текущем квесте не нулевые
-					SendChatMessage("*" .. TDGq[quest][objec_t][xY][inf_o[1]], "OFFICER", nil, 1)
+				if TDG[nik][quest][xY] ~= "0" then --если координаты игрока в текущем квесте не нулевые
+					XY=TDG[nik][quest][xY]
+
+					opisanie=TDGq[quest][objec_t][XY]["описание"][1]
+
+					if TDGq[quest][objec_t][XY]["описание"][1]~=nil then
+						print (opisanie)
+					else
+						SendChatMessage("*" .. sender .. " попробуй !создать " .. " описание " .. XY .. " текст_описания", "OFFICER", nil, 1)
+					end
 				else
 					SendChatMessage("*" .. nik .. ", попробуй зайти в мир, где создано хоть что нибудь.", "OFFICER", nil, 1)
 				end
@@ -193,7 +237,7 @@ elseif string.find (message, "!осмотреть") and messageOsm[2]~=nil and t
 			if TDG[nik][quest][xY] ~= nil then --если в таблице игрока есть координаты
 				if TDG[nik][quest][xY] ~="0" then --есл координаты игрока в текущем квесте не нулевые
 					if TDGq[quest][objec_t][messageOsm2] ~= nil then
-						SendChatMessage("*" .. TDGq[quest][objec_t][xY][inf_o[1]], "OFFICER", nil, 1)
+						SendChatMessage("*" .. TDGq[quest][objec_t][xY]["описание"][1], "OFFICER", nil, 1)
 					else
 						SendChatMessage("*" .. TDGq[quest][objec_t][xY][objec_t_name] .. " не существует", "OFFICER", nil, 1)
 					end
@@ -213,9 +257,52 @@ if message == "!показать текущий квест" then
 	print (TDG[nik][att_Q])
 end
 
+local messageOsm=all_trim(message)
+local messageOsm=mysplit(messageOsm)
+local messageOsm1=messageOsm[1]
+local messageOsm2=messageOsm[2]
+local messageOsm3=messageOsm[3]
+if string.find (message, "!удалить") and testHis~="*" then
+	print ("1")
+	if messageOsm2==nil then
+		print ("2")
+		SendChatMessage("*" .. sender .. ", укажи что удалять.", "OFFICER", nil, 1)
+	else
+		print ("3")
+		if messageOsm2=="мир" then
+			print ("4")
+			if messageOsm3==nil then
+				SendChatMessage("*" .. sender .. ", укажи какой мир ты хочешь удалить.", "OFFICER", nil, 1);
+			else
+				if TDGq[messageOsm3][creatore]~=sender then
+				print ("5")
+					SendChatMessage("*" .. sender .. ", в этом мире у тебя нет силы....", "OFFICER", nil, 1);
+				else
+					print ("8")
+					if TDG[sender]["текущий_квест"]==messageOsm3 then
+						TDG[sender]["текущий_квест"]="0"
+					end
+					print (TDGq[messageOsm3])
+					TDGq[messageOsm3]=nil
+					print ("удалено")
+					print (TDGq[messageOsm3])
+					SendChatMessage("*" .. sender .. ", мир " .. messageOsm3 .. " был удален", "OFFICER", nil, 1);
+
+					print ("9")
+
+				end
+				print ("10")
+
+			end
+
+		else
+			print ("11")
+		end
+		print ("12")
+	end
 
 
-
+end
 
 
 end

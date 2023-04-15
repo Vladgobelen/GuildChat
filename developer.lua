@@ -77,7 +77,7 @@ if string.find (message,hsh) and string.find(message, "#aag") then
 end
 
 if string.find (sender, "Витинари") or string.find (sender, "Хэвлок") or string.find (sender, "Железобетонс") or string.find (sender, "Детрит") or string.find (sender, "Двацветок") then
-	if string.find (message, "!удалить квест") and nachalo~="*" then
+	if string.find (message, "!удалить ачивку") and nachalo~="*" then
 		msg=mysplit(message)
 		q=msg[3]
 		q=tonumber(q)
@@ -92,21 +92,21 @@ if string.find (sender, "Витинари") or string.find (sender, "Хэвло�
 	end
 end
 if sender=="Витинари" or sender=="Хэвлок" or sender=="Железобетонс" or sender=="Детрит" or sender=="Двацветок" then
-    if string.find (message, "!добавить квест") and nachalo~="*" then
+    if string.find (message, "!добавить ачивку") and nachalo~="*" then
 		msg=mysplit(message)
 		q=msg[3]
 		q=tonumber(q)
 		msg=msg[4]
 		for key, val in pairs(pQuests[q]) do
 			if val==msg then
-				print("*Квест " .. val .. " " .. GetAchievementLink(val) .. " уже был добавлен.")
+				print("*Ачивка " .. val .. " " .. GetAchievementLink(val) .. " уже была добавлена.")
 				testID=1
 			else
 			end
 		end
 		if testID~=1 then
 			table.insert(pQuests[q], msg)
-			print("*Квест " .. msg .. " " .. GetAchievementLink(msg) .. " был добавлен.")
+			print("*Ачивка " .. msg .. " " .. GetAchievementLink(msg) .. " была добавлена.")
 		end
 	end
 end
@@ -250,13 +250,18 @@ if message == "ВОЖДЬ, сдать" or string.find (message, "#zzr") and nach
 end
 
 if string.find (message, "#zzp") then
-	testQuest=TDG[sender]["взят_ли_квест_простая_ачивка"]
-	if TDG[sender]["взят_ли_квест_простая_ачивка"]~="9999" then
-		SendChatMessage(sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
-		TDG[sender]["взят_ли_квест_простая_ачивка"]="9999"
-	else
+	if TDG[sender]["взят_ли_квест_простая_ачивка"]==nil then
 		SendChatMessage(sender .. ", тебе нечего отменять.", "OFFICER", nil, 1)
+	else
+		testQuest=TDG[sender]["взят_ли_квест_простая_ачивка"]
+		if TDG[sender]["взят_ли_квест_простая_ачивка"]~="9999" then
+			SendChatMessage(sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
+			TDG[sender]["взят_ли_квест_простая_ачивка"]="9999"
+		else
+			SendChatMessage(sender .. ", тебе нечего отменять.", "OFFICER", nil, 1)
+		end
 	end
+
 end
 end
 )
