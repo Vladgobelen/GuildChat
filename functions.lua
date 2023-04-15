@@ -68,3 +68,62 @@ function tablelength(T)
 	for _ in pairs(T) do count = count + 1 end
 	return count
 end
+
+function lvlAgg (expPp, gExpN1, gLvl, gNik,strokaFn)
+    local gExpNo = 2 ^ (gLvl + 2) - gExpN1   ---получаем количество оставшегося лвла на уровне
+        rarExp=gExpN1
+        rarLvl=gLvl
+        rarExp=string.format("%03d",rarExp)
+        for i = 1,expPp do               --прибавляем опыт по единичке
+            gExpN1 = gExpN1 + 1     --единичку прибавили к опыту на уровне
+            gExpNo = gExpNo - 1      -- от оставшегося опыта на уровне отнимаем единичку
+            if gExpNo == 0 then       --если опыта на уровне не осталось, то
+                gLvl = gLvl + 1  --прибавляем к лвлу единицу
+                SendChatMessage("Поздравляем " .. gNik .. " c лвлапом!!!", "OFFICER", nil, 1)
+                gExpNo = 2 ^ (gLvl + 2)            --оставшийся опыт назначаем равным 8
+                print ("тест" .. gExpNo)
+                gExpN1 = 0           --текущий опыт на уровне назначаем равным нулю
+            else
+            end
+
+        end
+        gExpN1Nuovo=string.format("%03d",gExpN1)
+        SendChatMessage(rarLvl .. rarExp .. " >> " .. gLvl .. gExpN1Nuovo .." До лвлапа осталось: " .. gExpNo .. " опыта", "OFFICER", nil, 1)
+        local strokaSplit = mysplit (strokaFn)
+        if gLvl == 9 then
+            SendChatMessage("Красочные спецэффекты вжу-вжу-пиу!фрррр! " .. gNik .. " получает доступ к квесту на получение офицерского звания", "OFFICER", nil, 1)
+            gExpN1 = 0
+        else
+        end
+        gildExpN13 = string.format("%03d",gExpN1)
+
+        local denT = string.sub(strokaSplit[2], 1, 2)
+        local qN = string.sub(strokaSplit[2], 3, 3)
+        denn ={}
+        denn=date("%d")
+        qN = tonumber (qN)
+        if denn ~= denT then
+            strDen = denn .. 1
+        else
+            if qN < gLvl then
+                qN = qN + 1
+                strDen = denn .. qN
+            else
+                SendChatMessage(gNik .. ", следущий квест на твоем гильдлвле доступен завтра.", "OFFICER", nil, 1)
+                strDen = denn .. qN
+            end
+        end
+        return (gLvl .. gildExpN13 .. " " .. strDen .. " " .. strokaSplit[3])
+    end
+    function testNil (msg,count,str,f)
+        for i=1, count do
+                if msg[i] == nil then
+                        table.insert(msg, i, str)
+                end
+        end
+        if f ~= 0 then
+                msg = (table.concat(msg, " "))
+                msg = all_trim (msg)
+        end
+        return msg
+    end
