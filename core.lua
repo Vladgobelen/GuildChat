@@ -86,14 +86,14 @@ else
 end
 
 if string.find (message, "ВОЖДЬ, хочу больше квестов и опыта!!!") or string.find (message, "#zzz") and nachalo~="*" then
-	if TDG[sender]["доп_квест"]==nil or TDG[sender]["доп_квест"]=="9999" then
+	if TDG[sender]["доп_квест"]==nil or TDG[sender]["доп_квест"]==9999 then
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
 			local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 			kol=kol+1
 		end
 		local kol1=kol+30
-		SendChatMessage("*" .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
+		SendChatMessage(hsh .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
 		TDG[sender]["доп_квест"]=kol1
 	else
 	poluchenoKolichestvo=TDG[sender]["доп_квест"]
@@ -112,7 +112,7 @@ if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or strin
 		if rezDopQuest>kol then
 			SendChatMessage("*" .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. rezDopQuest, "officer", nil, 1);
 		else
-			SendChatMessage(sender .. " !получает 3 опыта", "officer", nil, 1);
+			SendChatMessage(sender .. " !получает 3 опыта", "guild", nil, 1);
 			SendChatMessage("*" .. sender .. " получает кусок карты (за куском обращаться отдельно.", "officer", nil, 1);
 			if TDG[sender]["кусков_карты"]==nil then
 				TDG[sender]["кусков_карты"]=1

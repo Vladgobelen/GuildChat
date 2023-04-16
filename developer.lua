@@ -175,57 +175,57 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 	if testQLim=="0" then
 		testQLVL=TDG[sender]["уровень_квестов"]
 		testQLVL=tonumber(testQLVL)
-		if TDG[sender][endQuests][guokTimerStart]~=nil then
-			if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
-				countQ=tablelength(pQuests[testQLVL])
-				local chisloProstyhQComplit=0
-				chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
-				for testQ=1, countQ do
-					local x = math.random(1, countQ)
-					ach=pQuests[testQLVL][x]
-					if TDG[sender][endQuests][ach]~="1" then
-						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
-						break
-					else
-						chisloProstyhQComplit=chisloProstyhQComplit + 1
-						if chisloProstyhQComplit==countQ then
-							testQLVL=TDG[sender]["уровень_квестов"]
-							testQLVL=tonumber(testQLVL)
-							testQLVL=testQLVL+1
-							TDG[sender]["уровень_квестов"]=testQLVL
-							SendChatMessage("*" .. sender .. ", сложность квестов повышена.", "OFFICER", nil, 1)
+		if testQLVL==1 then
+			if TDG[sender][endQuests][guokTimerStart]~=nil then
+				if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
+					countQ=tablelength(pQuests[testQLVL])
+					local chisloProstyhQComplit=0
+					chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
+					for testQ=1, countQ do
+						local x = math.random(1, countQ)
+						ach=pQuests[testQLVL][x]
+						if TDG[sender][endQuests][ach]~="1" then
+							SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+							break
+						else
+							chisloProstyhQComplit=chisloProstyhQComplit + 1
+							if chisloProstyhQComplit==countQ then
+								testQLVL=TDG[sender]["уровень_квестов"]
+								testQLVL=tonumber(testQLVL)
+								testQLVL=testQLVL+1
+								TDG[sender]["уровень_квестов"]=testQLVL
+								SendChatMessage("*" .. sender .. ", сложность квестов повышена.", "OFFICER", nil, 1)
+							end
 						end
 					end
+				else
+					ach=TDG[sender][qAchiv]
+					SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 				end
 			else
-				ach=TDG[sender][qAchiv]
-				SendChatMessage(hsh .. " #aad " .. sender .. ", у тебя уже взят квест: " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
-			end
-		else
-			countQ=tablelength(pQuests[testQLVL])
-				local chisloProstyhQComplit=0
-				chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
-				for testQ=1, countQ do
-					local x = math.random(1, countQ)
-					ach=pQuests[testQLVL][x]
-					if TDG[sender][endQuests][ach]~="1" then
-						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
-						break
-					else
-						chisloProstyhQComplit=chisloProstyhQComplit + 1
-						if chisloProstyhQComplit==countQ then
-							testQLVL=TDG[sender]["уровень_квестов"]
-							testQLVL=tonumber(testQLVL)
-							testQLVL=testQLVL+1
-							TDG[sender]["уровень_квестов"]=testQLVL
-							SendChatMessage("*" .. sender .. ", сложность квестов повышена.", "OFFICER", nil, 1)
+				countQ=tablelength(pQuests[testQLVL])
+					local chisloProstyhQComplit=0
+					chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
+					for testQ=1, countQ do
+						local x = math.random(1, countQ)
+						ach=pQuests[testQLVL][x]
+						if TDG[sender][endQuests][ach]~="1" then
+							SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
+							break
+						else
+							chisloProstyhQComplit=chisloProstyhQComplit + 1
+							if chisloProstyhQComplit==countQ then
+								testQLVL=TDG[sender]["уровень_квестов"]
+								testQLVL=tonumber(testQLVL)
+								testQLVL=testQLVL+1
+								TDG[sender]["уровень_квестов"]=testQLVL
+								SendChatMessage("*" .. sender .. ", сложность квестов повышена.", "OFFICER", nil, 1)
+							end
 						end
 					end
-				end
-
-
-
-
+			end
+		elseif testQLVL==2 then
+			SendChatMessage("*" .. sender .. ", ты на втором лвле квестов.", "OFFICER", nil, 1)
 		end
 	else
 		SendChatMessage("*" .. sender .. ", следущий квест на твоем гильдлвле доступен завтра, но тебе доступен дополнительный квест с повышенным опытом: #zzz", "officer", nil, 1)
