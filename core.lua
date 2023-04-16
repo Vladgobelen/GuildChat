@@ -102,7 +102,7 @@ if string.find (message, "ВОЖДЬ, хочу больше квестов и о
 end
 
 if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or string.find (message, "#zzy") and nachalo~="*" then
-	if TDG[sender]["доп_квест"]~=nil and TDG[sender]["доп_квест"]~="9999" then
+	if TDG[sender]["доп_квест"]~=nil and TDG[sender]["доп_квест"]~=9999 then
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
@@ -122,7 +122,7 @@ if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or strin
 				dopKus=dopKus+1
 				TDG[sender]["кусков_карты"]=dopKus
 			end
-			TDG[sender]["доп_квест"]="9999"
+			TDG[sender]["доп_квест"]=9999
 		end
 	else
 		SendChatMessage("*" .. sender .. ", сначала нужно взять квест", "officer", nil, 1);
