@@ -44,8 +44,7 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 		SendChatMessage("*" .. nik .. ", в какой мир ты хочешь попасть? Ау, не вижу названия мира!", "OFFICER", nil, 1)
 	else
 
-	quest = msg[3] --текущий квест это третье слово в команде игрока (команда: !старт квест [слово])
-
+		quest = msg[3] --текущий квест это третье слово в команде игрока (команда: !старт квест [слово])
 	if TDG==nil then --проверка, что существует таблица с параметрами игроков
 		TDG={}
 	end
@@ -109,7 +108,7 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 			else
 				objec_t_name=TDGq[quest][startLoc]
 				if TDGq[quest][objec_t][objec_t_name]["описание"][1]~=nil then --проверяем, что существует описание стартовой локации
-					SendChatMessage(TDGq[quest][objec_t][objec_t_name]["описание"][1], "OFFICER", nil, 1); --выводим описание стартовой локации
+					SendChatMessage(sender .. ", " .. TDGq[quest][objec_t][objec_t_name]["описание"][1], "OFFICER", nil, 1); --выводим описание стартовой локации
 				else --если описания стартовой локации не существует
 					SendChatMessage("*" .. nik .. ", попробуй !cоздать описание стартовой локации.", "OFFICER", nil, 1);
 				end
@@ -121,13 +120,12 @@ if string.find (message, "!старт квест") and testHis~="*" then --пр�
 				objec_t_name=TDGq[quest][startLoc]
 
 
-				if TDGq[quest][objec_t][objec_t_name]["описание"][1]~=nil then --проверяем, что существует описание стартовой локации
+				if TDGq[quest]["объекты"][objec_t_name]["описание"][1]~=nil then --проверяем, что существует описание стартовой локации
 					TDG[nik][quest][xY]=objec_t_name
 
 
-					opisanie=TDGq[quest][objec_t][objec_t_name]["описание"][1]
-					print (opisanie)
-					--SendChatMessage(TDGq[quest][objec_t][objec_t_name]["описание"][1], "OFFICER", nil, 1); --выводим описание стартовой локации
+					opisanie=TDGq[quest]["объекты"][objec_t_name]["описание"][1]
+					SendChatMessage(sender .. ", " .. opisanie, "OFFICER", nil, 1);
 				else --если описания стартовой локации не существует
 					SendChatMessage(TDGq[quest][creatore] .. " сам особо не понимает где ты находишься, а ведь он это создал..", "OFFICER", nil, 1);
 				end
@@ -143,26 +141,26 @@ quest=TDG[nik][att_Q]
 
 if string.find (message, "!создать") and TDGq[quest][creatore]==nik and testHis~="*" then
 	strSoz = mysplit(message)
-	objec_t_name=strSoz[2]
+	objec_t_name=strSoz[3]
 	if strSoz[2] == nil then
 		SendChatMessage("*" .. nik .. ", сложно создать ничто, особенно если его нет...", "OFFICER", nil, 1)
 	else
-		if objec_t_name=="объект" then
+		if strSoz[2]=="объект" then
 			if TDGq[quest][startLoc]==nil or TDGq[quest][startLoc] == "0" then
 				TDGq[quest][objec_t][objec_t_name]={}
 				TDGq[quest][objec_t][objec_t_name]["название"]=objec_t_name
-				TDGq[quest][startLoc]=strSoz[2]
+				TDGq[quest][startLoc]=strSoz[3]
 				TDGq[quest][objec_t][objec_t_name]["координаты"]=quest
-				SendChatMessage("*" .. nik .. ", созданный объект " .. strSoz[2] .. " назначен стартовой локацией", "OFFICER", nil, 1)
+				SendChatMessage("*" .. nik .. ", созданный объект " .. strSoz[3] .. " назначен стартовой локацией", "OFFICER", nil, 1)
 				TDG[sender][quest][xY]=strSoz[2]
 			else
 				if TDGq[quest][objec_t][objec_t_name]~=nil then
-					SendChatMessage("*" .. nik .. " " .. strSoz[2] .. " уже существует", "OFFICER", nil, 1)
+					SendChatMessage("*" .. nik .. " " .. strSoz[3] .. " уже существует", "OFFICER", nil, 1)
 				else
 					TDGq[quest][objec_t][objec_t_name]={}
 					TDGq[quest][objec_t][objec_t_name]["название"]=objec_t_name
 					TDGq[quest][objec_t][objec_t_name]["координаты"]=TDG[sender][quest][xY]
-					SendChatMessage("*" .. nik .. " " .. strSoz[2] .. " создано внутри " .. TDGq[quest][objec_t][objec_t_name]["координаты"], "OFFICER", nil, 1)
+					SendChatMessage("*" .. nik .. " " .. strSoz[3] .. " создано внутри " .. TDGq[quest][objec_t][objec_t_name]["координаты"], "OFFICER", nil, 1)
 				end
 			end
 		elseif strSoz[2]=="описание" then
@@ -175,8 +173,14 @@ if string.find (message, "!создать") and TDGq[quest][creatore]==nik and t
 					tblLens=tablelength(strSoz)
 					opisanie=table.concat(strSoz, " ", 4,tblLens)
 					objec_t_name=strSoz[3]
-					TDGq[quest][objec_t][objec_t_name]["описание"]={}
-					table.insert(TDGq[quest][objec_t][objec_t_name]["описание"], opisanie)
+					if TDGq[quest][objec_t][objec_t_name]["описание"]==nil then
+						TDGq[quest][objec_t][objec_t_name]["описание"]={}
+						table.insert(TDGq[quest][objec_t][objec_t_name]["описание"], opisanie)
+						SendChatMessage("*" .. nik .. ", описание добавлено.", "OFFICER", nil, 1)
+					else
+						table.insert(TDGq[quest][objec_t][objec_t_name]["описание"], opisanie)
+						SendChatMessage("*" .. nik .. ", описание добавлено.", "OFFICER", nil, 1)
+					end
 				end
 			end
 		end
@@ -295,8 +299,22 @@ if string.find (message, "!удалить") and testHis~="*" then
 
 			end
 
-		else
-			print ("11")
+		elseif messageOsm2=="объект" then
+			if messageOsm[3]==nil then
+				SendChatMessage("*" .. sender .. ", что именно ты собрался удалять?", "OFFICER", nil, 1);
+			else
+				if TDGq[quest][creatore]~=sender then
+					SendChatMessage("*" .. sender .. ", в этом мире у тебя нет силы....", "OFFICER", nil, 1);
+				else
+					if TDGq[quest]["объекты"][messageOsm[3]]~=nil then
+					objec_t_name=messageOsm[3]
+					TDGq[quest]["объекты"][objec_t_name]=nil
+					SendChatMessage("*" .. sender .. ", ты удалил " .. objec_t_name, "OFFICER", nil, 1);
+					else
+						SendChatMessage("*" .. sender .. " " .. messageOsm[3] .. " не существует.", "OFFICER", nil, 1);
+					end
+				end
+			end
 		end
 		print ("12")
 	end

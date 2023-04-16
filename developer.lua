@@ -41,7 +41,7 @@ if string.find (message, hsh) and string.find (message, "#aab") then
 	for testQ=1, countQ do
 		x = math.random(1, countQ)
 		ach=pQuests[testQLVL][x]
-		if TDG[sender][endQuests][x]~="1" then
+		if TDG[sender][endQuests][ach]~="1" then
 			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			break
 		else
@@ -123,7 +123,7 @@ if string.find (message,hsh) and string.find (message, "#aai") then
 	for testQ=1, countQ do
 		local x = math.random(1, countQ)
 		ach=pQuests[testQLVL][x]
-		if TDG[sender][endQuests][x]~="1" then
+		if TDG[sender][endQuests][ach]~="1" then
 			SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			break
 		else
@@ -183,7 +183,7 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 				for testQ=1, countQ do
 					local x = math.random(1, countQ)
 					ach=pQuests[testQLVL][x]
-					if TDG[sender][endQuests][x]~="1" then
+					if TDG[sender][endQuests][ach]~="1" then
 						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 						break
 					else
@@ -208,7 +208,7 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 				for testQ=1, countQ do
 					local x = math.random(1, countQ)
 					ach=pQuests[testQLVL][x]
-					if TDG[sender][endQuests][x]~="1" then
+					if TDG[sender][endQuests][ach]~="1" then
 						SendChatMessage(hsh .. " #aaa " .. sender .. ", покажи мне ачивку " .. ach .. " " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 						break
 					else
