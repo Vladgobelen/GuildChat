@@ -2,6 +2,7 @@ local GC_Sniffer = CreateFrame("Frame")
 GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 
+
 local myNik=sender
 local msg = string.gsub(message, "%s+", "")
     if string.find (msg, "!камень") then
@@ -33,6 +34,15 @@ local msg = string.gsub(message, "%s+", "")
         if str[2]=="0" then
             str[2]="ноль"
         end
+        if str[2]==nil then
+            if x<=18 then
+                SendChatMessage("*" .. x .. " красное", "OFFICER", nil, 1)
+            elseif x>18 and x~=37 then
+                SendChatMessage("*" .. x .. " черное", "OFFICER", nil, 1)
+            elseif x==37 then
+                SendChatMessage("*зеро", "OFFICER", nil, 1)
+            end
+        end
         if str[2]=="красное" or str[2]=="черное" or str[2]=="ноль" and str[2]~=nil then
             if x<=18 and str[2]=="красное" then
                 SendChatMessage("*" .. myNik .. ", " .. x .. " красное, ты выиграл!", "OFFICER", nil, 1)
@@ -43,13 +53,13 @@ local msg = string.gsub(message, "%s+", "")
             elseif x>18 and x~=37 and str[2]=="черное" then
                 SendChatMessage("*" .. myNik .. ", " .. x .. " черное, ты выиграл.", "OFFICER", nil, 1)
             elseif x==37 and str[2]=="ноль" then
-                SendChatMessage("*" .. myNik .. ", Ноль, ты выиграл.", "OFFICER", nil, 1)
+                SendChatMessage("*" .. myNik .. ", зеро, ты выиграл.", "OFFICER", nil, 1)
             elseif x<=18 and str[2]=="ноль" then
                 SendChatMessage("*" .. myNik .. ", " .. x .. " красное, ты проиграл.", "OFFICER", nil, 1)
             elseif x>18 and x~=37 and str[2]=="ноль" then
                 SendChatMessage("*" .. myNik .. ", " .. x .. " черное, ты проиграл.", "OFFICER", nil, 1)
             elseif x==37 and str[2]~="ноль" then
-                SendChatMessage("*" .. myNik .. ", " .. ", ноль, ты проиграл.", "OFFICER", nil, 1)
+                SendChatMessage("*" .. myNik .. ", " .. ", зеро, ты проиграл.", "OFFICER", nil, 1)
             end
         end
     end
