@@ -93,20 +93,20 @@ if string.find (sender, "Витинари") or string.find (sender, "Хэвло�
 end
 if sender=="Витинари" or sender=="Хэвлок" or sender=="Железобетонс" or sender=="Детрит" or sender=="Двацветок" then
     if string.find (message, "!добавить ачивку") and nachalo~="*" then
-		msg=mysplit(message)
-		q=msg[3]
-		q=tonumber(q)
-		msg=msg[4]
-		for key, val in pairs(pQuests[q]) do
-			if val==msg then
+		soobshenie=mysplit(message)
+		urovenQuestov=soobshenie[3]
+		urovenQuestov=tonumber(urovenQuestov)
+		nomerQuesta=soobshenie[4]
+		for key, val in pairs(pQuests[urovenQuestov]) do
+			if val==nomerQuesta then
 				print("*Ачивка " .. val .. " " .. GetAchievementLink(val) .. " уже была добавлена.")
-				testID=1
+				testIDqq=1
 			else
 			end
 		end
-		if testID~=1 then
-			table.insert(pQuests[q], msg)
-			print("*Ачивка " .. msg .. " " .. GetAchievementLink(msg) .. " была добавлена.")
+		if testIDqq~=1 then
+			table.insert(pQuests[urovenQuestov], nomerQuesta)
+			print("*Ачивка " .. nomerQuesta .. " " .. GetAchievementLink(nomerQuesta) .. " была добавлена.")
 		end
 	end
 end
