@@ -3,6 +3,33 @@ GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 
 
+if string.find (message, "тестник") then
+msgTestnik=mysplit(message)
+msgTestnik1=msgTestnik[1]
+msgTestnik2=msgTestnik[2]
+for guokZ1=1,GetNumGuildMembers(true) do
+		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ1)
+		if name == msgTestnik2 then
+        name, rank, rankIndex, level, class, zone, note, officernote, online, status, classFileName, achievementPoints, achievementRank, isMobile, isSoREligible, standingID = GetGuildRosterInfo(guokZ1)
+        print (online)
+
+
+        end
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
 local myNik=sender
 local msg = string.gsub(message, "%s+", "")
     if string.find (msg, "!камень") then

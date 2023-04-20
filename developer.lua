@@ -329,7 +329,7 @@ if string.find (message, "#zzp") then
 	else
 		testQuest=TDG[sender]["взят_ли_квест_простая_ачивка"]
 		if TDG[sender]["взят_ли_квест_простая_ачивка"]~="9999" then
-			SendChatMessage(sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
+			SendChatMessage("#xxx" .. sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
 			TDG[sender]["взят_ли_квест_простая_ачивка"]="9999"
 		else
 			SendChatMessage(sender .. ", тебе нечего отменять.", "OFFICER", nil, 1)
