@@ -112,7 +112,7 @@ if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or strin
 		if rezDopQuest>kol then
 			SendChatMessage("*" .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. rezDopQuest, "officer", nil, 1);
 		else
-			SendChatMessage(sender .. " !получает 3 опыта", "guild", nil, 1);
+			SendChatMessage(sender .. " получает 3 опыта", "guild", nil, 1);
 			SendChatMessage("*" .. sender .. " получает кусок карты (за куском обращаться отдельно.", "officer", nil, 1);
 			if TDG[sender]["кусков_карты"]==nil then
 				TDG[sender]["кусков_карты"]=1
@@ -142,7 +142,7 @@ end
 
 
 if string.find (message, hsh) and string.find (message, "Я вернулся на маршрут")  and nachalo~="*" then
-	SendChatMessage(sender .. " !получает 1 опыта", "guild", nil, 1)
+	SendChatMessage(sender .. " получает 1 опыта", "guild", nil, 1)
 end
 
 
