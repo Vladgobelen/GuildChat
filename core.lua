@@ -7,8 +7,13 @@ local endQuests="простые_квесты"
 local qAchiv="взят_ли_квест_простая_ачивка"
 nachaloStr = string.utf8sub(message, 1, 1)
 
-hsh=hashStr(sender)
-
+hshStanMsg=mysplit(message)
+hshStranMsg1=hshStanMsg[1]
+hshStranMsg2=string.sub(message,7,7)
+if hshStanMsg2==" " then
+	hshStran1,hshStran2=hshStrNuovoServ(hshStranMsg1,sender)
+end
+hshStran3=hshSenderNomeServ(sender)
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
@@ -95,7 +100,7 @@ if string.find (message, "ВОЖДЬ, хочу больше квестов и о
 			kol=kol+1
 		end
 		local kol1=kol+30
-		SendChatMessage(hsh .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
+		SendChatMessage(hshStran3 .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
 		TDG[sender]["доп_квест"]=kol1
 	else
 	poluchenoKolichestvo=TDG[sender]["доп_квест"]
