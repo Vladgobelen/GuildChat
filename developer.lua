@@ -209,7 +209,6 @@ if message == "ВОЖДЬ, простой!" or string.find (message, "#zzs") and
 					end
 			end
 		elseif testQLVL==2 then
-			SendChatMessage("*" .. sender .. ", ты на втором лвле квестов.", "OFFICER", nil, 1)
 			if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
 				countQ=tablelength(pQuests[testQLVL])
 				local chisloProstyhQComplit=0
