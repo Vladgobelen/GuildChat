@@ -146,8 +146,8 @@ end
 if string.find (message, "Я вернулся на маршрут")  and nachalo~="*" then
 	hshCli=mysplit(message)
 	hshCli=hshCli[1]
-	hshCli1=string.sub(hshCli, 1,1)
-	hshCli2=string.sub(hshCli, 3,3)
+	hshCli1=string.sub(hshCli, 3,3)
+	hshCli2=string.sub(hshCli, 1,1)
 	hshCli3=string.sub(hshCli, 5,5)
 	hshCliRezultat=hshCli1 .. hshCli2 .. hshCli3
 	myHSHser=TDG["hshXY"]
