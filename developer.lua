@@ -8,6 +8,7 @@ local qAchiv="взят_ли_квест_простая_ачивка"
 local timeLimit="время_последнего_обращения"
 local str = string.gsub(message, "%s+", "")
 hsh=hashStr(sender)
+
 nachaloStr = string.utf8sub(message, 1, 1)
 
 if TDG[sender]==nil then
@@ -329,7 +330,7 @@ if string.find (message, "#zzp") then
 	else
 		testQuest=TDG[sender]["взят_ли_квест_простая_ачивка"]
 		if TDG[sender]["взят_ли_квест_простая_ачивка"]~="9999" then
-			SendChatMessage("#xxx" .. sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
+			SendChatMessage("#xxx" .. " " .. sender .. ", квест " .. testQuest .. " " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
 			TDG[sender]["взят_ли_квест_простая_ачивка"]="9999"
 		else
 			SendChatMessage(sender .. ", тебе нечего отменять.", "OFFICER", nil, 1)

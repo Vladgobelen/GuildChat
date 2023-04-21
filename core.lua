@@ -6,7 +6,9 @@ local nik=sender
 local endQuests="простые_квесты"
 local qAchiv="взят_ли_квест_простая_ачивка"
 nachaloStr = string.utf8sub(message, 1, 1)
+
 hsh=hashStr(sender)
+
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
@@ -141,8 +143,22 @@ end
 	end
 
 
-if string.find (message, hsh) and string.find (message, "Я вернулся на маршрут")  and nachalo~="*" then
-	SendChatMessage(sender .. " получает 1 опыта", "guild", nil, 1)
+if string.find (message, "Я вернулся на маршрут")  and nachalo~="*" then
+	hshCli=mysplit(message)
+	hshCli=hshCli[1]
+	hshCli1=string.sub(hshCli, 1,1)
+	hshCli2=string.sub(hshCli, 3,3)
+	hshCli3=string.sub(hshCli, 5,5)
+	hshCliRezultat=hshCli1 .. hshCli2 .. hshCli3
+	myHSHser=TDG["hshXY"]
+	myHSHser1=string.sub(myHSHser, 1,1)
+	myHSHser2=string.sub(myHSHser, 3,3)
+	myHSHser3=string.sub(myHSHser, 5,5)
+	myHSHserRezultat=myHSHser1 .. myHSHser2 .. myHSHser3
+
+	if hshCliRezultat==myHSHserRezultat then
+		SendChatMessage(sender .. " получает 1 опыта", "guild", nil, 1)
+	end
 end
 
 
@@ -190,7 +206,17 @@ if message=="#zzo" then
 	end
 	mioXY=X[3]..Y[3]..X[4]..Y[4]..X[5]..Y[5]..X[6]..Y[6]..X[7]..Y[7]..X[8]..Y[8]..X[9]..Y[9]..X[10]..Y[10]
 	kont,lok,sendX,sendY=Astrolabe:GetCurrentPlayerPosition()
-	SendChatMessage("#zzn " .. mioXY .. " " .. kont .. " " .. lok, "officer", nil, 1)
+	hshXY=time()
+	hshXY1=string.sub(hshXY,8,8)
+	hshXY2=string.sub(hshXY,9,9)
+	hshXY3=string.sub(hshXY,10,10)
+	local hshXY4 = math.random(0, 9)
+	local hshXY5 = math.random(0, 9)
+	local hshXY6 = math.random(0, 9)
+
+	hshXY=hshXY1 .. hshXY4 .. hshXY2 .. hshXY5 .. hshXY3 .. hshXY6
+	TDG["hshXY"]=hshXY
+	SendChatMessage(hshXY .. " #zzn " .. mioXY .. " " .. kont .. " " .. lok, "officer", nil, 1)
 end
 
 end
