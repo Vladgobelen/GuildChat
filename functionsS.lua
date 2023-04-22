@@ -142,14 +142,34 @@ function hshStrNuovoServ(hshRarS,mioNomeS)
 	if TDG[mioNomeS]["rarHSH"]==nil then
 		TDG[mioNomeS]["rarHSH"]={}
 	end
-	for funHSHservCount=1,#TDG[mioNomeS]["rarHSH"] do
-		if hshRarS==TDG[mioNomeS]["rarHSH"][funHSHservCount] then
-			funCheatTest=1
-			break
-		else
-			funCheatTest=0
+	if TDG[mioNomeS]["rarHSH1"]==nil then
+		TDG[mioNomeS]["rarHSH1"]={}
+	end
+
+	testDateServ=date("%d")
+	testDateServ=tonumber(testDate)
+	if (testDateServ % 2 == 0) then
+		tableHSHserv="rarHSH"
+		TDG[mioNomeS]["rarHSH1"]={}
+	else
+		tableHSHserv="rarHSH1"
+		TDG[mioNomeS]["rarHSH"]={}
+	end
+	if #TDG["Витинари"]["rarHSH"]~=0 then
+		for funHSHservCount=1,#TDG[mioNomeS][tableHSHserv] do
+			if hshRarS==TDG[mioNomeS][tableHSHserv][funHSHservCount] then
+				funCheatTest=1
+				break
+			else
+				funCheatTest=0
+				table.insert(TDG[mioNomeS][tableHSHserv],hshRarS)
+				break
+			end
+			funHSHservCount=funHSHservCount+1
 		end
-		funHSHservCount=funHSHservCount+1
+	else
+		funCheatTest=0
+		table.insert(TDG[mioNomeS][tableHSHserv],hshRarS)
 	end
 	if funCheatTest==0 then
 		table.insert(TDG[mioNomeS]["rarHSH"], hshRarS)
@@ -218,6 +238,8 @@ function hshStrNuovoServ(hshRarS,mioNomeS)
 		hshRarSMshRezult=1
 		hshMioNomeSRezult=2
 	end
+	print (hshRarSMshRezult)
+	print (hshMioNomeSRezult)
 	return hshRarSMshRezult, hshMioNomeSRezult
 end
 
