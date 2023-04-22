@@ -1,5 +1,20 @@
-function guardare()
+function guardare(message,sender)
+local yo=sender --передаем ник в первую переменую на всякий случай
+local nik=yo --передаем ник в используемую переменную
+local objec_t="объекты" --это таблица
+local quest --это слово
+local startLoc="стартовая_локация" -- название объекта --это слово
+local att_Q="текущий_квест" --это слово
+local disp_Q="доступно_квестов" --это (число)
+local disp_O="доступно_объектов"
+local creatore="создатель" --это слово
+local xY="текущая_локация" --это слово
+local objec_t_name --имя объекта
+local attenzioni="внимательность"
+local forza="сила"
+local santita="святость"
 --переменные для блока !осмотреть
+print("второй " .. message)
 local messageOsm=all_trim(message)
 local messageOsm=mysplit(messageOsm)
 local messageOsm1=messageOsm[1]

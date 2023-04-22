@@ -137,11 +137,12 @@ end
 end
 
 if string.find(message, "!создать") then
-	creare()
+	print("первый " .. message)
+	creare(message,sender)
 end
 
 if string.find(message, "!осмотреть") then
-	guardare()
+	guardare(message,sender)
 end
 
 

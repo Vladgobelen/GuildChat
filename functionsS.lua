@@ -139,67 +139,85 @@ function hshStrNuovoServ(hshRarS,mioNomeS)
 	local hshRarS3
 	local hshRarSMshRezult
 	local hshMioNomeSRezult
-	nomeLen=string.utf8len(mioNomeS)
-	local nome1={}
-	for startLen=1,nomeLen do
-		nome1[startLen]=string.utf8sub(mioNomeS, startLen, startLen)
-		tmNome=nome1[startLen]
-		nome1[startLen]=alfabet(tmNome)
+	if TDG[mioNomeS]["rarHSH"]==nil then
+		TDG[mioNomeS]["rarHSH"]={}
 	end
-	nome11=0
-	for startLen=1,nomeLen do
-		nome11=nome11+nome1[startLen]
+	for funHSHservCount=1,#TDG[mioNomeS]["rarHSH"] do
+		if hshRarS==TDG[mioNomeS]["rarHSH"][funHSHservCount] then
+			funCheatTest=1
+			break
+		else
+			funCheatTest=0
+		end
+		funHSHservCount=funHSHservCount+1
 	end
-	nome11=nome11 % 1000
-	hNomeS=string.format("%03d",nome11)
-	hshMioNomeS1=string.sub(hNomeS,1,1)
-	hshMioNomeS2=string.sub(hNomeS,2,2)
-	hshMioNomeS3=string.sub(hNomeS,3,3)
-	qioS=string.sub(hshRarS,2,2)
-	qioS=tonumber(qioS)
-	if qioS==0 then
-		hshRarS1=string.sub(hshRarS, 3,3)
-		hshRarS2=string.sub(hshRarS, 4,4)
-		hshRarS3=string.sub(hshRarS, 6,6)
-	elseif qioS==1 then
-		hshRarS1=string.sub(hshRarS, 4,4)
-		hshRarS2=string.sub(hshRarS, 3,3)
-		hshRarS3=string.sub(hshRarS, 6,6)
-	elseif qioS==2 then
-		hshRarS1=string.sub(hshRarS, 4,4)
-		hshRarS2=string.sub(hshRarS, 6,6)
-		hshRarS3=string.sub(hshRarS, 3,3)
-	elseif qioS==3 then
-		hshRarS1=string.sub(hshRarS, 3,3)
-		hshRarS2=string.sub(hshRarS, 6,6)
-		hshRarS3=string.sub(hshRarS, 4,4)
-	elseif qioS==4 then
-		hshRarS1=string.sub(hshRarS, 1,1)
-		hshRarS2=string.sub(hshRarS, 6,6)
-		hshRarS3=string.sub(hshRarS, 4,4)
-	elseif qioS==5 then
-		hshRarS1=string.sub(hshRarS, 1,1)
-		hshRarS2=string.sub(hshRarS, 6,6)
-		hshRarS3=string.sub(hshRarS, 3,3)
-	elseif qioS==6 then
-		hshRarS1=string.sub(hshRarS, 6,6)
-		hshRarS2=string.sub(hshRarS, 1,1)
-		hshRarS3=string.sub(hshRarS, 3,3)
-	elseif qioS==7 then
-		hshRarS1=string.sub(hshRarS, 6,6)
-		hshRarS2=string.sub(hshRarS, 3,3)
-		hshRarS3=string.sub(hshRarS, 1,1)
-	elseif qioS==8 then
-		hshRarS1=string.sub(hshRarS, 4,4)
-		hshRarS2=string.sub(hshRarS, 5,5)
-		hshRarS3=string.sub(hshRarS, 6,6)
-	elseif qioS==9 then
-		hshRarS1=string.sub(hshRarS, 5,5)
-		hshRarS2=string.sub(hshRarS, 1,1)
-		hshRarS3=string.sub(hshRarS, 3,3)
+	if funCheatTest==0 then
+		table.insert(TDG[mioNomeS]["rarHSH"], hshRarS)
+		nomeLen=string.utf8len(mioNomeS)
+		local nome1={}
+		for startLen=1,nomeLen do
+			nome1[startLen]=string.utf8sub(mioNomeS, startLen, startLen)
+			tmNome=nome1[startLen]
+			nome1[startLen]=alfabet(tmNome)
+		end
+		nome11=0
+		for startLen=1,nomeLen do
+			nome11=nome11+nome1[startLen]
+		end
+		nome11=nome11 % 1000
+		hNomeS=string.format("%03d",nome11)
+		hshMioNomeS1=string.sub(hNomeS,1,1)
+		hshMioNomeS2=string.sub(hNomeS,2,2)
+		hshMioNomeS3=string.sub(hNomeS,3,3)
+		qioS=string.sub(hshRarS,2,2)
+		qioS=tonumber(qioS)
+		if qioS==0 then
+			hshRarS1=string.sub(hshRarS, 3,3)
+			hshRarS2=string.sub(hshRarS, 4,4)
+			hshRarS3=string.sub(hshRarS, 6,6)
+		elseif qioS==1 then
+			hshRarS1=string.sub(hshRarS, 4,4)
+			hshRarS2=string.sub(hshRarS, 3,3)
+			hshRarS3=string.sub(hshRarS, 6,6)
+		elseif qioS==2 then
+			hshRarS1=string.sub(hshRarS, 4,4)
+			hshRarS2=string.sub(hshRarS, 6,6)
+			hshRarS3=string.sub(hshRarS, 3,3)
+		elseif qioS==3 then
+			hshRarS1=string.sub(hshRarS, 3,3)
+			hshRarS2=string.sub(hshRarS, 6,6)
+			hshRarS3=string.sub(hshRarS, 4,4)
+		elseif qioS==4 then
+			hshRarS1=string.sub(hshRarS, 1,1)
+			hshRarS2=string.sub(hshRarS, 6,6)
+			hshRarS3=string.sub(hshRarS, 4,4)
+		elseif qioS==5 then
+			hshRarS1=string.sub(hshRarS, 1,1)
+			hshRarS2=string.sub(hshRarS, 6,6)
+			hshRarS3=string.sub(hshRarS, 3,3)
+		elseif qioS==6 then
+			hshRarS1=string.sub(hshRarS, 6,6)
+			hshRarS2=string.sub(hshRarS, 1,1)
+			hshRarS3=string.sub(hshRarS, 3,3)
+		elseif qioS==7 then
+			hshRarS1=string.sub(hshRarS, 6,6)
+			hshRarS2=string.sub(hshRarS, 3,3)
+			hshRarS3=string.sub(hshRarS, 1,1)
+		elseif qioS==8 then
+			hshRarS1=string.sub(hshRarS, 4,4)
+			hshRarS2=string.sub(hshRarS, 5,5)
+			hshRarS3=string.sub(hshRarS, 6,6)
+		elseif qioS==9 then
+			hshRarS1=string.sub(hshRarS, 5,5)
+			hshRarS2=string.sub(hshRarS, 1,1)
+			hshRarS3=string.sub(hshRarS, 3,3)
+		end
+		hshRarSMshRezult=hshRarS1 .. hshRarS2 .. hshRarS3
+		hshMioNomeSRezult=hshMioNomeS1 .. hshMioNomeS2 .. hshMioNomeS3
+	else
+		hshRarSMshRezult=1
+		hshMioNomeSRezult=2
 	end
-	hshRarSMshRezult=hshRarS1 .. hshRarS2 .. hshRarS3
-	hshMioNomeSRezult=hshMioNomeS1 .. hshMioNomeS2 .. hshMioNomeS3
 	return hshRarSMshRezult, hshMioNomeSRezult
 end
 
