@@ -2,8 +2,8 @@
 *
 
 # Do not ignore these files:
-!core.lua
-!developer.lua
+!coreS.lua
+!developerS.lua
 !expp.lua
 !GuildChat.toc
 !knb.lua
@@ -14,7 +14,7 @@
 !quests.lua
 !quests/quests.lua
 !quests/qp.lua
-!functions.lua
+!functionsS.lua
 !libs/
 !libs/UTF8/
 !libs/UTF8/utf8.lua
