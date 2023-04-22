@@ -5,7 +5,7 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 
 local msg = all_trim(message)
 local nachalo = string.sub(message, 1, 1)
-if sender == "Двацветок" or sender == "Витинари" or sender == "Железобетонс" or sender == "Детрfит" and nachalo~="*" then
+if testGM~=nil and nachalo~="*" then
 	if string.find (msg, "!святость в созидание") then
         msg=mysplit(msg)
         if msg[4]~=nil and msg[5]~=nil then

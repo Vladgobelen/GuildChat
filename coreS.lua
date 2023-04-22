@@ -10,6 +10,7 @@ hshStran3S=hshSenderNomeServ(sender)
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
+testGM=gmTest(sender)
 local nachalo = string.utf8sub(message, 1, 1)
 if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachalo~="*" then
 	for guokZ=1,GetNumGuildMembers(true) do
@@ -192,7 +193,7 @@ end
 
 
 
-if sender == "Витинари" or sender == "Двацветок" or sender == "Хэвлок" or sender == "Железобетонс" or sender == "Детрит" then
+if testGM~=nil then
 if message=="#zzo" then
 
 	posX, posY = GetPlayerMapPosition("player");

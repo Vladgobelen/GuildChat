@@ -260,3 +260,14 @@ function hshSenderNomeServ(senderNomeServ)
 	end
 	return hsSenderNomeServRezult
 end
+
+function gmTest (gmTestNome)
+	for i=1,#gmList do
+		if gmTestNome==gmList[i] then
+			gmTestRez=true
+			break
+		end
+		i=i+1
+	end
+	return gmTestRez
+end

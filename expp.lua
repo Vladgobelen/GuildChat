@@ -3,7 +3,8 @@ GC_Sniffer:RegisterEvent("CHAT_MSG_GUILD")
 GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 --добавление опыта персонажу командой
 local nik = sender
-if (nik == "Двацветок" or nik == "Витинари" or nik == "Железобетонс" or nik == "Детрит") then
+testGM=gmTest(sender)
+if testGM~=nil then
     msgExpPP = mysplit (message)
     msgZ1=msgExpPP[1]
     msgZ2=msgExpPP[2]

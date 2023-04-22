@@ -22,3 +22,4 @@ expp.lua
 newEvent.lua
 UImenu.xml
 functionsS.lua
+gmList.lua

@@ -14,7 +14,7 @@ local hshStranS1
 local hshStranS2
 local hshStranMsgS1
 hshStranMsgS=mysplit(message)
-
+testGM=gmTest(sender)
 hshStranMsgS2=string.sub(message,7,7)
 if string.find (message, "#") and hshStranMsgS[2]~= nil and nachalo~="*" then
 	hshStranMsgS1=hshStranMsgS[1]
@@ -90,7 +90,7 @@ if hshStranS1==hshStranS2 and string.find(message, "#aag") then
 	SendChatMessage(sender .. " !получает 3 опыта", "GUILD", nil, 1);
 end
 
-if string.find (sender, "Витинари") or string.find (sender, "Хэвлок") or string.find (sender, "Железобетонс") or string.find (sender, "Детрит") or string.find (sender, "Двацветок") then
+if testGM~=nil then
 	if string.find (message, "!удалить ачивку") and nachalo~="*" then
 		msg=mysplit(message)
 		q=msg[3]
@@ -105,7 +105,7 @@ if string.find (sender, "Витинари") or string.find (sender, "Хэвло�
 		end
 	end
 end
-if sender=="Витинари" or sender=="Хэвлок" or sender=="Железобетонс" or sender=="Детрит" or sender=="Двацветок" then
+if testGM~=nil then
     if string.find (message, "!добавить ачивку") and nachalo~="*" then
 		soobshenie=mysplit(message)
 		urovenQuestov=soobshenie[3]
