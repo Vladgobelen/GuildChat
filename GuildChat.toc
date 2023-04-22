@@ -12,8 +12,8 @@ lib\lib_table.lua
 libs\UTF8\utf8.lua
 #################
 
-developer.lua
-core.lua
+developerS.lua
+coreS.lua
 quests\quests.lua
 quests\qp.lua
 knb.lua
@@ -21,4 +21,4 @@ roll.lua
 expp.lua
 newEvent.lua
 UImenu.xml
-functions.lua
+functionsS.lua
