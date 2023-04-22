@@ -16,6 +16,8 @@ developerS.lua
 coreS.lua
 quests\quests.lua
 quests\qp.lua
+quests\skills\creare.lua
+quests\skills\guardare.lua
 knb.lua
 roll.lua
 expp.lua

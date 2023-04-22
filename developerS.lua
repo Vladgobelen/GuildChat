@@ -13,16 +13,18 @@ local hshStranMsgS2
 local hshStranS1
 local hshStranS2
 local hshStranMsgS1
+nachaloStr=mysplit(message)
+nachaloStr = string.utf8sub(nachaloStr[1], 1, 1)
 hshStranMsgS=mysplit(message)
 testGM=gmTest(sender)
 hshStranMsgS2=string.sub(message,7,7)
-if string.find (message, "#") and hshStranMsgS[2]~= nil and nachalo~="*" then
+if string.find (message, "#") and hshStranMsgS[2]~= nil and nachaloStr~="*" then
 	hshStranMsgS1=hshStranMsgS[1]
 	hshStranS1,hshStranS2=hshStrNuovoServ(hshStranMsgS1,sender)
 
 end
 hshStran3S=hshSenderNomeServ(sender)
-nachaloStr = string.utf8sub(message, 1, 1)
+
 
 if TDG[sender]==nil then
 	TDG[sender]={}

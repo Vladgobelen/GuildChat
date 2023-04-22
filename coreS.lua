@@ -5,14 +5,15 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 local nik=sender
 local endQuests="простые_квесты"
 local qAchiv="взят_ли_квест_простая_ачивка"
-nachaloStr = string.utf8sub(message, 1, 1)
+nachaloStr=mysplit(message)
+nachaloStr = string.utf8sub(nachaloStr[1], 1, 1)
 hshStran3S=hshSenderNomeServ(sender)
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
 testGM=gmTest(sender)
-local nachalo = string.utf8sub(message, 1, 1)
-if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachalo~="*" then
+if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachaloStr~="*" then
+	print ("test")
 	for guokZ=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 		if name == sender then
@@ -40,7 +41,7 @@ if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachalo~="*" the
 end
 --показать инфу об игроке
 local guokInf = string.gsub(message, "%s+", "")
-if string.find (guokInf, "!гильдлвл") or string.find (message, "#zzt") and nachalo~="*" then
+if string.find (guokInf, "!гильдлвл") or string.find (message, "#zzt") and nachaloStr~="*" then
 	for guok=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
 		if name == sender then
@@ -86,7 +87,7 @@ if string.find (guokInf, "!гильдлвл") or string.find (message, "#zzt") a
 else
 end
 
-if string.find (message, "ВОЖДЬ, хочу больше квестов и опыта!!!") or string.find (message, "#zzz") and nachalo~="*" then
+if string.find (message, "ВОЖДЬ, хочу больше квестов и опыта!!!") or string.find (message, "#zzz") and nachaloStr~="*" then
 	if TDG[sender]["доп_квест"]==nil or TDG[sender]["доп_квест"]==9999 then
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
@@ -102,7 +103,7 @@ if string.find (message, "ВОЖДЬ, хочу больше квестов и о
 	end
 end
 
-if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or string.find (message, "#zzy") and nachalo~="*" then
+if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or string.find (message, "#zzy") and nachaloStr~="*" then
 	if TDG[sender]["доп_квест"]~=nil and TDG[sender]["доп_квест"]~=9999 then
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
@@ -130,7 +131,7 @@ if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or strin
 	end
 end
 --справка
-    if string.find (message, "ВОЖДЬ инфо") or string.find (message, "#info")  and nachalo~="*" then
+    if string.find (message, "ВОЖДЬ инфо") or string.find (message, "#info")  and nachaloStr~="*" then
 		SendChatMessage("*Получить квест: #zzx или     ВОЖДЬ", "officer", nil, 1)
 		SendChatMessage("*Получить дополнительный квест вне лимита:     #zzz или: ВОЖДЬ, хочу больше квестов и опыта!!! ", "officer", nil, 1)
 		SendChatMessage("*Сдать дополнительный квест вне лимита: #zzy или:     ВОЖДЬ, сдать доп квест!!!", "officer", nil, 1)
@@ -142,7 +143,7 @@ end
 	end
 
 
-if string.find (message, "Я вернулся на маршрут")  and nachalo~="*" then
+if string.find (message, "Я вернулся на маршрут")  and nachaloStr~="*" then
 	hshCli=mysplit(message)
 	hshCli=hshCli[1]
 	hshCli1=string.sub(hshCli, 3,3)
@@ -166,7 +167,7 @@ end
 	--возможность игроку писать свою заметку
 testHis=mysplit(message)
 testHis[1]=all_trim(testHis[1])
-if testHis[1] == "!заметка" or string.find (message, "#zzv") and nachalo~="*" then
+if testHis[1] == "!заметка" or string.find (message, "#zzv") and nachaloStr~="*" then
 	local vz = (message):gsub("!заметка ", "");
 	for z=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(z)
@@ -178,7 +179,7 @@ if testHis[1] == "!заметка" or string.find (message, "#zzv") and nachalo~
 	end
 end
 
-if testHis[1] == "!заметка+" or string.find (message, "#zzu") and nachalo~="*" then
+if testHis[1] == "!заметка+" or string.find (message, "#zzu") and nachaloStr~="*" then
 	for z=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(z)
 		if name == sender then
@@ -194,28 +195,38 @@ end
 
 
 if testGM~=nil then
-if message=="#zzo" then
-
-	posX, posY = GetPlayerMapPosition("player");
-	X={}
-	Y={}
-	for iX=3,10 do
-		X[iX]=string.sub(posX,iX,iX)
-		Y[iX]=string.sub(posY,iX,iX)
+questNaXY=mysplit(message)
+if questNaXY[1]=="#zzo" then
+	if questNaXY[2]==nil then
+		posX, posY = GetPlayerMapPosition("player");
+		X={}
+		Y={}
+		for iX=3,10 do
+			X[iX]=string.sub(posX,iX,iX)
+			Y[iX]=string.sub(posY,iX,iX)
+		end
+		mapViz=GetCurrentMapAreaID()
+		mioXY=X[3]..Y[3]..X[4]..Y[4]..X[5]..Y[5]..X[6]..Y[6]..X[7]..Y[7]..X[8]..Y[8]..X[9]..Y[9]..X[10]..Y[10]
+		kont,lok,sendX,sendY=Astrolabe:GetCurrentPlayerPosition()
+	else
+		mioXY=questNaXY[2]
+		kont = questNaXY[3]
+		lok = questNaXY[4]
+		mapViz=questNaXY[5]
 	end
-	mioXY=X[3]..Y[3]..X[4]..Y[4]..X[5]..Y[5]..X[6]..Y[6]..X[7]..Y[7]..X[8]..Y[8]..X[9]..Y[9]..X[10]..Y[10]
-	kont,lok,sendX,sendY=Astrolabe:GetCurrentPlayerPosition()
-	hshXY=time()
-	hshXY1=string.sub(hshXY,8,8)
-	hshXY2=string.sub(hshXY,9,9)
-	hshXY3=string.sub(hshXY,10,10)
-	local hshXY4 = math.random(0, 9)
-	local hshXY5 = math.random(0, 9)
-	local hshXY6 = math.random(0, 9)
 
-	hshXY=hshXY1 .. hshXY4 .. hshXY2 .. hshXY5 .. hshXY3 .. hshXY6
-	TDG["hshXY"]=hshXY
-	SendChatMessage(hshXY .. " #zzn " .. mioXY .. " " .. kont .. " " .. lok, "officer", nil, 1)
+
+		hshXY=time()
+		hshXY1=string.sub(hshXY,8,8)
+		hshXY2=string.sub(hshXY,9,9)
+		hshXY3=string.sub(hshXY,10,10)
+		local hshXY4 = math.random(0, 9)
+		local hshXY5 = math.random(0, 9)
+		local hshXY6 = math.random(0, 9)
+
+		hshXY=hshXY1 .. hshXY4 .. hshXY2 .. hshXY5 .. hshXY3 .. hshXY6
+		TDG["hshXY"]=hshXY
+		SendChatMessage(hshXY .. " #zzn " .. mioXY .. " " .. kont .. " " .. lok .. " " .. mapViz, "officer", nil, 1)
 end
 
 end

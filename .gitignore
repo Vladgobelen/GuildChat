@@ -14,6 +14,9 @@
 !quests.lua
 !quests/quests.lua
 !quests/qp.lua
+!quests/skills/
+!quests/skills/creare.lua
+!quests/skills/guardare.lua
 !functionsS.lua
 !libs/
 !libs/UTF8/
