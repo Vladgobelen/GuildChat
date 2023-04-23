@@ -147,7 +147,7 @@ function hshStrNuovoServ(hshRarS,mioNomeS)
 	end
 
 	testDateServ=date("%d")
-	testDateServ=tonumber(testDate)
+	testDateServ=tonumber(testDateServ)
 	if testDateServ % 2 == 0 then
 		tableHSHserv="rarHSH"
 		TDG[mioNomeS]["rarHSH1"]=nil
@@ -158,16 +158,17 @@ function hshStrNuovoServ(hshRarS,mioNomeS)
 	testTableHshLensServ=#TDG[mioNomeS][tableHSHserv]
 	testTableHshLensServ=tonumber(testTableHshLensServ)
 	if testTableHshLensServ~=0 then
+		funCheatTest=0
 		for funHSHservCount=1,#TDG[mioNomeS][tableHSHserv] do
 			if hshRarS==TDG[mioNomeS][tableHSHserv][funHSHservCount] then
 				funCheatTest=1
 				break
-			else
-				funCheatTest=0
-				table.insert(TDG[mioNomeS][tableHSHserv],hshRarS)
-				break
 			end
+
 			funHSHservCount=funHSHservCount+1
+		end
+		if funCheatTest==0 then
+			table.insert(TDG[mioNomeS][tableHSHserv],hshRarS)
 		end
 	else
 		funCheatTest=0
