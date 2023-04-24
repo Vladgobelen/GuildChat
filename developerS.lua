@@ -263,7 +263,7 @@ if string.find (message, "333") and string.find (message, "выбрасывае�
 		minusLotereya=minusLotereya-3
 		TDG[sender]["лотерея"]=minusLotereya
 	else
-		SendChatMessage(hshStran3S .. sender .. ", у тебя нет билетов", "OFFICER", nil, 1)
+		SendChatMessage(hshStran3S .. " " .. sender .. ", у тебя нет билетов", "OFFICER", nil, 1)
 	end
 end
 
@@ -272,7 +272,6 @@ if string.find (message, "111") and string.find (message, "выбрасывае�
 		if TDG[sender]["лотерея111"]==nil then
 			ltrRez1=ltrO[3]
 			ltrRez1=tonumber(ltrRez1)
-			print (ltrRez1)
 			SendChatMessage(hshStran3S .. " #ltr111 " .. sender .. " получает " ..ltrRez1 , "OFFICER", nil, 1)
 			minusLotereya=TDG[sender]["лотерея"]
 			minusLotereya=minusLotereya-1
