@@ -161,7 +161,19 @@ if string.find (message, "Я вернулся на маршрут")  and nachalo
 	end
 end
 
-
+ltr=mysplit(message)
+if string.find (message, "получает лотерейный билет") and testGM~=nil then
+	ltrNik=ltr[1]
+	print (ltrNik)
+	if TDG[ltrNik]["лотерея"]==nil then
+		TDG[ltrNik]["лотерея"]=3
+	else
+		lotereya=TDG[ltrNik]["лотерея"]
+		lotereya=lotereya+3
+		TDG[ltrNik]["лотерея"]=lotereya
+	end
+	print (TDG[ltrNik]["лотерея"])
+end
 
 
 	--возможность игроку писать свою заметку
