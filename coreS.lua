@@ -13,7 +13,6 @@ if TDG[sender]==nil then
 end
 testGM=gmTest(sender)
 if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachaloStr~="*" then
-	print ("test")
 	for guokZ=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 		if name == sender then
@@ -164,7 +163,6 @@ end
 ltr=mysplit(message)
 if string.find (message, "получает лотерейный билет") and testGM~=nil then
 	ltrNik=ltr[1]
-	print (ltrNik)
 	if TDG[ltrNik]["лотерея"]==nil then
 		TDG[ltrNik]["лотерея"]=3
 	else
@@ -172,7 +170,6 @@ if string.find (message, "получает лотерейный билет") and
 		lotereya=lotereya+3
 		TDG[ltrNik]["лотерея"]=lotereya
 	end
-	print (TDG[ltrNik]["лотерея"])
 end
 
 
