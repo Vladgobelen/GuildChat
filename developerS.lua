@@ -268,7 +268,7 @@ if string.find (message, "333") and string.find (message, "выбрасывае�
 end
 
 if string.find (message, "111") and string.find (message, "выбрасывает") then
-	if TDG[sender]["лотерея"]>=3 then
+	if TDG[sender]["лотерея"]>=1 then
 		if TDG[sender]["лотерея111"]==nil then
 			ltrRez1=ltrO[3]
 			ltrRez1=tonumber(ltrRez1)
