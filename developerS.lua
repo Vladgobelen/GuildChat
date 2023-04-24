@@ -258,12 +258,12 @@ end
 ltrO=mysplit(message)
 if string.find (message, "333") and string.find (message, "выбрасывает") then
 	if TDG[sender]["лотерея"]>=3 then
-		SendChatMessage(hshStran3S .. " #ltr " .. sender .. " получает " ..  ltrO[3], "OFFICER", nil, 1)
+		SendChatMessage(hshStran3S .. " #ltr333 " .. sender .. " получает " ..  ltrO[3], "OFFICER", nil, 1)
 		minusLotereya=TDG[sender]["лотерея"]
 		minusLotereya=minusLotereya-3
 		TDG[sender]["лотерея"]=minusLotereya
 	else
-		SendChatMessage(hshStran3S .. " #ltr " .. sender .. ", у тебя нет билетов", "OFFICER", nil, 1)
+		SendChatMessage(hshStran3S .. sender .. ", у тебя нет билетов", "OFFICER", nil, 1)
 	end
 end
 
@@ -273,7 +273,7 @@ if string.find (message, "111") and string.find (message, "выбрасывае�
 			ltrRez1=ltrO[3]
 			ltrRez1=tonumber(ltrRez1)
 			print (ltrRez1)
-			SendChatMessage(hshStran3S .. " #ltr " .. sender .. " получает " ..ltrRez1 , "OFFICER", nil, 1)
+			SendChatMessage(hshStran3S .. " #ltr111 " .. sender .. " получает " ..ltrRez1 , "OFFICER", nil, 1)
 			minusLotereya=TDG[sender]["лотерея"]
 			minusLotereya=minusLotereya-1
 			TDG[sender]["лотерея"]=minusLotereya
@@ -286,7 +286,7 @@ if string.find (message, "111") and string.find (message, "выбрасывае�
 			minusLotereya=minusLotereya-1
 			TDG[sender]["лотерея"]=minusLotereya
 			TDG[sender]["лотерея111"]=2
-			SendChatMessage(hshStran3S .. " #ltr " .. sender .. " получает " ..ltrRez2 , "OFFICER", nil, 1)
+			SendChatMessage(hshStran3S .. " #ltr111 " .. sender .. " получает " ..ltrRez2 , "OFFICER", nil, 1)
 		elseif TDG[sender]["лотерея111"]==2 then
 			ltrRez3=ltrO[3]
 			ltrRez3=tonumber(ltrRez3)
@@ -295,10 +295,10 @@ if string.find (message, "111") and string.find (message, "выбрасывае�
 			minusLotereya=minusLotereya-1
 			TDG[sender]["лотерея"]=minusLotereya
 			TDG[sender]["лотерея111"]=nil
-			SendChatMessage(hshStran3S .. " #ltr " .. sender .. " получает " ..ltrRez3 , "OFFICER", nil, 1)
+			SendChatMessage(hshStran3S .. " #ltr111 " .. sender .. " получает " ..ltrRez3 , "OFFICER", nil, 1)
 		end
 	else
-		SendChatMessage(hshStran3S .. " #ltr " .. sender .. ", у тебя нет билетов", "OFFICER", nil, 1)
+		SendChatMessage(hshStran3S .. sender .. ", у тебя нет билетов", "OFFICER", nil, 1)
 	end
 end
 
