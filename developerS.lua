@@ -257,9 +257,22 @@ end
 
 ltrO=mysplit(message)
 ltrO1=ltrO[3]
+nomerLoterei= ltrO[5]
+nomerLoterei=tonumber(nomerLoterei)
+nomerLoterei=lotereyaBD[nomerLoterei]
+
+
 if string.find (message, "333") and string.find (message, "выбрасывает") then
 	if TDG[ltrO1]["лотерея"]>=3 then
-		SendChatMessage(hshStran3S .. " #ltr333 " .. ltrO1 .. " получает " ..  ltrO[5], "OFFICER", nil, 1)
+		itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType,
+itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+    GetItemInfo(nomerLoterei)
+    if itemLink~=nil then
+		SendChatMessage(hshStran3S .. " #ltr333 " .. ltrO1 .. " получает: " ..  itemLink, "OFFICER", nil, 1)
+	else
+		SendChatMessage(hshStran3S .. " #ltr333 " .. ltrO1 .. " получает: " ..  nomerLoterei, "OFFICER", nil, 1)
+	end
+
 		minusLotereya=TDG[ltrO1]["лотерея"]
 		minusLotereya=minusLotereya-3
 		TDG[ltrO1]["лотерея"]=minusLotereya
@@ -273,7 +286,15 @@ if string.find (message, "111") and string.find (message, "выбрасывае�
 		if TDG[ltrO1]["лотерея111"]==nil then
 			ltrRez1=ltrO[5]
 			ltrRez1=tonumber(ltrRez1)
-			SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает " ..ltrRez1 , "OFFICER", nil, 1)
+			ltrRez1Link=lotereyaBD[ltrRez1]
+			itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType,
+itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+    GetItemInfo(ltrRez1Link)
+			if itemLink~=nil then
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "OFFICER", nil, 1)
+			else
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez1Link, "OFFICER", nil, 1)
+			end
 			minusLotereya=TDG[ltrO1]["лотерея"]
 			minusLotereya=minusLotereya-1
 			TDG[ltrO1]["лотерея"]=minusLotereya
@@ -282,20 +303,37 @@ if string.find (message, "111") and string.find (message, "выбрасывае�
 			ltrRez2=ltrO[5]
 			ltrRez2=tonumber(ltrRez2)
 			ltrRez2=ltrRez1+ltrRez2
+			ltrRez2link=lotereyaBD[ltrRez2]
+			itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType,
+itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+    GetItemInfo(ltrRez2link)
+			if itemLink~=nil then
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "OFFICER", nil, 1)
+			else
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez2link, "OFFICER", nil, 1)
+			end
+
 			minusLotereya=TDG[ltrO1]["лотерея"]
 			minusLotereya=minusLotereya-1
 			TDG[ltrO1]["лотерея"]=minusLotereya
 			TDG[ltrO1]["лотерея111"]=2
-			SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает " ..ltrRez2 , "OFFICER", nil, 1)
 		elseif TDG[ltrO1]["лотерея111"]==2 then
 			ltrRez3=ltrO[5]
 			ltrRez3=tonumber(ltrRez3)
 			ltrRez3=ltrRez2+ltrRez3
+			ltrRez3lint=lotereyaBD[ltrRez3]
 			minusLotereya=TDG[ltrO1]["лотерея"]
 			minusLotereya=minusLotereya-1
 			TDG[ltrO1]["лотерея"]=minusLotereya
 			TDG[ltrO1]["лотерея111"]=nil
-			SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает " ..ltrRez3 , "OFFICER", nil, 1)
+			itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType,
+itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
+    GetItemInfo(ltrRez3lint)
+			if itemLink~=nil then
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "OFFICER", nil, 1)
+			else
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez3lint, "OFFICER", nil, 1)
+			end
 		end
 	else
 		SendChatMessage(hshStran3S .. ltrO1 .. ", у тебя нет билетов", "OFFICER", nil, 1)

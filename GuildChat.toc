@@ -25,3 +25,4 @@ newEvent.lua
 UImenu.xml
 functionsS.lua
 gmList.lua
+lotereyaBD.lua
