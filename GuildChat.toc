@@ -12,7 +12,6 @@ lib\lib_table.lua
 libs\UTF8\utf8.lua
 ##################
 
-developerS.lua
 coreS.lua
 quests\quests.lua
 quests\qp.lua
@@ -26,3 +25,5 @@ UImenu.xml
 functionsS.lua
 gmList.lua
 lotereyaBD.lua
+developersSystem.lua
+developerS.lua

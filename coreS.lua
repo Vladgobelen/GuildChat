@@ -216,7 +216,9 @@ if questNaXY[1]=="#zzo" then
 		end
 		mapViz=GetCurrentMapAreaID()
 		mioXY=X[3]..Y[3]..X[4]..Y[4]..X[5]..Y[5]..X[6]..Y[6]..X[7]..Y[7]..X[8]..Y[8]..X[9]..Y[9]..X[10]..Y[10]
-		kont,lok,sendX,sendY=Astrolabe:GetCurrentPlayerPosition()
+		sendX,sendY = GetPlayerMapPosition("player");
+		kont = GetCurrentMapContinent();
+		lok = GetNumMapLandmarks()
 	else
 		mioXY=questNaXY[2]
 		kont = questNaXY[3]
@@ -235,7 +237,7 @@ if questNaXY[1]=="#zzo" then
 
 		hshXY=hshXY1 .. hshXY4 .. hshXY2 .. hshXY5 .. hshXY3 .. hshXY6
 		TDG["hshXY"]=hshXY
-		SendChatMessage(hshXY .. " #zzn " .. mioXY .. " " .. kont .. " " .. lok .. " " .. mapViz, "officer", nil, 1)
+		SendAddonMessage("NSGadd", "#zzn " .. mioXY .. " " .. kont .. " " .. lok .. " " .. mapViz, "guild")
 end
 
 end
