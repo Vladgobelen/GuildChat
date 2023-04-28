@@ -312,3 +312,49 @@ function gmTest (gmTestNome)
 	end
 	return gmTestRez
 end
+
+function questLvl3_1(qLvl,nikSender)
+	local countQ
+	local ach
+	countQ=tablelength(pQuests[qLvl][1])
+	local chisloProstyhQComplit=0
+	chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
+	j=0
+	k=0
+	for testQ=1, countQ do
+		local x = math.random(1, countQ)
+		ach=pQuests[qLvl][1][x]
+		if TDG[nikSender]["простые_квесты"][ach]~="9999" then
+			SendAddonMessage("NSGadd", "#aan " .. nikSender .. " " .. ach, "guild")
+			break
+		else
+			chisloProstyhQComplit=chisloProstyhQComplit + 1
+			if chisloProstyhQComplit==countQ then
+				TDG[nikSender]["третий_лвл_квестов_1"]="9999"
+				SendAddonMessage("NSGadd", "#aap " .. nikSender, "guild")
+			end
+		end
+	end
+end
+
+function questLvl3_2(qLvl,nikSender)
+	local countQ
+	local ach
+	countQ=tablelength(pQuests[qLvl][2])
+	local chisloProstyhQComplit=0
+	chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
+	for testQ=1, countQ do
+		local x = math.random(1, countQ)
+		ach=pQuests[qLvl][2][x]
+		if TDG[nikSender]["простые_квесты"][ach]~="1" then
+			SendAddonMessage("NSGadd", "#aao " .. nikSender .. " " .. ach, "guild")
+			break
+		else
+			chisloProstyhQComplit=chisloProstyhQComplit + 1
+			if chisloProstyhQComplit==countQ then
+				TDG[nikSender]["третий_лвл_квестов_2"]="9999"
+				SendAddonMessage("NSGadd", "#aap " .. nikSender, "guild")
+			end
+		end
+	end
+end

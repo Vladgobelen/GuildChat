@@ -201,7 +201,80 @@ if testHis[1] == "!заметка+" or string.find (message, "#zzu") and nachalo
 	end
 end
 
-
+if testGM~=nil then
+	if string.find (message, "!удалить ачивку") then
+		msg=mysplit(message)
+		if msg[5]==nil then
+			q=msg[3]
+			q=tonumber(q)
+			msg=msg[4]
+			for key, val in pairs(pQuests[q]) do
+				if val==msg then
+					table.remove(pQuests[q], key)
+					print("*Квест " .. val .. " " .. GetAchievementLink(val) .. " был удален.")
+				else
+				end
+			end
+		else
+			q=msg[3]
+			q=tonumber(q)
+			q1=msg[4]
+			q1=tonumber(q1)
+			msg=msg[5]
+			if pQuests[q][q1]==nil then
+				pQuests[q][q1]={}
+			end
+			for key, val in pairs(pQuests[q][q1]) do
+				if val==msg then
+					table.remove(pQuests[q][q1], key)
+					print("*Квест " .. val .. " " .. GetAchievementLink(val) .. " был удален.")
+				else
+				end
+			end
+		end
+	end
+end
+if testGM~=nil then
+    if string.find (message, "!добавить ачивку") then
+		soobshenie=mysplit(message)
+		if soobshenie[5]==nil then
+			urovenQuestov=soobshenie[3]
+			urovenQuestov=tonumber(urovenQuestov)
+			nomerQuesta=soobshenie[4]
+			for key, val in pairs(pQuests[urovenQuestov]) do
+				if val==nomerQuesta then
+					print("*Ачивка " .. val .. " " .. GetAchievementLink(val) .. " уже была добавлена.")
+					testIDqq=1
+				else
+				end
+			end
+			if testIDqq~=1 then
+				table.insert(pQuests[urovenQuestov], nomerQuesta)
+				print("*Ачивка " .. nomerQuesta .. " " .. GetAchievementLink(nomerQuesta) .. " была добавлена.")
+			end
+		else
+			urovenQuestov=soobshenie[3]
+			urovenQuestov1=soobshenie[4]
+			urovenQuestov=tonumber(urovenQuestov)
+			urovenQuestov1=tonumber(urovenQuestov1)
+			nomerQuesta=soobshenie[5]
+			if pQuests[urovenQuestov][urovenQuestov1]==nil then
+				pQuests[urovenQuestov][urovenQuestov1]={}
+			end
+			for key, val in pairs(pQuests[urovenQuestov][urovenQuestov1]) do
+				if val==nomerQuesta then
+					print("*Ачивка " .. val .. " " .. GetAchievementLink(val) .. " уже была добавлена.")
+					testIDqq=1
+				else
+				end
+			end
+			if testIDqq~=1 then
+				table.insert(pQuests[urovenQuestov][urovenQuestov1], nomerQuesta)
+				print("*Ачивка " .. nomerQuesta .. " " .. GetAchievementLink(nomerQuesta) .. " была добавлена.")
+			end
+		end
+	end
+end
 
 if testGM~=nil then
 questNaXY=mysplit(message)
