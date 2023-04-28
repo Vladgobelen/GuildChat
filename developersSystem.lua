@@ -75,6 +75,7 @@ if string.find (message, "#aac") or string.find (message, "#aaq")  then
 		prostye_q=vydat_q
 		TDG[sender][endQuests][prostye_q]="0"
 		TDG[sender][qAchiv]=prostye_q
+		TDG[sender]["третий_лвл_квестов_2"]=vydat_q
 	else
 		SendChatMessage(sender .. ", у тебя уже взят квест: " .. GetAchievementLink(vydat_q), "OFFICER", nil, 1)
 	end
@@ -214,6 +215,7 @@ if string.find (message, "#zzs") or string.find (message, "#aai") or string.find
 				SendChatMessage(sender .. ", у тебя уже взят квест: " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			end
 		elseif testQLVL==3 then
+			print ("fdsa")
 			if TDG[sender]["третий_лвл_квестов_1"]==nil then
 				TDG[sender]["третий_лвл_квестов_1"]=pQuests[testQLVL][1][1]
 			end
@@ -277,11 +279,9 @@ end
 
 
 if string.find (message, "#zzr") or string.find (message, "#aam") or string.find (message, "#aat") then
-	print ("ntcn")
 	if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
 		SendChatMessage(sender .. ", у тебя нет взятых квестов.", "OFFICER", nil, 1);
 	else
-		print ("34232")
 		proverkaVypolneniya=TDG[sender][qAchiv]
 		SendAddonMessage("NSGadd", "#aaf " .. sender .. " " .. proverkaVypolneniya, "guild")
 	end

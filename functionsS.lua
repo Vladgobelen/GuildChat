@@ -345,6 +345,7 @@ function questLvl3_2(qLvl,nikSender)
 	chisloProstyhQComplit=tonumber(chisloProstyhQComplit)
 	for testQ=1, countQ do
 		local x = math.random(1, countQ)
+		print (x)
 		ach=pQuests[qLvl][2][x]
 		if TDG[nikSender]["простые_квесты"][ach]~="1" then
 			SendAddonMessage("NSGadd", "#aao " .. nikSender .. " " .. ach, "guild")
