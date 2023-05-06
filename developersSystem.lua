@@ -8,7 +8,7 @@ local qAchiv="взят_ли_квест_простая_ачивка"
 local timeLimit="время_последнего_обращения"
 testGM=gmTest(sender)
 if kod=="NSGadd" then
-
+hshStran3S=hshSenderNomeServ(sender)
 print (arg1)
 --print (arg2) сообщение
 --print (arg3) херня
@@ -310,6 +310,9 @@ if string.find (message, "#zzt") then
 	for guok=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
 		if name == sender then
+			local test=string.sub(officerNote,2,2)
+			print (test)
+			if test~="" then
 			local gildLvl = string.utf8sub(officerNote, 1, 1)
 			local gildExp = string.utf8sub(officerNote, 2, 5)
 			SendChatMessage("*" .. sender .. ": " .. gildLvl .. " гильдлвл" .. " и " .. gildExp .. " опыта", "officer", nil, 1)
@@ -346,6 +349,9 @@ if string.find (message, "#zzt") then
 				local gildExpN = 2048 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
 			end
+			else
+				SendChatMessage("*" .. sender .. ", ты еще не делал квестов", "officer", nil, 1)
+			end
 		else
 		end
 	end
@@ -353,7 +359,11 @@ else
 end
 
 if string.find (message, "#zzz") then
-	if TDG[sender]["доп_квест"]==nil or TDG[sender]["доп_квест"]==9999 then
+	if TDG[sender]["доп_квест"]~=nil then
+		testDopQ=TDG[sender]["доп_квест"]
+		testDopQ=tonumber(testDopQ)
+	end
+	if TDG[sender]["доп_квест"] == nil or testDopQ == 9999 then
 		print("раз")
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
@@ -379,10 +389,11 @@ print("fds")
 		local kol=0
 		print("четыре")
 		for guokZ=1,GetNumGuildMembers(true) do
-		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
-		kol=kol+1
+			local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
+			kol=kol+1
 		end
 		print ("пять")
+		print (kol)
 		rezDopQuest=TDG[sender]["доп_квест"]
 		if rezDopQuest>kol then
 		print (TDG[sender]["доп_квест"])

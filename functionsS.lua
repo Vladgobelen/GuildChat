@@ -303,9 +303,10 @@ function hshSenderNomeServ(senderNomeServ)
 end
 
 function gmTest (gmTestNome)
+	local gmTestRez
 	for i=1,#gmList do
 		if gmTestNome==gmList[i] then
-			gmTestRez=true
+			gmTestRez = "гм"
 			break
 		end
 		i=i+1

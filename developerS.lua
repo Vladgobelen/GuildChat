@@ -268,16 +268,16 @@ if string.find (message, "333") and string.find (message, "выбрасывае�
 itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
     GetItemInfo(nomerLoterei)
     if itemLink~=nil then
-		SendChatMessage(hshStran3S .. " #ltr333 " .. ltrO1 .. " получает: " ..  itemLink, "OFFICER", nil, 1)
+		SendChatMessage(hshStran3S .. " #ltr333 " .. ltrO1 .. " получает: " ..  itemLink, "GUILD", nil, 1)
 	else
-		SendChatMessage(hshStran3S .. " #ltr333 " .. ltrO1 .. " получает: " ..  nomerLoterei, "OFFICER", nil, 1)
+		SendChatMessage(hshStran3S .. " #ltr333 " .. ltrO1 .. " получает: " ..  nomerLoterei, "GUILD", nil, 1)
 	end
 
 		minusLotereya=TDG[ltrO1]["лотерея"]
 		minusLotereya=minusLotereya-3
 		TDG[ltrO1]["лотерея"]=minusLotereya
 	else
-		SendChatMessage(hshStran3S .. " " .. ltrO1 .. ", у тебя нет билетов", "OFFICER", nil, 1)
+		SendChatMessage(hshStran3S .. " " .. ltrO1 .. ", у тебя нет билетов", "GUILD", nil, 1)
 	end
 end
 
@@ -291,9 +291,9 @@ if string.find (message, "111") and string.find (message, "выбрасывае�
 itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
     GetItemInfo(ltrRez1Link)
 			if itemLink~=nil then
-				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "OFFICER", nil, 1)
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "GUILD", nil, 1)
 			else
-				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez1Link, "OFFICER", nil, 1)
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez1Link, "GUILD", nil, 1)
 			end
 			minusLotereya=TDG[ltrO1]["лотерея"]
 			minusLotereya=minusLotereya-1
@@ -308,9 +308,9 @@ itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
 itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
     GetItemInfo(ltrRez2link)
 			if itemLink~=nil then
-				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "OFFICER", nil, 1)
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "GUILD", nil, 1)
 			else
-				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez2link, "OFFICER", nil, 1)
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez2link, "GUILD", nil, 1)
 			end
 
 			minusLotereya=TDG[ltrO1]["лотерея"]
@@ -330,13 +330,13 @@ itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
 itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice =
     GetItemInfo(ltrRez3lint)
 			if itemLink~=nil then
-				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "OFFICER", nil, 1)
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  itemLink, "GUILD", nil, 1)
 			else
-				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez3lint, "OFFICER", nil, 1)
+				SendChatMessage(hshStran3S .. " #ltr111 " .. ltrO1 .. " получает: " ..  ltrRez3lint, "GUILD", nil, 1)
 			end
 		end
 	else
-		SendChatMessage(hshStran3S .. ltrO1 .. ", у тебя нет билетов", "OFFICER", nil, 1)
+		SendChatMessage(hshStran3S .. ltrO1 .. ", у тебя нет билетов", "GUILD", nil, 1)
 	end
 end
 
