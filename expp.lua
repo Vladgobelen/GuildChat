@@ -56,7 +56,12 @@ if testGM~=nil then
                 otmenaDaty3=otmenaDaty[3]
                 otmenaDaty4=string.sub(otmenaDaty2,1,2)
                 otmenaDaty5=string.sub(otmenaDaty2,3,3)
-                otmenaDaty5=otmenaDaty5-1
+                otmenaDaty5 = tonumber(otmenaDaty5)
+                if otmenaDaty5 == 0 then
+                    otmenaDaty5 = 0
+                else
+                    otmenaDaty5 = otmenaDaty5 - 1
+                end
                 otmenaDaty6=otmenaDaty1 .. " " .. otmenaDaty4 .. otmenaDaty5 .. " " .. otmenaDaty3
                 GuildRosterSetOfficerNote(Zc, otmenaDaty6)
                 else

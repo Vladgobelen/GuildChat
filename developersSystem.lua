@@ -302,21 +302,26 @@ if string.find (message, "#zzp") then
 				local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
 				if name == sender then
 					local ofN = mysplit(officerNote)
-					local plusKol=string.sub(ofN[2],1,2)
-					local plusKol1=string.sub(ofN[2],3,3)
-					local plusKol2 = date("%d")
-					plusKol = tonumber(plusKol)
-					plusKol2 = tonumber(plusKol2)
-					if plusKol == plusKol2 then
-						plusKol1 = plusKol1 + 1
-						local plusRez = ofN[1] .. " " .. plusKol2 ..  plusKol1 .. " " .. ofN[3]
-						GuildRosterSetOfficerNote(guok, plusRez)
+					if ofN[1] ~= nil then
+						local plusKol=string.sub(ofN[2],1,2)
+						local plusKol1=string.sub(ofN[2],3,3)
+						local plusKol2 = date("%d")
+						plusKol = tonumber(plusKol)
+						plusKol2 = tonumber(plusKol2)
+						if plusKol == plusKol2 then
+							plusKol1 = plusKol1 + 1
+							local plusRez = ofN[1] .. " " .. plusKol2 ..  plusKol1 .. " " .. ofN[3]
+							GuildRosterSetOfficerNote(guok, plusRez)
+						else
+							plusKol1 = 1
+							local plusRez = ofN[1] .. " " .. plusKol2 .. plusKol1 .. " " .. ofN[3]
+							GuildRosterSetOfficerNote(guok, plusRez)
+						end
 					else
-						plusKol1 = 1
-						local plusRez = ofN[1] .. " " .. plusKol2 .. plusKol1 .. " " .. ofN[3]
+						local nuovoDate = date("%d")
+						plusRez = "0000" .. " " .. nuovoDate .. "1" .. " " .. "0000"
 						GuildRosterSetOfficerNote(guok, plusRez)
 					end
-
 				end
 			end
 		else
