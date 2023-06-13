@@ -7,11 +7,25 @@ local endQuests="простые_квесты"
 local qAchiv="взят_ли_квест_простая_ачивка"
 nachaloStr=mysplit(message)
 nachaloStr = string.utf8sub(nachaloStr[1], 1, 1)
+local hshStran3S
+local hshStranMsgS
+local hshStranMsgS2
+local hshStranS1
+local hshStranS2
+local hshStranMsgS1
+hshStranMsgS=mysplit(message)
+testGM=gmTest(sender)
+hshStranMsgS2=string.sub(message,7,7)
+if string.find (message, "#") and hshStranMsgS[2]~= nil and nachaloStr~="*" then
+	hshStranMsgS1=hshStranMsgS[1]
+	hshStranS1,hshStranS2=hshStrNuovoServ(hshStranMsgS1,sender)
+
+end
 hshStran3S=hshSenderNomeServ(sender)
 if TDG[sender]==nil then
 	TDG[sender]={}
 end
-testGM=gmTest(sender)
+
 if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachaloStr~="*" then
 	for guokZ=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
@@ -94,8 +108,12 @@ if string.find (message, "ВОЖДЬ, хочу больше квестов и о
 			kol=kol+1
 		end
 		local kol1=kol+30
-		SendChatMessage(hshStran3S .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
-		TDG[sender]["доп_квест"]=kol1
+		if kol <= 970 then
+			SendChatMessage(hshStran3S .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
+			TDG[sender]["доп_квест"]=kol1
+		else
+			SendChatMessage("Дополнительный квест временно недоступен. Ждите Кусяо.", "officer", nil, 1);
+		end
 	else
 	poluchenoKolichestvo=TDG[sender]["доп_квест"]
 	SendChatMessage("*" .. sender .. ", у тебя уже есть квест. Для выполнения в гильдии должно стать " .. poluchenoKolichestvo .. " игроков.", "officer", nil, 1);
@@ -142,20 +160,10 @@ end
 	end
 
 
-if string.find (message, "Я вернулся на маршрут")  and nachaloStr~="*" then
-	hshCli=mysplit(message)
-	hshCli=hshCli[1]
-	hshCli1=string.sub(hshCli, 3,3)
-	hshCli2=string.sub(hshCli, 1,1)
-	hshCli3=string.sub(hshCli, 5,5)
-	hshCliRezultat=hshCli1 .. hshCli2 .. hshCli3
-	myHSHser=TDG["hshXY"]
-	myHSHser1=string.sub(myHSHser, 1,1)
-	myHSHser2=string.sub(myHSHser, 3,3)
-	myHSHser3=string.sub(myHSHser, 5,5)
-	myHSHserRezultat=myHSHser1 .. myHSHser2 .. myHSHser3
+if string.find (message, "Я вернулся на маршрут") and nachaloStr~="*" then
 
-	if hshCliRezultat==myHSHserRezultat then
+
+	if hshStranS1==hshStranS2 then
 		SendChatMessage(sender .. " получает 1 опыта", "guild", nil, 1)
 	end
 end

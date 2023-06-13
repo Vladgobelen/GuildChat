@@ -253,7 +253,7 @@ if string.find (message, "#aaj") or string.find (message, "#aas") then
 	msgQLVL2Vydat4=tonumber(msgQLVL2Vydat4)
 	skolko_dolzhno_stat=msgQLVL2Vydat2-msgQLVL2Vydat4+3
 	if msgQLVL2Vydat4<=3 then
-		SendAddonMessage("NSGadd", "#aak " .. sender .. " " .. msgQLVL2Vydat3, "guild")
+		SendAddonMessage("NSGadd", "#aak " .. sender .. " " .. msgQLVL2Vydat3 .. " " .. msgQLVL2Vydat4, "guild")
 		SendChatMessage(sender .. ", получи ачивку " .. " " .. GetAchievementLink(msgQLVL2Vydat3), "officer", nil, 1)
 		TDG[sender]["взят_ли_квест_простая_ачивка"]=msgQLVL2Vydat3
 		TDG[sender][endQuests][msgQLVL2Vydat3]=msgQLVL2Vydat2
@@ -298,6 +298,27 @@ if string.find (message, "#zzp") then
 			SendAddonMessage("NSGadd", "#xxx " .. sender, "guild")
 			SendChatMessage(sender .. ", квест " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
 			TDG[sender]["взят_ли_квест_простая_ачивка"]="9999"
+			for guok=1,GetNumGuildMembers(true) do
+				local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
+				if name == sender then
+					local ofN = mysplit(officerNote)
+					local plusKol=string.sub(ofN[2],1,2)
+					local plusKol1=string.sub(ofN[2],3,3)
+					local plusKol2 = date("%d")
+					plusKol = tonumber(plusKol)
+					plusKol2 = tonumber(plusKol2)
+					if plusKol == plusKol2 then
+						plusKol1 = plusKol1 + 1
+						local plusRez = ofN[1] .. " " .. plusKol2 ..  plusKol1 .. " " .. ofN[3]
+						GuildRosterSetOfficerNote(guok, plusRez)
+					else
+						plusKol1 = 1
+						local plusRez = ofN[1] .. " " .. plusKol2 .. plusKol1 .. " " .. ofN[3]
+						GuildRosterSetOfficerNote(guok, plusRez)
+					end
+
+				end
+			end
 		else
 			SendChatMessage(sender .. ", тебе нечего отменять.", "OFFICER", nil, 1)
 		end
@@ -370,14 +391,14 @@ if string.find (message, "#zzz") then
 			local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 			kol=kol+1
 		end
-		print ("два")
-		print (TDG[sender]["доп_квест"])
 		local kol1=kol+30
-		SendChatMessage(hshStran3S .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
-		TDG[sender]["доп_квест"]=kol1
+		if kol <= 970 then
+			SendChatMessage(hshStran3S .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
+			TDG[sender]["доп_квест"]=kol1
+		else
+			SendChatMessage("Дополнительный квест временно недоступен. Ждите Кусяо.", "officer", nil, 1);
+		end
 	else
-	print ("три")
-	print (TDG[sender]["доп_квест"])
 	poluchenoKolichestvo=TDG[sender]["доп_квест"]
 	SendChatMessage("*" .. sender .. ", у тебя уже есть квест. Для выполнения в гильдии должно стать " .. poluchenoKolichestvo .. " игроков.", "officer", nil, 1);
 	end
