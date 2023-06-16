@@ -9,17 +9,11 @@ local timeLimit="время_последнего_обращения"
 testGM=gmTest(sender)
 if kod=="NSGadd" then
 hshStran3S=hshSenderNomeServ(sender)
-print (arg1)
+print (arg1 .. " " .. message .. " " .. sender)
 --print (arg2) сообщение
 --print (arg3) херня
 --print (arg4) сендер
 --print (kod)
-
-
-
-print (message)
---print (chanel)
-print (sender)
 
 if TDG[sender]==nil then
 	TDG[sender]={}
@@ -122,10 +116,18 @@ if string.find (message, "#zzs") or string.find (message, "#aai") or string.find
 			denT = tonumber(denT)
 			gildLvl = tonumber (gildLvl)
 			if denn == denT then
-				if qN >= gildLvl then
-					testQLim="1"
+				if gildLvl ~= 0 then
+					if qN >= gildLvl then
+						testQLim="1"
+					else
+						testQLim="0"
+					end
 				else
-					testQLim="0"
+					if qN >= 1 then
+						testQLim="1"
+					else
+						testQLim="0"
+					end
 				end
 			else
 				testQLim="0"
@@ -215,7 +217,6 @@ if string.find (message, "#zzs") or string.find (message, "#aai") or string.find
 				SendChatMessage(sender .. ", у тебя уже взят квест: " .. GetAchievementLink(ach), "OFFICER", nil, 1)
 			end
 		elseif testQLVL==3 then
-			print ("fdsa")
 			if TDG[sender]["третий_лвл_квестов_1"]==nil then
 				TDG[sender]["третий_лвл_квестов_1"]=pQuests[testQLVL][1][1]
 			end
@@ -223,7 +224,9 @@ if string.find (message, "#zzs") or string.find (message, "#aai") or string.find
 				TDG[sender]["третий_лвл_квестов_2"]=pQuests[testQLVL][2][1]
 			end
 			if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
+
 				local xQ = math.random(1, 2)
+
 				if xQ==1 and TDG[sender]["третий_лвл_квестов_1"]~="9999" then
 					questLvl3_1(testQLVL,sender)
 				elseif xQ==2 and TDG[sender]["третий_лвл_квестов_2"]~="9999" then
@@ -337,7 +340,6 @@ if string.find (message, "#zzt") then
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
 		if name == sender then
 			local test=string.sub(officerNote,2,2)
-			print (test)
 			if test~="" then
 			local gildLvl = string.utf8sub(officerNote, 1, 1)
 			local gildExp = string.utf8sub(officerNote, 2, 5)
@@ -347,24 +349,32 @@ if string.find (message, "#zzt") then
 			if gildLvl == "0" then
 				local gildExpN = 4 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
+				SendChatMessage("*Сейчас награда 50 золота за квест и доступен 1 квест в сутки. При лвлапе: 4 сумки из ткани пустоты или лотерейный билет. " , "officer", nil, 1)
 			elseif gildLvl == "1" then
 				local gildExpN = 8 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
+				SendChatMessage("*Сейчас награда 60 золота за квест и доступен 1 квест в сутки. При лвлапе: 4 сумки ледяной ткани или лотерейный билет. " , "officer", nil, 1)
 			elseif gildLvl == "2" then
 				local gildExpN = 16 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
+				SendChatMessage("*Сейчас награда 70 золота за квест и доступны 2 квеста в сутки. " , "officer", nil, 1)
+				SendChatMessage("*При лвлапе: повышение до Констебля. Что то одно из пятой ячейки ГБ, кроме серой кошки, письма и маунтов ИЛИ лотерейный билет. " , "officer", nil, 1)
 			elseif gildLvl == "3" then
 				local gildExpN = 32 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
+				SendChatMessage("*Сейчас награда 80 золота за квест и доступны 3 квеста в сутки. При лвлапе: повышение до Мл. Капрала. 2 ледовые сумки или три лотерейных билета. " , "officer", nil, 1)
 			elseif gildLvl == "4" then
 				local gildExpN = 64 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
+				SendChatMessage("*Сейчас награда 90 золота за квест и доступны 4 квеста в сутки. При лвлапе: Повышение до Капрала. 4 ледовые сумки или четыре лотерейных билета. " , "officer", nil, 1)
 			elseif gildLvl == "5" then
 				local gildExpN = 128 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
+				SendChatMessage("*Сейчас награда 100 золота за квест и доступны 5 квестов в сутки. При лвлапе: повышение до Сержанта. 4 ледовые сумки или 5 лотерейных билетов." , "officer", nil, 1)
 			elseif gildLvl == "6" then
 				local gildExpN = 256 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
+				SendChatMessage("*Сейчас награда 110 золота за квест и доступны 6 квестов в сутки. При лвлапе: 7500 золота или шесть лотерейных билетов. " , "officer", nil, 1)
 			elseif gildLvl == "7" then
 				local gildExpN = 512 - gildExpN
 				SendChatMessage("*" .. sender .. ": до лвлапа осталось " .. gildExpN .. " опыта" , "officer", nil, 1)
@@ -390,7 +400,6 @@ if string.find (message, "#zzz") then
 		testDopQ=tonumber(testDopQ)
 	end
 	if TDG[sender]["доп_квест"] == nil or testDopQ == 9999 then
-		print("раз")
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
 			local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
@@ -410,19 +419,14 @@ if string.find (message, "#zzz") then
 end
 
 if string.find (message, "#zzy") then
-print("fds")
 	if TDG[sender]["доп_квест"]~=nil and TDG[sender]["доп_квест"]~=9999 then
 		local kol=0
-		print("четыре")
 		for guokZ=1,GetNumGuildMembers(true) do
 			local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 			kol=kol+1
 		end
-		print ("пять")
-		print (kol)
 		rezDopQuest=TDG[sender]["доп_квест"]
 		if rezDopQuest>kol then
-		print (TDG[sender]["доп_квест"])
 			SendChatMessage("*" .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. rezDopQuest, "officer", nil, 1);
 		else
 			SendChatMessage(sender .. " получает 3 опыта", "guild", nil, 1);

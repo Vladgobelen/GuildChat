@@ -60,7 +60,7 @@ if testGM~=nil then
                 if otmenaDaty5 == 0 then
                     otmenaDaty5 = 0
                 else
-                    otmenaDaty5 = otmenaDaty5 - 1
+                    --otmenaDaty5 = otmenaDaty5 - 1
                 end
                 otmenaDaty6=otmenaDaty1 .. " " .. otmenaDaty4 .. otmenaDaty5 .. " " .. otmenaDaty3
                 GuildRosterSetOfficerNote(Zc, otmenaDaty6)
