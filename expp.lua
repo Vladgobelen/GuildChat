@@ -36,10 +36,17 @@ if testGM~=nil then
         end--конец чтения данных из гильдии
     elseif msgZ2=="получает" and msgZ4=="опыта" then
         for Zc=1,GetNumGuildMembers(true) do
+            local sExp
             local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(Zc)
             local msgZ3n = tonumber (msgZ3)
             if name == msgZ1 then
                 strokaF = mysplit (officerNote)
+                if strokaF[1] ~= nil then
+                    sExp = string.sub(strokaF[2],3,3)
+                else
+                    sExp = 0
+                end
+                sExp = tonumber(sExp)
                 strokaF =  testNil (strokaF,3,"0000",1)
                 local gildLvl = string.sub(strokaF, 1, 1)
                 local gildExp = string.sub(strokaF, 2, 5)
@@ -56,11 +63,12 @@ if testGM~=nil then
                 otmenaDaty3=otmenaDaty[3]
                 otmenaDaty4=string.sub(otmenaDaty2,1,2)
                 otmenaDaty5=string.sub(otmenaDaty2,3,3)
+                print(otmenaDaty5)
                 otmenaDaty5 = tonumber(otmenaDaty5)
                 if otmenaDaty5 == 0 then
-                    otmenaDaty5 = 0
+                    otmenaDaty5 = sExp
                 else
-                    --otmenaDaty5 = otmenaDaty5 - 1
+                    otmenaDaty5 = sExp
                 end
                 otmenaDaty6=otmenaDaty1 .. " " .. otmenaDaty4 .. otmenaDaty5 .. " " .. otmenaDaty3
                 GuildRosterSetOfficerNote(Zc, otmenaDaty6)
