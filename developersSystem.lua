@@ -430,7 +430,7 @@ if string.find (message, "#zzy") then
 			SendChatMessage("*" .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. rezDopQuest, "officer", nil, 1);
 		else
 			SendChatMessage(sender .. " получает 3 опыта", "guild", nil, 1);
-			SendChatMessage("*" .. sender .. " получает кусок карты (за куском обращаться отдельно.", "officer", nil, 1);
+			SendChatMessage(sender .. " получает кусок карты", "guild", nil, 1);
 			if TDG[sender]["кусков_карты"]==nil then
 				TDG[sender]["кусков_карты"]=1
 			else

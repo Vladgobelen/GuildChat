@@ -26,7 +26,13 @@ if TDG[sender]==nil then
 	TDG[sender]={}
 end
 
-if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachaloStr~="*" then
+vZH = mysplit(message)
+if vZH[2] == nil then
+if string.find (message, "ВОЖДЬ") or string.find (message, "#zzx") then
+if nachaloStr~="*" then
+	if sender == "Нейру" then
+		SendChatMessage("*" .. sender .. ", у тебя уже есть квест", "officer", nil, 1)
+	else
 	for guokZ=1,GetNumGuildMembers(true) do
 		local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 		if name == sender then
@@ -51,6 +57,9 @@ if message == "ВОЖДЬ" or string.find (message, "#zzx") and nachaloStr~="*" 
 		else
 		end
 	end
+	end
+end
+end
 end
 --показать инфу об игроке
 local guokInf = string.gsub(message, "%s+", "")
@@ -153,8 +162,8 @@ end
 		SendChatMessage("*Получить дополнительный квест вне лимита:     #zzz или: ВОЖДЬ, хочу больше квестов и опыта!!! ", "officer", nil, 1)
 		SendChatMessage("*Сдать дополнительный квест вне лимита: #zzy или:     ВОЖДЬ, сдать доп квест!!!", "officer", nil, 1)
 		SendChatMessage("*Сдать квест:  #zzw      ВОЖДЬ, сдать", "officer", nil, 1)
-		SendChatMessage("*Заполнить заметку: #zzv Текст заметки ИЛИ  !заметка Текст заметки" , "officer", nil, 1)
-		SendChatMessage("*Дополнить существующую заметку: #zzu Текст заметки ИЛИ !заметка+ Текст заметки" , "officer", nil, 1)
+		SendChatMessage("*Заполнить заметку: !заметка Текст заметки" , "officer", nil, 1)
+		SendChatMessage("*Дополнить существующую заметку: !заметка+ Текст заметки" , "officer", nil, 1)
 		SendChatMessage("*Еще больше команд хороших и разных тут: https://t.me/AnkMorporkInfo", "officer", nil, 1)
 	else
 	end

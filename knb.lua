@@ -35,21 +35,21 @@ local myNik=sender
 local msg = string.gsub(message, "%s+", "")
     if string.find (msg, "!камень") then
         local x = math.random(1, 100)
-        if x<=25 then
+        if x>=25 then
             SendChatMessage("*" .. myNik .. ", бумага, ты проиграл", "OFFICER", nil, 1)
         else
             SendChatMessage("*" .. myNik .. ", ножницы, ты выиграл", "OFFICER", nil, 1)
         end
     elseif string.find (msg, "!ножницы") then
         local x = math.random(1, 100)
-        if x<=25 then
+        if x>=25 then
             SendChatMessage("*" .. myNik .. ", камень, ты проиграл", "OFFICER", nil, 1)
         else
             SendChatMessage("*" .. myNik .. ", бумага, ты выиграл", "OFFICER", nil, 1)
         end
     elseif string.find (msg, "!бумага") then
         local x = math.random(1, 100)
-        if x<=25 then
+        if x>=25 then
             SendChatMessage("*" .. myNik .. ", ножницы, ты проиграл", "OFFICER", nil, 1)
         else
             SendChatMessage("*" .. myNik .. ", камень, ты выиграл", "OFFICER", nil, 1)
