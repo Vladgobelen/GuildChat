@@ -8,6 +8,7 @@ GC_Sniffer:SetScript("OnEvent", function (self, event, message, sender)
 --       SendChatMessage(message, "OFFICER", nil, 1);
 --    else
 --    end
+print (message)
 if string.find (message, "Кусяо исключает из гильдии") then
     for Zc=1,GetNumGuildMembers(true) do
             local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(Zc)

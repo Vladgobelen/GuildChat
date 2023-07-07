@@ -109,15 +109,15 @@ if string.find (guokInf, "!гильдлвл") or string.find (message, "#zzt") a
 else
 end
 
-if string.find (message, "ВОЖДЬ, хочу больше квестов и опыта!!!") or string.find (message, "#zzz") and nachaloStr~="*" then
+if string.find (message, "ВОЖДЬ, хочу больше квестов и опыта!!!") or string.find (message, "#zz1") and nachaloStr~="*" then
 	if TDG[sender]["доп_квест"]==nil or TDG[sender]["доп_квест"]==9999 then
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
 			local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 			kol=kol+1
 		end
-		local kol1=kol+30
-		if kol <= 970 then
+		local kol1=kol+20
+		if kol <= 980 then
 			SendChatMessage(hshStran3S .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
 			TDG[sender]["доп_квест"]=kol1
 		else

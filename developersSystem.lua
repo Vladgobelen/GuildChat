@@ -399,38 +399,32 @@ if string.find (message, "#zzz") then
 		testDopQ=TDG[sender]["доп_квест"]
 		testDopQ=tonumber(testDopQ)
 	end
-	if TDG[sender]["доп_квест"] == nil or testDopQ == 9999 then
 		local kol=0
 		for guokZ=1,GetNumGuildMembers(true) do
 			local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
 			kol=kol+1
 		end
-		local kol1=kol+30
-		if kol <= 970 then
-			SendChatMessage(hshStran3S .. " " .. "#zzl " .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. kol1, "officer", nil, 1);
+		local kol1=kol+20
+		if kol <= 980 then
+			SendChatMessage("* #zzl " .. sender .. ", прими 20 новых игроков в гильдию.", "officer", nil, 1);
 			TDG[sender]["доп_квест"]=kol1
 		else
 			SendChatMessage("Дополнительный квест временно недоступен. Ждите Кусяо.", "officer", nil, 1);
 		end
-	else
-	poluchenoKolichestvo=TDG[sender]["доп_квест"]
-	SendChatMessage("*" .. sender .. ", у тебя уже есть квест. Для выполнения в гильдии должно стать " .. poluchenoKolichestvo .. " игроков.", "officer", nil, 1);
-	end
+
+
+
 end
 
 if string.find (message, "#zzy") then
-	if TDG[sender]["доп_квест"]~=nil and TDG[sender]["доп_квест"]~=9999 then
-		local kol=0
-		for guokZ=1,GetNumGuildMembers(true) do
-			local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guokZ)
-			kol=kol+1
-		end
-		rezDopQuest=TDG[sender]["доп_квест"]
-		if rezDopQuest>kol then
-			SendChatMessage("*" .. sender .. ", сейчас в гильдии " .. kol .. " игроков. Должно стать " .. rezDopQuest, "officer", nil, 1);
+	local zzyF = mysplit(message)
+	zzyF[2] = tonumber(zzyF[2])
+		if zzyF[2] < 20 then
+			SendChatMessage("*" .. sender .. ", ты принял " .. zzyF[2] .. " игроков из 20. ", "officer", nil, 1);
 		else
 			SendChatMessage(sender .. " получает 3 опыта", "guild", nil, 1);
 			SendChatMessage(sender .. " получает кусок карты", "guild", nil, 1);
+			SendAddonMessage("NSGadd", "#zz_x " .. sender, "guild")
 			if TDG[sender]["кусков_карты"]==nil then
 				TDG[sender]["кусков_карты"]=1
 			else
@@ -441,9 +435,6 @@ if string.find (message, "#zzy") then
 			end
 			TDG[sender]["доп_квест"]=9999
 		end
-	else
-		SendChatMessage("*" .. sender .. ", сначала нужно взять квест", "officer", nil, 1);
-	end
 end
 
 
