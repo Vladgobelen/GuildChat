@@ -23,16 +23,7 @@ function all_trim(s)
 end
 --конец функции для удаления пробелов на концах строк
 --функция для разделения строки на слова (слова добавляются в переменную массив)
-function mysplit (inputstr, sep)
-	if sep == nil then
-        	sep = "%s"
-	end
-	local t={}
-	for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-        	table.insert(t, str)
-	end
-	return t
-end
+
 --конец функции для разделения строки на слова
 local testHis = string.sub(message, 1, 1) --получить первый символ строки для определения системных сообщений
 if string.find (message, "!старт квест") and testHis~="*" then --проверить сообщение игрока на ключевые слова

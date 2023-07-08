@@ -311,11 +311,16 @@ if string.find (message, "#zzp") then
 						local plusKol2 = date("%d")
 						plusKol = tonumber(plusKol)
 						plusKol2 = tonumber(plusKol2)
+
+						print (plusKol)
+						print (plusKol2)
 						if plusKol == plusKol2 then
+							plusKol2=string.format("%02d", plusKol2)
 							plusKol1 = plusKol1 + 1
 							local plusRez = ofN[1] .. " " .. plusKol2 ..  plusKol1 .. " " .. ofN[3]
 							GuildRosterSetOfficerNote(guok, plusRez)
 						else
+							plusKol2=string.format("%02d", plusKol2)
 							plusKol1 = 1
 							local plusRez = ofN[1] .. " " .. plusKol2 .. plusKol1 .. " " .. ofN[3]
 							GuildRosterSetOfficerNote(guok, plusRez)
