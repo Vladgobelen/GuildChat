@@ -225,12 +225,164 @@ if string.find (message, "#zzs") or string.find (message, "#aai") or string.find
 			end
 			if TDG[sender][qAchiv]==nil or TDG[sender][qAchiv]=="9999" then
 
-				local xQ = math.random(1, 2)
-
-				if xQ==1 and TDG[sender]["третий_лвл_квестов_1"]~="9999" then
+				local xQ = math.random(1, 3)
+				if xQ == 1 and TDG[sender]["третий_лвл_квестов_1"]~="9999" then
 					questLvl3_1(testQLVL,sender)
-				elseif xQ==2 and TDG[sender]["третий_лвл_квестов_2"]~="9999" then
+				elseif xQ == 2 and TDG[sender]["третий_лвл_квестов_2"]~="9999" then
 					questLvl3_2(testQLVL,sender)
+				elseif xQ == 3 then
+					local q33 = qLvl33(sender)
+					local q33send = q33
+					q33 = mysplit(q33)
+					if q33[3] == "полюби" then
+						TDG[sender]["q33q"] = "полюби"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "укуси" then
+						TDG[sender]["q33q"] = "укуси"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "изумленно" then
+						TDG[sender]["q33q"] = "изумленно"
+						TDG[sender]["q33nik1"] = q33[6]
+						TDG[sender]["q33nik2"] = q33[7]
+						TDG[sender]["q33nik3"] = q33[8]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "ударь" then
+						TDG[sender]["q33q"] = "ударь"
+						TDG[sender]["q33nik1"] = q33[6]
+						TDG[sender]["q33nik2"] = q33[7]
+						TDG[sender]["q33nik3"] = q33[8]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "попытайся" then
+						TDG[sender]["q33q"] = "попытайся"
+						TDG[sender]["q33nik1"] = q33[5]
+						TDG[sender]["q33nik2"] = q33[6]
+						TDG[sender]["q33nik3"] = q33[7]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "почеши" then
+						TDG[sender]["q33q"] = "почеши"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "утешь" then
+						TDG[sender]["q33q"] = "утешь"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "похвали" then
+						TDG[sender]["q33q"] = "похвали"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "недоуменно" then
+						TDG[sender]["q33q"] = "недоуменно"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "поздравь" then
+						TDG[sender]["q33q"] = "поздравь"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "хмуро" then
+						TDG[sender]["q33q"] = "хмуро"
+						TDG[sender]["q33nik1"] = q33[6]
+						TDG[sender]["q33nik2"] = q33[7]
+						TDG[sender]["q33nik3"] = q33[8]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "смерь" then
+						TDG[sender]["q33q"] = "смерь"
+						TDG[sender]["q33nik1"] = q33[5]
+						TDG[sender]["q33nik2"] = q33[6]
+						TDG[sender]["q33nik3"] = q33[7]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "потрись" then
+						TDG[sender]["q33q"] = "потрись"
+						TDG[sender]["q33nik1"] = q33[5]
+						TDG[sender]["q33nik2"] = q33[6]
+						TDG[sender]["q33nik3"] = q33[7]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "пожирай" then
+						TDG[sender]["q33q"] = "пожирай"
+						TDG[sender]["q33nik1"] = q33[5]
+						TDG[sender]["q33nik2"] = q33[6]
+						TDG[sender]["q33nik3"] = q33[7]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "брось" then
+						TDG[sender]["q33q"] = "брось"
+						TDG[sender]["q33nik1"] = q33[7]
+						TDG[sender]["q33nik2"] = q33[8]
+						TDG[sender]["q33nik3"] = q33[9]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "тепло" then
+						TDG[sender]["q33q"] = "тепло"
+						TDG[sender]["q33nik1"] = q33[5]
+						TDG[sender]["q33nik2"] = q33[6]
+						TDG[sender]["q33nik3"] = q33[7]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "смотри" then
+						TDG[sender]["q33q"] = "смотри"
+						TDG[sender]["q33nik1"] = q33[7]
+						TDG[sender]["q33nik2"] = q33[8]
+						TDG[sender]["q33nik3"] = q33[9]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "поприветствуй" then
+						TDG[sender]["q33q"] = "поприветствуй"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "крепко" then
+						TDG[sender]["q33q"] = "крепко"
+						TDG[sender]["q33nik1"] = q33[5]
+						TDG[sender]["q33nik2"] = q33[6]
+						TDG[sender]["q33nik3"] = q33[7]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "оближи" then
+						TDG[sender]["q33q"] = "оближи"
+						TDG[sender]["q33nik1"] = q33[4]
+						TDG[sender]["q33nik2"] = q33[5]
+						TDG[sender]["q33nik3"] = q33[6]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					if q33[3] == "внимательно" then
+						TDG[sender]["q33q"] = "внимательно"
+						TDG[sender]["q33nik1"] = q33[5]
+						TDG[sender]["q33nik2"] = q33[6]
+						TDG[sender]["q33nik3"] = q33[7]
+						SendChatMessage(q33send, "OFFICER", nil, 1)
+					end
+					TDG[sender][qAchiv] = "q33"
+
 				elseif TDG[sender]["третий_лвл_квестов_2"]=="9999" and TDG[sender]["третий_лвл_квестов_1"]=="9999" then
 					SendChatMessage(sender .. ", все квесты закончились", "OFFICER", nil, 1)
 				end
@@ -442,6 +594,11 @@ if string.find (message, "#zzy") then
 		end
 end
 
+if string.find (message, "#q33x") then
+	SendAddonMessage("NSGadd", "#xxx " .. sender, "guild")
+	SendChatMessage(sender .. " !получает 2 опыта", "guild", nil, 1);
+	TDG[sender][qAchiv] = "9999"
+end
 
 end
 

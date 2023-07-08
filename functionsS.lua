@@ -126,6 +126,7 @@ function lvlAgg (expPp, gExpN1, gLvl, gNik,strokaFn)
     end
 
 function hshStrNuovoServ(hshRarS,mioNomeS)
+	if hshRarS ~= nil or hshRarS ~= "#q33" then
 	local nomeLen
 	local tmNome
 	local nome11
@@ -244,6 +245,7 @@ function hshStrNuovoServ(hshRarS,mioNomeS)
 	end
 	return hshRarSMshRezult, hshMioNomeSRezult
 end
+end
 
 
 function hshSenderNomeServ(senderNomeServ)
@@ -360,4 +362,37 @@ function questLvl3_2(qLvl,nikSender)
 			end
 		end
 	end
+end
+
+function qLvl33(nik)
+	local R
+	local x
+	local x1
+	local x2
+	local x3
+	local nome1
+	local nome2
+	local nome3
+	x = math.random(1, #eMot)
+	x1 = math.random(1, #npcList)
+	while true do
+		x2 = math.random(1, #npcList)
+		if x2 == x1  then
+		else
+			break
+		end
+	end
+	while true do
+		x3 = math.random(1, #npcList)
+		if x3 == x1 or x3 == x2  then
+		else
+			break
+		end
+	end
+	nome1 = npcList[x1]
+	nome2 = npcList[x2]
+	nome3 = npcList[x3]
+	emoz = eMot[x]
+	R = "#q33 " .. nik .. ", ".. emoz .. " " .. nome1 .. ", " .. nome2 .. ", " .. nome3
+	return R
 end
