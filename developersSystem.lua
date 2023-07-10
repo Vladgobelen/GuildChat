@@ -3,6 +3,7 @@ GC_Sniffer:RegisterEvent("CHAT_MSG_ADDON")
 GC_Sniffer:SetScript("OnEvent", function (prefix, text, kod, message, chanel, sender, hernya, name, instanceID)
 --команды для управления квестами
 local nik=sender
+local myNome = GetUnitName("player")
 local endQuests="простые_квесты"
 local qAchiv="взят_ли_квест_простая_ачивка"
 local timeLimit="время_последнего_обращения"
@@ -450,8 +451,13 @@ if string.find (message, "#zzp") then
 	else
 		testQuest=TDG[sender]["взят_ли_квест_простая_ачивка"]
 		if TDG[sender]["взят_ли_квест_простая_ачивка"]~="9999" then
-			SendAddonMessage("NSGadd", "#xxx " .. sender, "guild")
-			SendChatMessage(sender .. ", квест " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
+			if TDG[sender]["взят_ли_квест_простая_ачивка"] == "q33" then
+				SendAddonMessage("NSGadd", "#xxx " .. sender, "guild")
+				SendChatMessage(sender .. " отказался от квеста.", "OFFICER", nil, 1)
+			else
+				SendAddonMessage("NSGadd", "#xxx " .. sender, "guild")
+				SendChatMessage(sender .. ", квест " .. GetAchievementLink(testQuest) .. " отменен.", "OFFICER", nil, 1)
+			end
 			TDG[sender]["взят_ли_квест_простая_ачивка"]="9999"
 			for guok=1,GetNumGuildMembers(true) do
 				local name, rankName, rankIndex, level, classDisplayName, zone, publicNote, officerNote, isOnline, status, class, achievementPoints, achievementRank, isMobile, canSoR, repStanding, guid = GetGuildRosterInfo(guok)
@@ -463,9 +469,6 @@ if string.find (message, "#zzp") then
 						local plusKol2 = date("%d")
 						plusKol = tonumber(plusKol)
 						plusKol2 = tonumber(plusKol2)
-
-						print (plusKol)
-						print (plusKol2)
 						if plusKol == plusKol2 then
 							plusKol2=string.format("%02d", plusKol2)
 							plusKol1 = plusKol1 + 1
@@ -573,7 +576,7 @@ if string.find (message, "#zzz") then
 
 end
 
-if string.find (message, "#zzy") then
+if string.find (message, "#zzy") and sender ~= myNome then
 	local zzyF = mysplit(message)
 	zzyF[2] = tonumber(zzyF[2])
 		if zzyF[2] < 20 then

@@ -158,13 +158,9 @@ if string.find (message, "ВОЖДЬ, сдать доп квест!!!") or strin
 end
 --справка
     if string.find (message, "ВОЖДЬ инфо") or string.find (message, "#info")  and nachaloStr~="*" then
-		SendChatMessage("*Получить квест: #zzx или     ВОЖДЬ", "officer", nil, 1)
-		SendChatMessage("*Получить дополнительный квест вне лимита:     #zzz или: ВОЖДЬ, хочу больше квестов и опыта!!! ", "officer", nil, 1)
-		SendChatMessage("*Сдать дополнительный квест вне лимита: #zzy или:     ВОЖДЬ, сдать доп квест!!!", "officer", nil, 1)
-		SendChatMessage("*Сдать квест:  #zzw      ВОЖДЬ, сдать", "officer", nil, 1)
+		SendChatMessage("*Получить квест: ВОЖДЬ", "officer", nil, 1)
 		SendChatMessage("*Заполнить заметку: !заметка Текст заметки" , "officer", nil, 1)
 		SendChatMessage("*Дополнить существующую заметку: !заметка+ Текст заметки" , "officer", nil, 1)
-		SendChatMessage("*Еще больше команд хороших и разных тут: https://t.me/AnkMorporkInfo", "officer", nil, 1)
 	else
 	end
 

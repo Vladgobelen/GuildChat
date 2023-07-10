@@ -140,7 +140,6 @@ function hshStrNuovoServ(hshRarS,mioNomeS)
 	local hshRarS3
 	local hshRarSMshRezult
 	local hshMioNomeSRezult
-	print (mioNomeS)
 	if TDG[mioNomeS]["rarHSH"]==nil then
 		TDG[mioNomeS]["rarHSH"]={}
 	end
